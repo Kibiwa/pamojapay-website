@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PamojaPay — Cooperative Management for African SACCOs</title>
+  <meta name="description" content="PamojaPay is the all-in-one cooperative management platform built for African SACCOs. Savings, loans, expenses and member portals — together."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:    #07192e;
+      --blue:    #0f5fbd;
+      --sky:     #2196f3;
+      --mint:    #00e5a0;
+      --white:   #ffffff;
+      --muted:   rgba(255,255,255,0.55);
+      --card-bg: rgba(255,255,255,0.04);
+      --border:  rgba(255,255,255,0.09);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--navy);
+      color: var(--white);
+      font-family: 'Sora', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── Animated mesh background ── */
+    .bg {
+      position: fixed; inset: 0; z-index: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 20% 10%, rgba(15,95,189,0.35) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 80% 80%, rgba(0,229,160,0.12) 0%, transparent 55%),
+        radial-gradient(ellipse 50% 40% at 60% 30%, rgba(33,150,243,0.18) 0%, transparent 50%),
+        #07192e;
+    }
+    .bg::after {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    /* ── Layout ── */
+    .page { position: relative; z-index: 1; }
+
+    /* ── Nav ── */
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 24px 40px;
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(7,25,46,0.7);
+    }
+    .logo {
+      display: flex; align-items: center; gap: 12px;
+    }
+    .logo-mark {
+      width: 36px; height: 36px;
+      background: linear-gradient(135deg, var(--blue), var(--mint));
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'DM Mono', monospace;
+      font-size: 14px; font-weight: 500;
+      color: #fff;
+      letter-spacing: -0.5px;
+    }
+    .logo-text {
+      font-size: 18px; font-weight: 800;
+      letter-spacing: -0.3px;
+    }
+    .logo-text span { color: var(--mint); }
+    .nav-badge {
+      font-size: 11px; font-weight: 600;
+      background: rgba(0,229,160,0.12);
+      color: var(--mint);
+      border: 1px solid rgba(0,229,160,0.25);
+      padding: 5px 14px; border-radius: 20px;
+      letter-spacing: 0.3px;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      min-height: calc(100vh - 85px);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 80px 24px 60px;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 11px; font-weight: 600; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--mint);
+      background: rgba(0,229,160,0.08);
+      border: 1px solid rgba(0,229,160,0.2);
+      padding: 7px 18px; border-radius: 20px;
+      margin-bottom: 36px;
+      animation: fadeUp 0.7s ease both;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--mint);
+      border-radius: 50%;
+      animation: pulse 2s ease infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.5; transform: scale(0.7); }
+    }
+
+    h1 {
+      font-size: clamp(42px, 8vw, 88px);
+      font-weight: 800;
+      letter-spacing: -2px;
+      line-height: 1.0;
+      margin-bottom: 28px;
+      animation: fadeUp 0.7s 0.1s ease both;
+    }
+    h1 .accent {
+      background: linear-gradient(135deg, #4fc3f7, var(--mint));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: clamp(15px, 2.5vw, 20px);
+      font-weight: 300;
+      color: var(--muted);
+      max-width: 560px;
+      line-height: 1.65;
+      margin-bottom: 52px;
+      animation: fadeUp 0.7s 0.2s ease both;
+    }
+
+    .hero-actions {
+      display: flex; gap: 14px; flex-wrap: wrap;
+      justify-content: center;
+      animation: fadeUp 0.7s 0.3s ease both;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: linear-gradient(135deg, var(--blue), #1976d2);
+      color: #fff; font-size: 14px; font-weight: 700;
+      padding: 14px 28px; border-radius: 12px;
+      text-decoration: none; border: none; cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 8px 32px rgba(15,95,189,0.4);
+      font-family: 'Sora', sans-serif;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(15,95,189,0.5); }
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent;
+      color: var(--white); font-size: 14px; font-weight: 600;
+      padding: 14px 28px; border-radius: 12px;
+      text-decoration: none; cursor: pointer;
+      border: 1px solid var(--border);
+      transition: background 0.2s, border-color 0.2s;
+      font-family: 'Sora', sans-serif;
+    }
+    .btn-ghost:hover { background: var(--card-bg); border-color: rgba(255,255,255,0.2); }
+
+    /* ── Tenant pill ── */
+    .tenant-pill {
+      margin-top: 64px;
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 10px 20px; border-radius: 14px;
+      font-size: 13px; color: var(--muted);
+      animation: fadeUp 0.7s 0.4s ease both;
+    }
+    .tenant-pill strong { color: var(--white); }
+    .tenant-pill a {
+      color: var(--mint); text-decoration: none;
+      font-family: 'DM Mono', monospace; font-size: 12px;
+      border-bottom: 1px solid rgba(0,229,160,0.3);
+    }
+    .tenant-pill a:hover { border-color: var(--mint); }
+
+    /* ── Stats strip ── */
+    .stats {
+      display: flex; justify-content: center;
+      gap: 0; flex-wrap: wrap;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: rgba(255,255,255,0.02);
+      animation: fadeUp 0.7s 0.5s ease both;
+    }
+    .stat {
+      flex: 1; min-width: 160px;
+      padding: 32px 24px;
+      text-align: center;
+      border-right: 1px solid var(--border);
+    }
+    .stat:last-child { border-right: none; }
+    .stat-num {
+      font-size: 32px; font-weight: 800;
+      letter-spacing: -1px;
+      background: linear-gradient(135deg, #fff, rgba(255,255,255,0.7));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .stat-label {
+      font-size: 11px; font-weight: 500;
+      color: var(--muted); margin-top: 4px;
+      text-transform: uppercase; letter-spacing: 1px;
+    }
+
+    /* ── Features ── */
+    .features {
+      padding: 100px 40px;
+      max-width: 1100px; margin: 0 auto;
+    }
+    .section-label {
+      font-size: 11px; font-weight: 600; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--mint);
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 800; letter-spacing: -1px;
+      line-height: 1.1; margin-bottom: 60px;
+      max-width: 480px;
+    }
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .feature-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px 28px;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .feature-card:hover {
+      border-color: rgba(255,255,255,0.18);
+      transform: translateY(-4px);
+    }
+    .feature-icon {
+      width: 48px; height: 48px;
+      background: linear-gradient(135deg, var(--blue), var(--sky));
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; margin-bottom: 20px;
+    }
+    .feature-card h3 {
+      font-size: 16px; font-weight: 700;
+      margin-bottom: 10px; letter-spacing: -0.2px;
+    }
+    .feature-card p {
+      font-size: 13px; color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* ── CTA ── */
+    .cta-section {
+      padding: 80px 40px;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+    .cta-section h2 {
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 800; letter-spacing: -1.5px;
+      margin-bottom: 16px;
+    }
+    .cta-section p {
+      color: var(--muted); font-size: 16px;
+      margin-bottom: 36px;
+    }
+
+    /* ── Footer ── */
+    footer {
+      padding: 28px 40px;
+      border-top: 1px solid var(--border);
+      display: flex; align-items: center;
+      justify-content: space-between; flex-wrap: wrap; gap: 12px;
+      font-size: 12px; color: var(--muted);
+    }
+    footer a { color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--white); }
+    .footer-links { display: flex; gap: 24px; }
+
+    /* ── Animations ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 600px) {
+      nav { padding: 18px 20px; }
+      .features { padding: 60px 20px; }
+      .hero { padding: 60px 20px 40px; }
+      .stat { min-width: 130px; padding: 24px 16px; }
+      footer { padding: 24px 20px; flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg"></div>
+  <div class="page">
+
+    <!-- Nav -->
+    <nav>
+      <div class="logo">
+        <div class="logo-mark">PP</div>
+        <div class="logo-text">Pamoja<span>Pay</span></div>
+      </div>
+      <div class="nav-badge">Coming Soon</div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-eyebrow">Now in early access</div>
+      <h1>
+        The cooperative<br/>
+        platform built for<br/>
+        <span class="accent">African SACCOs</span>
+      </h1>
+      <p class="hero-sub">
+        Savings, loans, expenses, member portals and dividend management —
+        all in one place. Built for how cooperatives actually work in Uganda and East Africa.
+      </p>
+      <div class="hero-actions">
+        <a href="mailto:hello@pamojapay.co" class="btn-primary">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
+          Request Early Access
+        </a>
+        <a href="https://bida.pamojapay.co" class="btn-ghost">
+          See it live — BIDA →
+        </a>
+      </div>
+
+      <div class="tenant-pill">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+        First tenant live at&nbsp;
+        <strong>BIDA Co-operative</strong>
+        &nbsp;→&nbsp;
+        <a href="https://bida.pamojapay.co">bida.pamojapay.co</a>
+      </div>
+    </section>
+
+    <!-- Stats -->
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-num">13</div>
+        <div class="stat-label">Modules</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">47+</div>
+        <div class="stat-label">Members managed</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">UGX</div>
+        <div class="stat-label">Native currency</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Mobile friendly</div>
+      </div>
+    </div>
+
+    <!-- Features -->
+    <section class="features">
+      <div class="section-label">What PamojaPay does</div>
+      <h2 class="section-title">Everything your SACCO needs, nothing it doesn't</h2>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-icon">💰</div>
+          <h3>Savings Management</h3>
+          <p>Track membership fees, monthly savings, welfare, shares and voluntary deposits per member. Real-time totals, contribution history and reminders.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🏦</div>
+          <h3>Loan Register</h3>
+          <p>Flat and reducing balance loans, automatic repayment schedules, overdue tracking and 2% monthly penalty calculation. Full NPL reporting.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+          <h3>Finance Engine</h3>
+          <p>Live cash-in-bank balance, capital gains pool, AGM dividend distribution, expense tracking and investment management — all reconciled automatically.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">👥</div>
+          <h3>Member Portal</h3>
+          <p>Each member logs in to see their own savings, loan balances, contribution history and download statements. Secure, mobile-first.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📋</div>
+          <h3>4-Step Approvals</h3>
+          <p>Treasurer → Finance Manager → Admin → Auditor. Every loan and member addition goes through a proper approval chain with full audit trail.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📄</div>
+          <h3>PDF Documents</h3>
+          <p>Professional loan agreements, payment receipts, member statements, share certificates and overdue penalty reports — generated instantly.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+      <h2>Ready to bring your SACCO online?</h2>
+      <p>Get your own subdomain — yourname.pamojapay.co — and go live in days, not months.</p>
+      <a href="mailto:hello@pamojapay.co" class="btn-primary" style="font-size:15px;padding:16px 36px;">
+        Get in touch
+      </a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div>© 2026 PamojaPay · <em>Together, we grow stronger.</em></div>
+      <div class="footer-links">
+        <a href="https://bida.pamojapay.co">BIDA Cooperative</a>
+        <a href="mailto:hello@pamojapay.co">hello@pamojapay.co</a>
+      </div>
+    </footer>
+
+  </div>
+</body>
+</html>
