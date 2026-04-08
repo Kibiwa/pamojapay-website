@@ -421,36 +421,36 @@ h3{font-size:15px;font-weight:700;letter-spacing:-.2px}
 
 <!-- NAV -->
 <nav id="nav">
-  <div class="nav-logo" onclick="goPage('home')">
+  <div class="nav-logo" onclick="navigateTo('home')">
     <span class="logo-txt">Pamoja<span>Pay</span></span>
   </div>
   <ul class="nav-links">
-    <li><a onclick="goPage('home')" id="nl-home" class="act">Home</a></li>
-    <li><a onclick="goPage('features')" id="nl-features">Features</a></li>
-    <li><a onclick="goPage('pricing')" id="nl-pricing">Pricing</a></li>
-    <li><a onclick="goPage('about')" id="nl-about">Contact</a></li>
+    <li><a onclick="navigateTo('home')" id="nl-home" class="act">Home</a></li>
+    <li><a onclick="navigateTo('features')" id="nl-features">Features</a></li>
+    <li><a onclick="navigateTo('pricing')" id="nl-pricing">Pricing</a></li>
+    <li><a onclick="navigateTo('about')" id="nl-about">Contact</a></li>
   </ul>
   <div class="nav-r">
-    <a class="btn-nav-o" onclick="goPage('about')">Request Demo</a>
-    <a class="btn-nav-p" onclick="goPage('pricing')">Get Started</a>
+    <a class="btn-nav-o" onclick="navigateTo('about')">Request Demo</a>
+    <a class="btn-nav-p" onclick="navigateTo('pricing')">Get Started</a>
   </div>
   <button class="hbg" id="hbg" onclick="toggleMobile()" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
 </nav>
 <div class="mmenu" id="mmenu">
-  <a onclick="goPage('home');closeMobile()">Home</a>
-  <a onclick="goPage('features');closeMobile()">Features</a>
-  <a onclick="goPage('pricing');closeMobile()">Pricing</a>
-  <a onclick="goPage('about');closeMobile()">Contact</a>
+  <a onclick="navigateTo('home');closeMobile()">Home</a>
+  <a onclick="navigateTo('features');closeMobile()">Features</a>
+  <a onclick="navigateTo('pricing');closeMobile()">Pricing</a>
+  <a onclick="navigateTo('about');closeMobile()">Contact</a>
   <div class="mmenu-btns">
-    <a class="btn b-gho b-md b-full" onclick="goPage('about');closeMobile()">Request Demo</a>
-    <a class="btn b-pri b-md b-full" onclick="goPage('pricing');closeMobile()">Get Started</a>
+    <a class="btn b-gho b-md b-full" onclick="navigateTo('about');closeMobile()">Request Demo</a>
+    <a class="btn b-pri b-md b-full" onclick="navigateTo('pricing');closeMobile()">Get Started</a>
   </div>
 </div>
 
 <!-- ======================================================
-     HOME (ORIGINAL - UNCHANGED)
+     HOME PAGE
 ====================================================== -->
 <div class="page active" id="page-home">
 
@@ -469,8 +469,8 @@ h3{font-size:15px;font-weight:700;letter-spacing:-.2px}
   <h1>Complete Financial<br/>Management for Your<br/><span class="grad">SACCO</span></h1>
   <p class="hero-sub">Pamoja Pay brings your savings, loans, expenses, and governance into one modern platform. Members get a self-service portal. Managers get real-time control.</p>
   <div class="hero-act">
-    <a class="btn b-pri b-lg" onclick="goPage('pricing')">Get Started &rarr;</a>
-    <a class="btn b-gho b-lg" onclick="goPage('about')">Request Demo</a>
+    <a class="btn b-pri b-lg" onclick="navigateTo('pricing')">Get Started &rarr;</a>
+    <a class="btn b-gho b-lg" onclick="navigateTo('about')">Request Demo</a>
   </div>
   <div class="hero-pill">
     <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
@@ -583,7 +583,7 @@ h3{font-size:15px;font-weight:700;letter-spacing:-.2px}
       <div class="fcard gc an d3"><div class="fcard-top"><div class="ficon">&#128241;</div><h3>Member Portal</h3></div><p>Members log in securely to view balances, apply for loans, and vote.</p></div>
       <div class="fcard gc an d1"><div class="fcard-top"><div class="ficon">&#128202;</div><h3>Auditor Hub</h3></div><p>Dedicated auditor dashboard with full oversight and approval tools.</p></div>
     </div>
-    <div class="tc" style="margin-top:26px"><a class="btn b-omint b-md" onclick="goPage('features')">Deep dive into every feature &rarr;</a></div>
+    <div class="tc" style="margin-top:26px"><a class="btn b-omint b-md" onclick="navigateTo('features')">Deep dive into every feature &rarr;</a></div>
   </div>
 </section>
 
@@ -610,7 +610,7 @@ h3{font-size:15px;font-weight:700;letter-spacing:-.2px}
           <li><span class="pno">&#10005;</span> Expenses</li>
           <li><span class="pno">&#10005;</span> Investments</li>
         </ul>
-        <a class="btn b-gho b-md b-full" onclick="goPage('about')">Get Started</a>
+        <a class="btn b-gho b-md b-full" onclick="navigateTo('about')">Get Started</a>
       </div>
       <div class="prcard gc pop an d2">
         <div class="pop-tag">Most Popular</div>
@@ -627,7 +627,7 @@ h3{font-size:15px;font-weight:700;letter-spacing:-.2px}
           <li><span class="pno">&#10005;</span> Expenses</li>
           <li><span class="pno">&#10005;</span> Investments</li>
         </ul>
-        <a class="btn b-pri b-md b-full" onclick="goPage('about')">Get Started</a>
+        <a class="btn b-pri b-md b-full" onclick="navigateTo('about')">Get Started</a>
       </div>
       <div class="prcard gc an d3">
         <div class="pr-plan">Premium</div>
@@ -643,7 +643,7 @@ h3{font-size:15px;font-weight:700;letter-spacing:-.2px}
           <li><span class="pno">&#10005;</span> Voting</li>
           <li><span class="pno">&#10005;</span> Auditor Hub</li>
         </ul>
-        <a class="btn b-gho b-md b-full" onclick="goPage('about')">Get Started</a>
+        <a class="btn b-gho b-md b-full" onclick="navigateTo('about')">Get Started</a>
       </div>
       <div class="prcard gc an d4">
         <div class="pr-plan" style="color:#6ec6ff">Enterprise</div>
@@ -659,13 +659,13 @@ h3{font-size:15px;font-weight:700;letter-spacing:-.2px}
           <li><span class="py">&#10003;</span> Auditor Hub</li>
           <li><span class="py">&#10003;</span> Priority support</li>
         </ul>
-        <a class="btn b-mint b-md b-full" onclick="goPage('about')">Contact Sales</a>
+        <a class="btn b-mint b-md b-full" onclick="navigateTo('about')">Contact Sales</a>
       </div>
     </div>
     <div class="pr-note gc an" style="margin-top:22px">
-      <p>&#128101; <strong>400+ members?</strong> Switch to our <strong>Digital Rent model &mdash; UGX 2,000 per member per month.</strong> Scales as you grow. <a onclick="goPage('about')">Get a custom quote &rarr;</a></p>
+      <p>&#128101; <strong>400+ members?</strong> Switch to our <strong>Digital Rent model &mdash; UGX 2,000 per member per month.</strong> Scales as you grow. <a onclick="navigateTo('about')">Get a custom quote &rarr;</a></p>
     </div>
-    <div class="tc" style="margin-top:20px"><a class="btn b-omint b-md" onclick="goPage('pricing')">View full comparison &rarr;</a></div>
+    <div class="tc" style="margin-top:20px"><a class="btn b-omint b-md" onclick="navigateTo('pricing')">View full comparison &rarr;</a></div>
   </div>
 </section>
 
@@ -708,7 +708,6 @@ h3{font-size:15px;font-weight:700;letter-spacing:-.2px}
         <div class="tauth"><div class="tav">AN</div><div><div class="tname">Aisha Namutebi</div><div class="torg">Secretary, Wakiso Women&apos;s SACCO</div></div></div>
       </div>
     </div>
-    <!-- REMOVED: the funny tagline "Illustrative testimonials..." -->
   </div>
 </section>
 
@@ -736,8 +735,8 @@ h3{font-size:15px;font-weight:700;letter-spacing:-.2px}
     <h2>Bring your SACCO online today</h2>
     <p>Join SACCOs across Uganda that have made the move to digital management.</p>
     <div class="cta-acts">
-      <a class="btn b-pri b-lg" onclick="goPage('pricing')">View Plans</a>
-      <a class="btn b-gho b-lg" onclick="goPage('about')">Talk to Us</a>
+      <a class="btn b-pri b-lg" onclick="navigateTo('pricing')">View Plans</a>
+      <a class="btn b-gho b-lg" onclick="navigateTo('about')">Talk to Us</a>
     </div>
   </div></div>
 </section>
@@ -750,14 +749,14 @@ h3{font-size:15px;font-weight:700;letter-spacing:-.2px}
     </div>
     <div class="ftr-col">
       <h4>Product</h4>
-      <a onclick="goPage('features')">Features</a>
-      <a onclick="goPage('pricing')">Pricing</a>
-      <a onclick="goPage('home');scrollSec('s-how')">How It Works</a>
+      <a onclick="navigateTo('features')">Features</a>
+      <a onclick="navigateTo('pricing')">Pricing</a>
+      <a onclick="scrollToSection('s-how')">How It Works</a>
     </div>
     <div class="ftr-col">
       <h4>Company</h4>
-      <a onclick="goPage('about')">About Us</a>
-      <a onclick="goPage('about')">Contact</a>
+      <a onclick="navigateTo('about')">About Us</a>
+      <a onclick="navigateTo('about')">Contact</a>
       <a>Privacy Policy</a>
     </div>
     <div class="ftr-col" id="footerContactCol">
@@ -775,9 +774,7 @@ h3{font-size:15px;font-weight:700;letter-spacing:-.2px}
 </div></footer>
 </div><!-- /home -->
 
-<!-- ======================================================
-     FEATURES PAGE (ORIGINAL - UNCHANGED)
-====================================================== -->
+<!-- FEATURES PAGE -->
 <div class="page" id="page-features">
 <section class="page-hero"><div class="wrap">
   <div class="eyebrow" style="justify-content:center">All Features</div>
@@ -800,117 +797,245 @@ h3{font-size:15px;font-weight:700;letter-spacing:-.2px}
   </div>
 </div></section>
 
-<section class="cta-ban"><div class="wrap"><h2>Like what you see?</h2><p>Get started with the plan that fits your SACCO's size.</p><div class="cta-acts"><a class="btn b-pri b-lg" onclick="goPage('pricing')">View Pricing</a><a class="btn b-gho b-lg" onclick="goPage('about')">Request a Demo</a></div></div></section>
+<section class="cta-ban"><div class="wrap"><h2>Like what you see?</h2><p>Get started with the plan that fits your SACCO's size.</p><div class="cta-acts"><a class="btn b-pri b-lg" onclick="navigateTo('pricing')">View Pricing</a><a class="btn b-gho b-lg" onclick="navigateTo('about')">Request a Demo</a></div></div></section>
 
-<footer class="footer"><div class="wrap"><div class="ftr-bot" style="border-top:1px solid var(--border);padding-top:20px"><div>&copy; 2026 PamojaPay &middot; <em>Together, we grow stronger.</em></div><div style="display:flex;gap:20px"><a style="color:var(--muted);text-decoration:none;cursor:pointer" onclick="goPage('home')">Home</a><a style="color:var(--muted);text-decoration:none;cursor:pointer" onclick="goPage('pricing')">Pricing</a><a style="color:var(--muted);text-decoration:none" href="mailto:paypamoja@gmail.com">paypamoja@gmail.com</a></div></div></div></footer>
+<footer class="footer"><div class="wrap"><div class="ftr-bot" style="border-top:1px solid var(--border);padding-top:20px"><div>&copy; 2026 PamojaPay &middot; <em>Together, we grow stronger.</em></div><div style="display:flex;gap:20px"><a style="color:var(--muted);text-decoration:none;cursor:pointer" onclick="navigateTo('home')">Home</a><a style="color:var(--muted);text-decoration:none;cursor:pointer" onclick="navigateTo('pricing')">Pricing</a><a style="color:var(--muted);text-decoration:none" href="mailto:paypamoja@gmail.com">paypamoja@gmail.com</a></div></div></div></footer>
 </div><!-- /features -->
 
-<!-- ======================================================
-     PRICING PAGE (ORIGINAL - UNCHANGED)
-====================================================== -->
+<!-- PRICING PAGE -->
 <div class="page" id="page-pricing">
 <section class="page-hero"><div class="wrap"><div class="eyebrow" style="justify-content:center">Pricing</div><h1 style="margin-bottom:13px">One flat fee.<br/>No <span class="grad">surprises.</span></h1><p>Month-to-month. Cancel anytime. 30-day money-back guarantee.</p></div></section>
-<section class="sec" style="border-top:1px solid var(--border)"><div class="wrap"><div class="prgrid"><div class="prcard gc an d1"><div class="pr-plan">Basic</div><div class="pr-amt">UGX 150k <span>/ mo</span></div><div class="pr-setup">+ UGX 500k one-time setup</div><div class="pr-members">&#128101; 1 &ndash; 50 members</div><ul class="pr-feats"><li><span class="py">&#10003;</span> Member management</li><li><span class="py">&#10003;</span> Savings tracking</li><li><span class="py">&#10003;</span> Member portal</li><li><span class="py">&#10003;</span> Basic reports</li><li><span class="py">&#10003;</span> Email reminders (500/mo)</li><li><span class="py">&#10003;</span> 2 GB storage</li><li><span class="pno">&#10005;</span> Loans</li><li><span class="pno">&#10005;</span> Expenses &amp; investments</li></ul><a class="btn b-gho b-md b-full" onclick="goPage('about')">Get Started</a></div><div class="prcard gc pop an d2"><div class="pop-tag">Most Popular</div><div class="pr-plan">Standard</div><div class="pr-amt">UGX 350k <span>/ mo</span></div><div class="pr-setup">+ UGX 700k one-time setup</div><div class="pr-members">&#128101; 51 &ndash; 100 members</div><ul class="pr-feats"><li><span class="py">&#10003;</span> Everything in Basic</li><li><span class="py">&#10003;</span> Loan agreements PDF</li><li><span class="py">&#10003;</span> 1,000 email credits/mo</li><li><span class="py">&#10003;</span> 5 GB storage</li><li><span class="pno">&#10005;</span> Expenses &amp; investments</li></ul><a class="btn b-pri b-md b-full" onclick="goPage('about')">Get Started</a></div><div class="prcard gc an d3"><div class="pr-plan">Premium</div><div class="pr-amt">UGX 650k <span>/ mo</span></div><div class="pr-setup">+ UGX 1M one-time setup</div><div class="pr-members">&#128101; 101 &ndash; 200 members</div><ul class="pr-feats"><li><span class="py">&#10003;</span> Everything in Standard</li><li><span class="py">&#10003;</span> Expense tracking</li><li><span class="py">&#10003;</span> Investment management</li><li><span class="py">&#10003;</span> Dividend distribution</li><li><span class="py">&#10003;</span> 2,000 email credits/mo</li><li><span class="py">&#10003;</span> 10 GB storage</li><li><span class="pno">&#10005;</span> Voting</li><li><span class="pno">&#10005;</span> Auditor Hub</li></ul><a class="btn b-gho b-md b-full" onclick="goPage('about')">Get Started</a></div><div class="prcard gc an d4"><div class="pr-plan" style="color:#6ec6ff">Enterprise</div><div class="pr-amt">UGX 1.2M <span>/ mo</span></div><div class="pr-setup">+ UGX 1.5M one-time setup</div><div class="pr-members">&#128101; 201 &ndash; 400 members</div><ul class="pr-feats"><li><span class="py">&#10003;</span> Everything in Premium</li><li><span class="py">&#10003;</span> Voting &amp; elections</li><li><span class="py">&#10003;</span> Benevolent fund</li><li><span class="py">&#10003;</span> Document management</li><li><span class="py">&#10003;</span> AGM report generator</li><li><span class="py">&#10003;</span> Auditor Hub</li><li><span class="py">&#10003;</span> Priority support</li><li><span class="py">&#10003;</span> 25 GB storage</li></ul><a class="btn b-mint b-md b-full" onclick="goPage('about')">Contact Sales</a></div></div><div class="pr-note gc an" style="margin-top:20px"><p>&#128101; <strong>400+ members?</strong> Switch to <strong>Digital Rent &mdash; UGX 2,000 per member per month.</strong> Scales as your SACCO grows. <a onclick="goPage('about')">Get a custom quote &rarr;</a></p></div></div></section>
+<section class="sec" style="border-top:1px solid var(--border)"><div class="wrap"><div class="prgrid"><div class="prcard gc an d1"><div class="pr-plan">Basic</div><div class="pr-amt">UGX 150k <span>/ mo</span></div><div class="pr-setup">+ UGX 500k one-time setup</div><div class="pr-members">&#128101; 1 &ndash; 50 members</div><ul class="pr-feats"><li><span class="py">&#10003;</span> Member management</li><li><span class="py">&#10003;</span> Savings tracking</li><li><span class="py">&#10003;</span> Member portal</li><li><span class="py">&#10003;</span> Basic reports</li><li><span class="py">&#10003;</span> Email reminders (500/mo)</li><li><span class="py">&#10003;</span> 2 GB storage</li><li><span class="pno">&#10005;</span> Loans</li><li><span class="pno">&#10005;</span> Expenses &amp; investments</li></ul><a class="btn b-gho b-md b-full" onclick="navigateTo('about')">Get Started</a></div><div class="prcard gc pop an d2"><div class="pop-tag">Most Popular</div><div class="pr-plan">Standard</div><div class="pr-amt">UGX 350k <span>/ mo</span></div><div class="pr-setup">+ UGX 700k one-time setup</div><div class="pr-members">&#128101; 51 &ndash; 100 members</div><ul class="pr-feats"><li><span class="py">&#10003;</span> Everything in Basic</li><li><span class="py">&#10003;</span> Loan agreements PDF</li><li><span class="py">&#10003;</span> 1,000 email credits/mo</li><li><span class="py">&#10003;</span> 5 GB storage</li><li><span class="pno">&#10005;</span> Expenses &amp; investments</li></ul><a class="btn b-pri b-md b-full" onclick="navigateTo('about')">Get Started</a></div><div class="prcard gc an d3"><div class="pr-plan">Premium</div><div class="pr-amt">UGX 650k <span>/ mo</span></div><div class="pr-setup">+ UGX 1M one-time setup</div><div class="pr-members">&#128101; 101 &ndash; 200 members</div><ul class="pr-feats"><li><span class="py">&#10003;</span> Everything in Standard</li><li><span class="py">&#10003;</span> Expense tracking</li><li><span class="py">&#10003;</span> Investment management</li><li><span class="py">&#10003;</span> Dividend distribution</li><li><span class="py">&#10003;</span> 2,000 email credits/mo</li><li><span class="py">&#10003;</span> 10 GB storage</li><li><span class="pno">&#10005;</span> Voting</li><li><span class="pno">&#10005;</span> Auditor Hub</li></ul><a class="btn b-gho b-md b-full" onclick="navigateTo('about')">Get Started</a></div><div class="prcard gc an d4"><div class="pr-plan" style="color:#6ec6ff">Enterprise</div><div class="pr-amt">UGX 1.2M <span>/ mo</span></div><div class="pr-setup">+ UGX 1.5M one-time setup</div><div class="pr-members">&#128101; 201 &ndash; 400 members</div><ul class="pr-feats"><li><span class="py">&#10003;</span> Everything in Premium</li><li><span class="py">&#10003;</span> Voting &amp; elections</li><li><span class="py">&#10003;</span> Benevolent fund</li><li><span class="py">&#10003;</span> Document management</li><li><span class="py">&#10003;</span> AGM report generator</li><li><span class="py">&#10003;</span> Auditor Hub</li><li><span class="py">&#10003;</span> Priority support</li><li><span class="py">&#10003;</span> 25 GB storage</li></ul><a class="btn b-mint b-md b-full" onclick="navigateTo('about')">Contact Sales</a></div></div><div class="pr-note gc an" style="margin-top:20px"><p>&#128101; <strong>400+ members?</strong> Switch to <strong>Digital Rent &mdash; UGX 2,000 per member per month.</strong> Scales as your SACCO grows. <a onclick="navigateTo('about')">Get a custom quote &rarr;</a></p></div></div></section>
 <section class="sec" style="border-top:1px solid var(--border)"><div class="wrap"><div class="tc an"><div class="eyebrow">Compare</div><h2 style="margin-bottom:10px">Full plan comparison</h2></div><div class="cmp-wrap"><table class="cmp"><thead><tr><th class="fc">Feature</th><th class="ph">Basic</th><th class="ph">Standard ⭐</th><th class="ph">Premium</th><th class="ph">Enterprise</th></tr><tr class="pr-row"><td class="fc">Monthly Price</td><td>UGX 150k</td><td>UGX 350k</td><td>UGX 650k</td><td>UGX 1.2M</td></tr><tr class="pr-row"><td class="fc">Setup Fee</td><td>UGX 500k</td><td>UGX 700k</td><td>UGX 1M</td><td>UGX 1.5M</td></tr><tr class="pr-row"><td class="fc">Members</td><td>1-50</td><td>51-100</td><td>101-200</td><td>201-400</td></tr></thead><tbody><tr class="cat-row"><td colspan="5">Core</td></tr><tr><td class="fc">Member Management</td><td class="yc">✓</td><td class="yc">✓</td><td class="yc">✓</td><td class="yc">✓</td></tr><tr><td class="fc">Savings Tracking</td><td class="yc">✓</td><td class="yc">✓</td><td class="yc">✓</td><td class="yc">✓</td></tr><tr><td class="fc">Member Portal</td><td class="yc">✓</td><td class="yc">✓</td><td class="yc">✓</td><td class="yc">✓</td></tr></tbody></table></div></div></section>
-<section class="cta-ban"><div class="wrap"><h2>Ready to move forward?</h2><p>Our team is here to help you choose and get set up.</p><div class="cta-acts"><a class="btn b-mint b-lg" onclick="goPage('about')">Contact Sales</a><a class="btn b-gho b-lg" onclick="goPage('home')">Back to Home</a></div></div></section>
-<footer class="footer"><div class="wrap"><div class="ftr-bot" style="border-top:1px solid var(--border);padding-top:20px"><div>&copy; 2026 PamojaPay &middot; <em>Together, we grow stronger.</em></div><div style="display:flex;gap:20px"><a style="color:var(--muted);text-decoration:none;cursor:pointer" onclick="goPage('home')">Home</a><a style="color:var(--muted);text-decoration:none;cursor:pointer" onclick="goPage('features')">Features</a><a style="color:var(--muted);text-decoration:none" href="mailto:paypamoja@gmail.com">paypamoja@gmail.com</a></div></div></div></footer>
+<section class="cta-ban"><div class="wrap"><h2>Ready to move forward?</h2><p>Our team is here to help you choose and get set up.</p><div class="cta-acts"><a class="btn b-mint b-lg" onclick="navigateTo('about')">Contact Sales</a><a class="btn b-gho b-lg" onclick="navigateTo('home')">Back to Home</a></div></div></section>
+<footer class="footer"><div class="wrap"><div class="ftr-bot" style="border-top:1px solid var(--border);padding-top:20px"><div>&copy; 2026 PamojaPay &middot; <em>Together, we grow stronger.</em></div><div style="display:flex;gap:20px"><a style="color:var(--muted);text-decoration:none;cursor:pointer" onclick="navigateTo('home')">Home</a><a style="color:var(--muted);text-decoration:none;cursor:pointer" onclick="navigateTo('features')">Features</a><a style="color:var(--muted);text-decoration:none" href="mailto:paypamoja@gmail.com">paypamoja@gmail.com</a></div></div></div></footer>
 </div><!-- /pricing -->
 
-<!-- ======================================================
-     ABOUT & CONTACT PAGE (FIXED - CONTACT INFO VISIBLE)
-====================================================== -->
+<!-- ABOUT & CONTACT PAGE -->
 <div class="page" id="page-about">
 <section class="page-hero"><div class="wrap"><div class="eyebrow" style="justify-content:center">Our Story</div><h1 style="margin-bottom:13px">Built for Uganda<br/>and <span class="grad">Africa</span></h1><p>Pamoja Pay exists to bring cooperative societies into the digital age &mdash; everywhere people come together to save and grow.</p></div></section>
 
 <section class="sec" style="border-top:1px solid var(--border)"><div class="wrap"><div class="agrid"><div class="acontent an"><div class="eyebrow">About PamojaPay</div><h2>The name says it all</h2><p>&ldquo;Pamoja&rdquo; means &ldquo;Together&rdquo; in Swahili &mdash; and that spirit of togetherness is at the heart of every cooperative. SACCOs exist because people come together to pool resources, support each other, and build collective wealth.</p><p>We built Pamoja Pay because we saw too many SACCOs across Uganda and Africa struggling with paper records, spreadsheets, and systems not built for the cooperative context. Members could not check their own balances. Loan approvals dragged on. Audits were painful and manual.</p><p>Pamoja Pay is the answer &mdash; a complete, modern platform built specifically for how cooperatives in Uganda and across Africa actually work.</p><p style="color:var(--mint);font-weight:600">Our mission: To digitize and empower cooperative societies across Uganda and Africa.</p></div><div class="an d2"><div class="vlist"><div class="vi"><div class="vi-ic">&#127482;&#127468;</div><div><h4>Built for Uganda and Africa</h4><p>Every workflow and feature reflects the real cooperative context across the continent.</p></div></div><div class="vi"><div class="vi-ic">&#128274;</div><div><h4>Bank-Level Security</h4><p>Encryption, row-level security, daily backups, and an immutable audit trail.</p></div></div><div class="vi"><div class="vi-ic">&#128241;</div><div><h4>Any Device, Anywhere</h4><p>Works on basic Android phones and desktops alike. No app download ever needed.</p></div></div><div class="vi"><div class="vi-ic">&#128244;</div><div><h4>Works Offline</h4><p>Staff keep working without internet. Everything syncs when connectivity returns.</p></div></div><div class="vi"><div class="vi-ic">&#128200;</div><div><h4>Scales With You</h4><p>From a 20-member village SACCO to a 400-member institution &mdash; Pamoja Pay grows with you.</p></div></div></div></div></div></div></section>
 
-<!-- CONTACT SECTION - NOW WITH VISIBLE CONTACT INFO -->
-<section class="sec" style="border-top:1px solid var(--border)" id="contact-section"><div class="wrap"><div class="cgrid"><div class="an"><div class="eyebrow">Contact</div><h2 style="font-size:clamp(20px,3vw,32px);margin-bottom:11px">Let&apos;s talk about your SACCO</h2><p class="cinfo">Whether you are ready to sign up or just exploring, we would love to hear from you. We respond within 24 hours.</p><div class="cit"><div class="cit-ic">&#128231;</div><div><h4>Email</h4><p><a href="mailto:paypamoja@gmail.com" id="aboutEmailLink" style="color:var(--mint);text-decoration:none">paypamoja@gmail.com</a></p></div></div><div class="cit"><div class="cit-ic">&#128222;</div><div><h4>Phone</h4><p id="aboutPhoneDisplay">+256 XXX XXX XXX</p></div></div><div class="cit"><div class="cit-ic">&#128172;</div><div><h4>WhatsApp</h4><p><a href="#" id="aboutWhatsAppLink" style="color:var(--mint);text-decoration:none" target="_blank">Click to chat on WhatsApp</a></p></div></div><div class="cit"><div class="cit-ic">&#127482;&#127468;</div><div><h4>Location</h4><p id="aboutLocationDisplay">Kampala, Uganda</p></div></div><div class="hours-card gc"><h4>Office Hours</h4><div class="hrow"><span class="day" id="hoursWeekdayLabel">Monday &ndash; Friday</span><span class="time" id="hoursWeekdayTime">9:00 AM &ndash; 5:00 PM</span></div><div class="hrow"><span class="day">Saturday</span><span class="time" id="hoursSatTime">10:00 AM &ndash; 2:00 PM</span></div><div class="hrow"><span class="day">Sunday</span><span class="time">Closed</span></div></div></div><div class="form-card gc an d2"><h3>Send us a message</h3><form action="https://formspree.io/f/mnjorkla" method="POST"><div class="frow"><div class="ff"><label>Full Name *</label><input type="text" name="name" placeholder="e.g. Robert Okello" required/></div><div class="ff"><label>Email *</label><input type="email" name="email" placeholder="robert@sacco.com" required/></div></div><div class="frow"><div class="ff"><label>Phone / WhatsApp *</label><input type="tel" name="phone" placeholder="+256 7XX XXX XXX" required/></div><div class="ff"><label>SACCO Name *</label><input type="text" name="sacco_name" placeholder="e.g. Kampala Teachers SACCO" required/></div></div><div class="ff"><label>Number of Members *</label><select name="members" required><option value="" disabled selected>Select member count</option><option>1 &ndash; 50 members</option><option>51 &ndash; 100 members</option><option>101 &ndash; 200 members</option><option>201 &ndash; 400 members</option><option>400+ members</option></select></div><div class="ff"><label>Interested In</label><select name="plan"><option value="" disabled selected>Which plan suits you?</option><option>Basic (1&ndash;50 members)</option><option>Standard (51&ndash;100 members)</option><option>Premium (101&ndash;200 members)</option><option>Enterprise (201&ndash;400 members)</option><option>Digital Rent (400+ members)</option><option>Just want a demo</option></select></div><div class="ff"><label>Message</label><textarea name="message" placeholder="Tell us about your SACCO..." rows="3"></textarea></div><button type="submit" class="btn b-pri b-lg b-full" id="submitBtn">Send Message &rarr;</button><p id="formSuccess" style="display:none;text-align:center;color:var(--mint);font-weight:600;margin-top:13px;font-size:13px">&#10003; Message sent! We will be in touch within 24 hours.</p></form></div></div></div></section>
+<section class="sec" style="border-top:1px solid var(--border)" id="contact-section"><div class="wrap"><div class="cgrid"><div class="an"><div class="eyebrow">Contact</div><h2 style="font-size:clamp(20px,3vw,32px);margin-bottom:11px">Let&apos;s talk about your SACCO</h2><p class="cinfo">Whether you are ready to sign up or just exploring, we would love to hear from you. We respond within 24 hours.</p><div class="cit"><div class="cit-ic">&#128231;</div><div><h4>Email</h4><p><a href="mailto:paypamoja@gmail.com" id="aboutEmailLink" style="color:var(--mint);text-decoration:none">paypamoja@gmail.com</a></p></div></div><div class="cit"><div class="cit-ic">&#128222;</div><div><h4>Phone</h4><p id="aboutPhoneDisplay">+256 XXX XXX XXX</p></div></div><div class="cit"><div class="cit-ic">&#128172;</div><div><h4>WhatsApp</h4><p><a href="#" id="aboutWhatsAppLink" style="color:var(--mint);text-decoration:none" target="_blank">Click to chat on WhatsApp</a></p></div></div><div class="cit"><div class="cit-ic">&#127482;&#127468;</div><div><h4>Location</h4><p id="aboutLocationDisplay">Kampala, Uganda</p></div></div><div class="hours-card gc"><h4>Office Hours</h4><div class="hrow"><span class="day" id="hoursWeekdayLabel">Monday &ndash; Friday</span><span class="time" id="hoursWeekdayTime">9:00 AM &ndash; 5:00 PM</span></div><div class="hrow"><span class="day">Saturday</span><span class="time" id="hoursSatTime">10:00 AM &ndash; 2:00 PM</span></div><div class="hrow"><span class="day">Sunday</span><span class="time">Closed</span></div></div></div><div class="form-card gc an d2"><h3>Send us a message</h3><form action="https://formspree.io/f/mnjorkla" method="POST"><div class="frow"><div class="ff"><label>Full Name *</label><input type="text" name="name" placeholder="e.g. Robert Okello" required/></div><div class="ff"><label>Email *</label><input type="email" name="email" placeholder="robert@sacco.com" required/></div></div><div class="frow"><div class="ff"><label>Phone / WhatsApp *</label><input type="tel" name="phone" placeholder="+256 7XX XXX XXX" required/></div><div class="ff"><label>SACCO Name *</label><input type="text" name="sacco_name" placeholder="e.g. Kampala Teachers SACCO" required/></div></div><div class="ff"><label>Number of Members *</label><select name="members" required><option value="" disabled selected>Select member count</option><option>1 &ndash; 50 members</option><option>51 &ndash; 100 members</option><option>101 &ndash; 200 members</option><option>201 &ndash; 400 members</option><option>400+ members</option></select></div><div class="ff"><label>Interested In</label><select name="plan"><option value="" disabled selected>Which plan suits you?</option><option>Basic (1&ndash;50 members)</option><option>Standard (51&ndash;100 members)</option><option>Premium (101&ndash;200 members)</option><option>Enterprise (201&ndash;400 members)</option><option>Digital Rent (400+ members)</option><option>Just want a demo</option></select></div><div class="ff"><label>Message</label><textarea name="message" placeholder="Tell us about your SACCO..." rows="3"></textarea></div><button type="submit" class="btn b-pri b-lg b-full">Send Message &rarr;</button></form></div></div></div></section>
 
-<section class="cta-ban"><div class="wrap"><h2><span class="grad">Together</span> we grow</h2><p>Joining SACCOs across Uganda and Africa in the digital era.</p><div class="cta-acts"><a class="btn b-pri b-lg" onclick="goPage('pricing')">View Pricing</a><a class="btn b-gho b-lg" onclick="goPage('home')">Back to Home</a></div></div></section>
+<section class="cta-ban"><div class="wrap"><h2><span class="grad">Together</span> we grow</h2><p>Joining SACCOs across Uganda and Africa in the digital era.</p><div class="cta-acts"><a class="btn b-pri b-lg" onclick="navigateTo('pricing')">View Pricing</a><a class="btn b-gho b-lg" onclick="navigateTo('home')">Back to Home</a></div></div></section>
 
-<footer class="footer"><div class="wrap"><div class="ftr-grid"><div class="ftr-brand"><span class="logo-txt">Pamoja<span>Pay</span></span><p>Built for Uganda and Africa. Digitizing cooperative societies, one SACCO at a time.</p></div><div class="ftr-col"><h4>Product</h4><a onclick="goPage('home')">Home</a><a onclick="goPage('features')">Features</a><a onclick="goPage('pricing')">Pricing</a></div><div class="ftr-col"><h4>Company</h4><a onclick="goPage('about')">About</a><a onclick="goPage('about')">Contact</a><a>Privacy Policy</a></div><div class="ftr-col"><h4>Contact</h4><a href="mailto:paypamoja@gmail.com">&#128231; paypamoja@gmail.com</a><a id="footerPhone2">&#128222; +256 XXX XXX XXX</a><a id="footerWhatsApp2">&#128172; WhatsApp: +256 XXX XXX XXX</a><a>&#127482;&#127468; Kampala, Uganda</a></div></div><div class="ftr-bot"><div>&copy; 2026 PamojaPay &middot; <em>Together, we grow stronger.</em></div><div>Built for Uganda and Africa &#127482;&#127468;</div></div></div></footer>
+<footer class="footer"><div class="wrap"><div class="ftr-grid"><div class="ftr-brand"><span class="logo-txt">Pamoja<span>Pay</span></span><p>Built for Uganda and Africa. Digitizing cooperative societies, one SACCO at a time.</p></div><div class="ftr-col"><h4>Product</h4><a onclick="navigateTo('home')">Home</a><a onclick="navigateTo('features')">Features</a><a onclick="navigateTo('pricing')">Pricing</a></div><div class="ftr-col"><h4>Company</h4><a onclick="navigateTo('about')">About</a><a onclick="navigateTo('about')">Contact</a><a>Privacy Policy</a></div><div class="ftr-col"><h4>Contact</h4><a href="mailto:paypamoja@gmail.com">&#128231; paypamoja@gmail.com</a><a id="footerPhone2">&#128222; +256 XXX XXX XXX</a><a id="footerWhatsApp2">&#128172; WhatsApp: +256 XXX XXX XXX</a><a>&#127482;&#127468; Kampala, Uganda</a></div></div><div class="ftr-bot"><div>&copy; 2026 PamojaPay &middot; <em>Together, we grow stronger.</em></div><div>Built for Uganda and Africa &#127482;&#127468;</div></div></div></footer>
 </div><!-- /about -->
 
 </div><!-- .site -->
 
 <script>
-// Navigation Functions
-function goPage(n) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.getElementById('page-' + n).classList.add('active');
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-  ['home','features','pricing','about'].forEach(x => {
-    let e = document.getElementById('nl-' + x);
-    if(e) e.classList.toggle('act', x === n);
+// ============================================================
+// URL ROUTING WITH HTML5 HISTORY API
+// ============================================================
+
+// Page mapping
+var pageMap = {
+  '': 'home',
+  'home': 'home',
+  'features': 'features',
+  'pricing': 'pricing',
+  'about': 'about'
+};
+
+// Get current page from URL path
+function getCurrentPageFromUrl() {
+  var path = window.location.pathname;
+  // Remove leading slash and any trailing slash
+  var page = path.replace(/^\//, '').replace(/\/$/, '');
+  // Remove .html if present (for backwards compatibility)
+  page = page.replace('.html', '');
+  // Default to home if empty or not found
+  return pageMap[page] || 'home';
+}
+
+// Show the selected page and update URL
+function showPage(pageName, updateHistory = true) {
+  // Hide all pages
+  document.querySelectorAll('.page').forEach(function(p) {
+    p.classList.remove('active');
   });
-  closeMobile();
+  
+  // Show selected page
+  var activePage = document.getElementById('page-' + pageName);
+  if (activePage) {
+    activePage.classList.add('active');
+  }
+  
+  // Update active nav states
+  document.querySelectorAll('.nav-links a, .mmenu a').forEach(function(link) {
+    var linkPage = link.getAttribute('onclick');
+    if (linkPage && linkPage.indexOf(pageName) > -1) {
+      link.classList.add('act');
+    } else {
+      link.classList.remove('act');
+    }
+  });
+  
+  // Update active class for main nav specifically
+  var navLinks = {
+    home: document.getElementById('nl-home'),
+    features: document.getElementById('nl-features'),
+    pricing: document.getElementById('nl-pricing'),
+    about: document.getElementById('nl-about')
+  };
+  
+  for (var key in navLinks) {
+    if (navLinks[key]) {
+      if (key === pageName) {
+        navLinks[key].classList.add('act');
+      } else {
+        navLinks[key].classList.remove('act');
+      }
+    }
+  }
+  
+  // Update browser URL without reload
+  if (updateHistory) {
+    var newUrl = '/' + (pageName === 'home' ? '' : pageName);
+    window.history.pushState({ page: pageName }, '', newUrl);
+  }
+  
+  // Update document title
+  var titles = {
+    home: 'PamojaPay - SACCO Digitalization Solution',
+    features: 'Features - PamojaPay',
+    pricing: 'Pricing - PamojaPay',
+    about: 'Contact - PamojaPay'
+  };
+  document.title = titles[pageName] || 'PamojaPay';
+  
+  // Re-run animations on new page
   setTimeout(observeAnims, 80);
 }
 
-function scrollSec(id) {
-  setTimeout(() => { document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 100);
+// Navigate to a page (called from onclick)
+function navigateTo(pageName) {
+  showPage(pageName, true);
+  closeMobile();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-function toggleMobile() { document.getElementById('hbg').classList.toggle('open'); document.getElementById('mmenu').classList.toggle('open'); }
-function closeMobile() { document.getElementById('hbg')?.classList.remove('open'); document.getElementById('mmenu')?.classList.remove('open'); }
+// Handle browser back/forward buttons
+window.addEventListener('popstate', function(event) {
+  var page = event.state ? event.state.page : getCurrentPageFromUrl();
+  showPage(page, false);
+});
 
+// Initial load - check URL and show correct page
+function initRouting() {
+  var initialPage = getCurrentPageFromUrl();
+  showPage(initialPage, false);
+}
+
+// Scroll to section (for same-page anchors)
+function scrollToSection(sectionId) {
+  var section = document.getElementById(sectionId);
+  if (section) {
+    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
+
+// Mobile menu functions
+function toggleMobile() {
+  document.getElementById('hbg').classList.toggle('open');
+  document.getElementById('mmenu').classList.toggle('open');
+}
+
+function closeMobile() {
+  var hbg = document.getElementById('hbg');
+  var mmenu = document.getElementById('mmenu');
+  if (hbg) hbg.classList.remove('open');
+  if (mmenu) mmenu.classList.remove('open');
+}
+
+// FAQ toggle
 function faq(el) {
-  let item = el.closest('.faq-item');
-  let isOpen = item.classList.contains('open');
-  item.closest('.faq-list').querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  var item = el.closest('.faq-item');
+  var isOpen = item.classList.contains('open');
+  var container = item.closest('.faq-list');
+  if (container) {
+    var items = container.querySelectorAll('.faq-item');
+    for (var i = 0; i < items.length; i++) {
+      items[i].classList.remove('open');
+    }
+  }
   if (!isOpen) item.classList.add('open');
 }
 
-function fdToggle(el) { el.closest('.fd-item').classList.toggle('open'); }
+// Feature accordion toggle
+function fdToggle(el) {
+  el.closest('.fd-item').classList.toggle('open');
+}
 
+// Animation observer
 function observeAnims() {
   if (!window.IntersectionObserver) {
-    document.querySelectorAll('.an').forEach(el => el.classList.add('in'));
+    var anims = document.querySelectorAll('.an');
+    for (var i = 0; i < anims.length; i++) {
+      anims[i].classList.add('in');
+    }
     return;
   }
-  let obs = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } }), { threshold: 0.07 });
-  document.querySelectorAll('.page.active .an:not(.in)').forEach(el => obs.observe(el));
+  var obs = new IntersectionObserver(function(entries) {
+    for (var i = 0; i < entries.length; i++) {
+      if (entries[i].isIntersecting) {
+        entries[i].target.classList.add('in');
+        obs.unobserve(entries[i].target);
+      }
+    }
+  }, { threshold: 0.07 });
+  var activePage = document.querySelector('.page.active');
+  if (activePage) {
+    var anims = activePage.querySelectorAll('.an:not(.in)');
+    for (var i = 0; i < anims.length; i++) {
+      obs.observe(anims[i]);
+    }
+  }
 }
 
-function handleForm(e) {
-  e.preventDefault();
-  let btn = document.getElementById('submitBtn');
-  let ok = document.getElementById('formSuccess');
-  btn.textContent = 'Sending...';
-  btn.disabled = true;
-  setTimeout(() => { btn.style.display = 'none'; ok.style.display = 'block'; }, 1200);
-}
-
-window.addEventListener('scroll', () => document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 8));
-observeAnims();
+// Nav scroll effect
+window.addEventListener('scroll', function() {
+  var nav = document.getElementById('nav');
+  if (nav) {
+    if (window.scrollY > 8) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
+  }
+});
 
 // ============================================================
-// DYNAMIC CONTENT LOADER - UPDATED with WhatsApp click-to-chat and Contact Page display
+// DYNAMIC CONTENT LOADER
 // ============================================================
 (function() {
   var CONTENT_KEY = 'pp_content';
 
   function applyContent(c) {
     if (!c) return;
-
-    // HERO
+    
+    // Hero
     if (c.hero) {
       var h = c.hero;
-      setText('.hero-ey', h.eyebrow);
-      var h1 = document.querySelector('.hero h1');
-      if (h1) h1.innerHTML = (h.h1_l1||'') + '<br/>' + (h.h1_l2||'') + '<br/><span class="grad">' + (h.h1_l3||'') + '</span>';
-      setText('.hero-sub', h.sub);
-      var btns = document.querySelectorAll('.hero-act .btn');
-      if (btns[0]) btns[0].textContent = (h.btn1||'Get Started') + ' →';
-      if (btns[1]) btns[1].textContent = h.btn2||'Request Demo';
-      var pill = document.querySelector('.hero-pill');
-      if (pill && h.tenant) {
-        pill.innerHTML = '<svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>&nbsp;' + h.tenant + '&nbsp; &#127482;&#127468;';
+      var heroEyebrow = document.querySelector('.hero-ey');
+      if (heroEyebrow) heroEyebrow.textContent = h.eyebrow;
+      var heroH1 = document.querySelector('.hero h1');
+      if (heroH1) heroH1.innerHTML = (h.h1_l1||'') + '<br/>' + (h.h1_l2||'') + '<br/><span class="grad">' + (h.h1_l3||'') + '</span>';
+      var heroSub = document.querySelector('.hero-sub');
+      if (heroSub) heroSub.textContent = h.sub;
+      var heroBtns = document.querySelectorAll('.hero-act .btn');
+      if (heroBtns[0]) heroBtns[0].textContent = (h.btn1||'Get Started') + ' →';
+      if (heroBtns[1]) heroBtns[1].textContent = h.btn2||'Request Demo';
+      var heroPill = document.querySelector('.hero-pill');
+      if (heroPill && h.tenant) {
+        heroPill.innerHTML = '<svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>&nbsp;' + h.tenant + '&nbsp; &#127482;&#127468;';
       }
     }
-
-    // STATS
+    
+    // Stats
     if (c.stats) {
       var sis = document.querySelectorAll('.si');
       c.stats.forEach(function(s, i) {
@@ -922,61 +1047,38 @@ observeAnims();
         }
       });
     }
-
-    // CONTACT - FIXED: Updates phone, WhatsApp (with click-to-chat), email, location, hours
+    
+    // Contact
     if (c.contact) {
       var ct = c.contact;
-      
-      // Update email links
       document.querySelectorAll('a[href^="mailto:"]').forEach(function(a) {
         a.href = 'mailto:' + ct.email;
         if (a.textContent.indexOf('@') > -1) a.textContent = ct.email;
       });
-      
-      // Update About page contact displays
       var aboutEmail = document.getElementById('aboutEmailLink');
       if (aboutEmail) { aboutEmail.textContent = ct.email; aboutEmail.href = 'mailto:' + ct.email; }
-      
       var aboutPhone = document.getElementById('aboutPhoneDisplay');
       if (aboutPhone) aboutPhone.textContent = ct.phone;
-      
       var aboutLocation = document.getElementById('aboutLocationDisplay');
       if (aboutLocation) aboutLocation.textContent = ct.location;
-      
-      // WhatsApp click-to-chat for About page
       var waNum = ct.whatsapp.replace(/[^0-9+]/g, '');
       var aboutWALink = document.getElementById('aboutWhatsAppLink');
-      if (aboutWALink) {
-        aboutWALink.href = 'https://wa.me/' + waNum;
-        aboutWALink.textContent = ct.whatsapp;
-      }
-      
-      // Office hours
+      if (aboutWALink) { aboutWALink.href = 'https://wa.me/' + waNum; aboutWALink.textContent = ct.whatsapp; }
       var weekdayLabel = document.getElementById('hoursWeekdayLabel');
       if (weekdayLabel) weekdayLabel.textContent = ct.hours_weekday_label;
       var weekdayTime = document.getElementById('hoursWeekdayTime');
       if (weekdayTime) weekdayTime.textContent = ct.hours_weekday_time;
       var satTime = document.getElementById('hoursSatTime');
       if (satTime) satTime.textContent = ct.hours_sat_time;
-      
-      // Update footer contact columns
-      var footerPhones = document.querySelectorAll('#footerPhone, #footerPhone2, #footerPhoneCol');
+      var footerPhones = document.querySelectorAll('#footerPhone, #footerPhone2');
       footerPhones.forEach(function(p) { if(p) p.innerHTML = '📞 ' + ct.phone; });
-      
       var footerWAs = document.querySelectorAll('#footerWhatsApp, #footerWhatsApp2');
       footerWAs.forEach(function(wa) {
         if(wa) wa.innerHTML = '💬 <a href="https://wa.me/' + waNum + '" target="_blank" style="color:var(--mint);text-decoration:none">WhatsApp: ' + ct.whatsapp + '</a>';
       });
-      
-      // Update footer contact column email
-      var footerContactCol = document.getElementById('footerContactCol');
-      if (footerContactCol) {
-        var emailLink = footerContactCol.querySelector('a[href^="mailto:"]');
-        if (emailLink) { emailLink.href = 'mailto:' + ct.email; emailLink.innerHTML = '📧 ' + ct.email; }
-      }
     }
-
-    // SETTINGS
+    
+    // Settings
     if (c.settings && c.settings.footer_copy) {
       var ftrbots = document.querySelectorAll('.ftr-bot div:first-child');
       ftrbots.forEach(function(d) {
@@ -985,21 +1087,15 @@ observeAnims();
         }
       });
     }
-
-    // DIGITAL RENT NOTE
+    
+    // Digital rent note
     if (c.digital_rent_note) {
       document.querySelectorAll('.pr-note p').forEach(function(p) {
         if (p.textContent.indexOf('400+') > -1 || p.textContent.indexOf('members') > -1) {
-          p.innerHTML = '👥 <strong>400+ members?</strong> ' + c.digital_rent_note + ' <a onclick="goPage(\'about\')" style="color:var(--mint);text-decoration:none;border-bottom:1px solid var(--mint-bdr);cursor:pointer">Get a custom quote →</a>';
+          p.innerHTML = '👥 <strong>400+ members?</strong> ' + c.digital_rent_note + ' <a onclick="navigateTo(\'about\')" style="color:var(--mint);text-decoration:none;border-bottom:1px solid var(--mint-bdr);cursor:pointer">Get a custom quote →</a>';
         }
       });
     }
-  }
-
-  function setText(selector, text) {
-    if (!text) return;
-    var el = document.querySelector(selector);
-    if (el) el.textContent = text;
   }
 
   function loadContent() {
@@ -1007,11 +1103,18 @@ observeAnims();
     if (local) {
       try { applyContent(JSON.parse(local)); return; } catch(e) {}
     }
-    fetch('content.json').then(r => r.json()).then(d => applyContent(d)).catch(() => {});
+    fetch('content.json').then(function(r) { return r.json(); }).then(function(d) { applyContent(d); }).catch(function() {});
   }
 
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', loadContent);
-  else loadContent();
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() {
+      loadContent();
+      initRouting();
+    });
+  } else {
+    loadContent();
+    initRouting();
+  }
 })();
 </script>
 
