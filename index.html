@@ -1,409 +1,1487 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>PamojaPay — Cooperative Management for African SACCOs</title>
-  <meta name="description" content="PamojaPay is the all-in-one cooperative management platform built for African SACCOs. Savings, loans, expenses and member portals — together."/>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>PamojaPay - SACCO Digitalization Solution</title>
+<meta name="description" content="PamojaPay - Complete SACCO digitalization solution for Uganda and Africa."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --navy:#060f1e;--blue:#1a6cf6;--blue2:#1458cc;
+  --mint:#00e5a0;--mint2:#00c886;--white:#fff;
+  --muted:rgba(255,255,255,.52);--muted2:rgba(255,255,255,.28);
+  --glass:rgba(255,255,255,.055);--glass2:rgba(255,255,255,.09);
+  --border:rgba(255,255,255,.08);--border2:rgba(255,255,255,.15);
+  --mint-dim:rgba(0,229,160,.10);--mint-bdr:rgba(0,229,160,.22);
+  --blue-dim:rgba(26,108,246,.12);--blue-bdr:rgba(26,108,246,.26);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--white);font-family:'Sora',sans-serif;overflow-x:hidden;line-height:1.6}
 
-    :root {
-      --navy:    #07192e;
-      --blue:    #0f5fbd;
-      --sky:     #2196f3;
-      --mint:    #00e5a0;
-      --white:   #ffffff;
-      --muted:   rgba(255,255,255,0.55);
-      --card-bg: rgba(255,255,255,0.04);
-      --border:  rgba(255,255,255,0.09);
-    }
+/* BG */
+.bg-mesh{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(ellipse 70% 50% at 15% 5%,rgba(26,108,246,.26) 0%,transparent 60%),
+    radial-gradient(ellipse 50% 40% at 85% 90%,rgba(0,229,160,.10) 0%,transparent 55%),
+    radial-gradient(ellipse 40% 35% at 65% 30%,rgba(26,108,246,.13) 0%,transparent 50%),#060f1e}
 
-    html { scroll-behavior: smooth; }
+.site{position:relative;z-index:1}
+.page{display:none}.page.active{display:block}
 
-    body {
-      background: var(--navy);
-      color: var(--white);
-      font-family: 'Sora', sans-serif;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
+/* ---- NAV ---- */
+nav{display:flex;align-items:center;justify-content:space-between;padding:18px 40px;
+  border-bottom:1px solid var(--border);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  position:sticky;top:0;z-index:500;background:rgba(6,15,30,.78);gap:16px;transition:box-shadow .3s}
+nav.scrolled{box-shadow:0 4px 40px rgba(0,0,0,.35)}
+.nav-logo{display:flex;align-items:center;cursor:pointer;flex-shrink:0}
+.logo-txt{font-size:20px;font-weight:800;letter-spacing:-.5px;color:var(--white)}
+.logo-txt span{color:var(--mint)}
+.nav-links{display:flex;align-items:center;gap:2px;list-style:none}
+.nav-links a{font-size:13px;font-weight:500;color:var(--muted);text-decoration:none;
+  padding:7px 14px;border-radius:8px;cursor:pointer;transition:all .2s}
+.nav-links a:hover,.nav-links a.act{color:var(--white);background:var(--glass2)}
+.nav-r{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.btn-nav-o{font-size:12px;font-weight:600;font-family:'Sora',sans-serif;color:var(--white);
+  background:transparent;border:1px solid var(--border2);border-radius:8px;
+  padding:8px 17px;cursor:pointer;text-decoration:none;transition:all .2s;display:inline-flex;align-items:center}
+.btn-nav-o:hover{background:var(--glass2)}
+.btn-nav-p{font-size:12px;font-weight:700;font-family:'Sora',sans-serif;color:#fff;
+  background:linear-gradient(135deg,var(--blue),var(--blue2));border:none;border-radius:8px;
+  padding:8px 17px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;
+  box-shadow:0 3px 14px rgba(26,108,246,.38);transition:all .2s}
+.btn-nav-p:hover{transform:translateY(-1px);box-shadow:0 6px 22px rgba(26,108,246,.48)}
 
-    /* ── Animated mesh background ── */
-    .bg {
-      position: fixed; inset: 0; z-index: 0;
-      background:
-        radial-gradient(ellipse 80% 60% at 20% 10%, rgba(15,95,189,0.35) 0%, transparent 60%),
-        radial-gradient(ellipse 60% 50% at 80% 80%, rgba(0,229,160,0.12) 0%, transparent 55%),
-        radial-gradient(ellipse 50% 40% at 60% 30%, rgba(33,150,243,0.18) 0%, transparent 50%),
-        #07192e;
-    }
-    .bg::after {
-      content: '';
-      position: absolute; inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-    }
+/* Hamburger */
+.hbg{display:none;flex-direction:column;gap:4px;background:none;border:none;cursor:pointer;padding:4px}
+.hbg span{display:block;width:20px;height:2px;background:var(--white);border-radius:2px;transition:all .25s}
+.hbg.open span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.hbg.open span:nth-child(2){opacity:0}
+.hbg.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+.mmenu{display:none;position:fixed;top:67px;left:0;right:0;
+  background:rgba(6,15,30,.97);border-bottom:1px solid var(--border);
+  backdrop-filter:blur(20px);z-index:499;padding:14px 20px 24px}
+.mmenu.open{display:block}
+.mmenu a{display:block;font-size:14px;font-weight:500;color:var(--muted);
+  text-decoration:none;padding:12px 8px;border-bottom:1px solid var(--border);cursor:pointer}
+.mmenu a:hover{color:var(--white)}
+.mmenu-btns{display:flex;flex-direction:column;gap:8px;margin-top:14px}
 
-    /* ── Layout ── */
-    .page { position: relative; z-index: 1; }
+/* ---- LAYOUT ---- */
+.wrap{max-width:1080px;margin:0 auto;padding:0 40px}
+.sec{padding:90px 0}
+.tc{text-align:center}
+.eyebrow{display:inline-flex;align-items:center;gap:7px;font-size:10px;font-weight:700;
+  letter-spacing:2px;text-transform:uppercase;color:var(--mint);
+  background:var(--mint-dim);border:1px solid var(--mint-bdr);
+  padding:5px 14px;border-radius:20px;margin-bottom:18px}
+h1{font-size:clamp(34px,6.5vw,72px);font-weight:800;letter-spacing:-2.5px;line-height:1.02}
+h2{font-size:clamp(24px,3.5vw,40px);font-weight:800;letter-spacing:-1.2px;line-height:1.1}
+h3{font-size:15px;font-weight:700;letter-spacing:-.2px}
+.grad{background:linear-gradient(135deg,#6ec6ff,var(--mint));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.wg{background:linear-gradient(135deg,#fff,rgba(255,255,255,.65));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 
-    /* ── Nav ── */
-    nav {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 24px 40px;
-      border-bottom: 1px solid var(--border);
-      backdrop-filter: blur(12px);
-      position: sticky; top: 0; z-index: 100;
-      background: rgba(7,25,46,0.7);
-    }
-    .logo {
-      display: flex; align-items: center; gap: 12px;
-    }
-    .logo-mark {
-      width: 36px; height: 36px;
-      background: linear-gradient(135deg, var(--blue), var(--mint));
-      border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'DM Mono', monospace;
-      font-size: 14px; font-weight: 500;
-      color: #fff;
-      letter-spacing: -0.5px;
-    }
-    .logo-text {
-      font-size: 18px; font-weight: 800;
-      letter-spacing: -0.3px;
-    }
-    .logo-text span { color: var(--mint); }
-    .nav-badge {
-      font-size: 11px; font-weight: 600;
-      background: rgba(0,229,160,0.12);
-      color: var(--mint);
-      border: 1px solid rgba(0,229,160,0.25);
-      padding: 5px 14px; border-radius: 20px;
-      letter-spacing: 0.3px;
-    }
+/* ---- BUTTONS ---- */
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:'Sora',sans-serif;font-weight:700;
+  border-radius:11px;text-decoration:none;border:none;cursor:pointer;transition:all .2s;white-space:nowrap}
+.b-lg{font-size:14px;padding:14px 28px}
+.b-md{font-size:12px;padding:10px 20px}
+.b-full{width:100%;justify-content:center}
+.b-pri{background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff;box-shadow:0 5px 20px rgba(26,108,246,.38)}
+.b-pri:hover{transform:translateY(-2px);box-shadow:0 9px 28px rgba(26,108,246,.48)}
+.b-mint{background:linear-gradient(135deg,var(--mint),var(--mint2));color:#060f1e;box-shadow:0 5px 20px rgba(0,229,160,.28)}
+.b-mint:hover{transform:translateY(-2px)}
+.b-gho{background:var(--glass);color:var(--white);border:1px solid var(--border2);backdrop-filter:blur(8px)}
+.b-gho:hover{background:var(--glass2)}
+.b-omint{background:transparent;color:var(--mint);border:1px solid var(--mint-bdr)}
+.b-omint:hover{background:var(--mint-dim)}
 
-    /* ── Hero ── */
-    .hero {
-      min-height: calc(100vh - 85px);
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      text-align: center;
-      padding: 80px 24px 60px;
-    }
-    .hero-eyebrow {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-size: 11px; font-weight: 600; letter-spacing: 2px;
-      text-transform: uppercase; color: var(--mint);
-      background: rgba(0,229,160,0.08);
-      border: 1px solid rgba(0,229,160,0.2);
-      padding: 7px 18px; border-radius: 20px;
-      margin-bottom: 36px;
-      animation: fadeUp 0.7s ease both;
-    }
-    .hero-eyebrow::before {
-      content: '';
-      width: 6px; height: 6px;
-      background: var(--mint);
-      border-radius: 50%;
-      animation: pulse 2s ease infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50%       { opacity: 0.5; transform: scale(0.7); }
-    }
+/* ---- GLASS CARD ---- */
+.gc{background:var(--glass);border:1px solid var(--border);border-radius:20px;
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:border-color .3s,transform .3s,background .3s}
+.gc:hover{border-color:var(--border2);background:var(--glass2)}
 
-    h1 {
-      font-size: clamp(42px, 8vw, 88px);
-      font-weight: 800;
-      letter-spacing: -2px;
-      line-height: 1.0;
-      margin-bottom: 28px;
-      animation: fadeUp 0.7s 0.1s ease both;
-    }
-    h1 .accent {
-      background: linear-gradient(135deg, #4fc3f7, var(--mint));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
+/* ---- ANIMATIONS ---- */
+@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
+@keyframes rotateRing{from{transform:translate(-50%,-50%) rotate(0deg)}to{transform:translate(-50%,-50%) rotate(360deg)}}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.65)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.an{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}
+.an.in{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
 
-    .hero-sub {
-      font-size: clamp(15px, 2.5vw, 20px);
-      font-weight: 300;
-      color: var(--muted);
-      max-width: 560px;
-      line-height: 1.65;
-      margin-bottom: 52px;
-      animation: fadeUp 0.7s 0.2s ease both;
-    }
+/* ---- HERO ---- */
+.hero{min-height:calc(100vh - 67px);display:flex;flex-direction:column;
+  align-items:center;justify-content:center;text-align:center;padding:70px 24px 50px;
+  position:relative;overflow:hidden}
+.fr{position:absolute;border-radius:50%;pointer-events:none;top:50%;left:50%}
+.fr1{width:500px;height:500px;border:1px solid rgba(26,108,246,.12);
+  transform:translate(-50%,-50%);animation:rotateRing 20s linear infinite}
+.fr2{width:700px;height:700px;border:1px solid rgba(0,229,160,.07);
+  transform:translate(-50%,-50%);animation:rotateRing 30s linear infinite reverse}
+.fr3{width:320px;height:320px;border:1px solid rgba(26,108,246,.09);
+  transform:translate(-50%,-50%);animation:rotateRing 14s linear infinite}
+.fo{position:absolute;pointer-events:none;backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center}
+.fo1{width:52px;height:86px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);
+  border-radius:14px;top:18%;left:12%;font-size:22px;animation:floatY 6s ease-in-out infinite}
+.fo2{width:40px;height:40px;background:rgba(255,193,7,.18);border:1px solid rgba(255,193,7,.3);
+  border-radius:50%;top:25%;right:14%;font-size:16px;animation:floatY 6s 1.5s ease-in-out infinite}
+.fo3{width:30px;height:30px;background:rgba(0,229,160,.18);border:1px solid rgba(0,229,160,.28);
+  border-radius:50%;bottom:30%;left:10%;font-size:13px;animation:floatY 6s 3s ease-in-out infinite}
+.fo4{width:68px;height:40px;background:rgba(26,108,246,.22);border:1px solid rgba(26,108,246,.32);
+  border-radius:9px;bottom:28%;right:12%;font-size:18px;animation:floatY 6s 2s ease-in-out infinite}
+.fo5{width:46px;height:46px;background:rgba(110,198,255,.13);border:1px solid rgba(110,198,255,.22);
+  border-radius:12px;top:60%;left:7%;font-size:18px;animation:floatY 6s 4s ease-in-out infinite}
+.fo6{width:42px;height:42px;background:rgba(0,229,160,.12);border:1px solid rgba(0,229,160,.2);
+  border-radius:12px;top:15%;right:8%;font-size:18px;animation:floatY 6s 5s ease-in-out infinite}
 
-    .hero-actions {
-      display: flex; gap: 14px; flex-wrap: wrap;
-      justify-content: center;
-      animation: fadeUp 0.7s 0.3s ease both;
-    }
-    .btn-primary {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: linear-gradient(135deg, var(--blue), #1976d2);
-      color: #fff; font-size: 14px; font-weight: 700;
-      padding: 14px 28px; border-radius: 12px;
-      text-decoration: none; border: none; cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 8px 32px rgba(15,95,189,0.4);
-      font-family: 'Sora', sans-serif;
-    }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(15,95,189,0.5); }
+.hero-ey{display:inline-flex;align-items:center;gap:8px;font-size:10px;font-weight:700;
+  letter-spacing:2.5px;text-transform:uppercase;color:var(--mint);
+  background:var(--mint-dim);border:1px solid var(--mint-bdr);
+  padding:6px 18px;border-radius:20px;margin-bottom:28px;
+  animation:fadeUp .7s ease both;position:relative;z-index:2}
+.hero h1{margin-bottom:20px;animation:fadeUp .7s .1s ease both;position:relative;z-index:2}
+.hero-sub{font-size:clamp(14px,2vw,17px);font-weight:300;color:var(--muted);max-width:520px;
+  line-height:1.75;margin-bottom:40px;animation:fadeUp .7s .2s ease both;position:relative;z-index:2}
+.hero-act{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;
+  animation:fadeUp .7s .3s ease both;position:relative;z-index:2}
+.hero-pill{margin-top:48px;display:inline-flex;align-items:center;gap:9px;
+  background:var(--glass);border:1px solid var(--border);padding:9px 18px;border-radius:12px;
+  font-size:12px;color:var(--muted);animation:fadeUp .7s .4s ease both;
+  position:relative;z-index:2;backdrop-filter:blur(10px)}
+.hero-pill strong{color:var(--white)}
 
-    /* ── Tenant pill ── */
-    .tenant-pill {
-      margin-top: 64px;
-      display: inline-flex; align-items: center; gap: 10px;
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      padding: 10px 20px; border-radius: 14px;
-      font-size: 13px; color: var(--muted);
-      animation: fadeUp 0.7s 0.4s ease both;
-    }
-    .tenant-pill strong { color: var(--white); }
+/* MEMBER PORTAL */
+.hero-portal{margin-top:56px;width:100%;max-width:660px;
+  animation:fadeUp .8s .5s ease both;position:relative;z-index:2}
+.portal-shell{background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.12);
+  border-radius:22px;overflow:hidden;backdrop-filter:blur(16px);
+  box-shadow:0 30px 80px rgba(0,0,0,.4)}
+.portal-bar{display:flex;align-items:center;gap:6px;padding:12px 16px;
+  border-bottom:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.03)}
+.dot{width:9px;height:9px;border-radius:50%}
+.dot.r{background:#ff6b6b}.dot.y{background:#ffd93d}.dot.g{background:var(--mint)}
+.portal-ttl{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);margin-left:6px}
+.portal-body{padding:18px}
+.portal-hdr{display:flex;align-items:center;gap:12px;margin-bottom:16px;
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:13px;padding:13px}
+.portal-av{width:42px;height:42px;border-radius:50%;
+  background:linear-gradient(135deg,var(--blue),var(--mint));
+  display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;color:#fff;flex-shrink:0}
+.portal-name{font-size:13px;font-weight:700;margin-bottom:2px}
+.portal-id{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted)}
+.portal-status{margin-left:auto;display:flex;align-items:center;gap:5px;
+  font-size:10px;font-weight:600;color:var(--mint)}
+.portal-status::before{content:"";width:5px;height:5px;background:var(--mint);
+  border-radius:50%;animation:pulse 2s infinite;display:inline-block}
+.portal-bals{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:13px}
+.pb{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:11px;padding:12px}
+.pb-l{font-size:9px;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);margin-bottom:5px}
+.pb-v{font-size:15px;font-weight:800}
+.pb-s{font-size:9px;color:var(--mint);margin-top:2px}
+.portal-loan{background:rgba(26,108,246,.12);border:1px solid rgba(26,108,246,.22);
+  border-radius:11px;padding:12px;margin-bottom:13px}
+.pl-hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:7px}
+.pl-title{font-size:11px;font-weight:600;color:rgba(255,255,255,.8)}
+.pl-badge{font-size:9px;font-weight:700;background:rgba(0,229,160,.2);color:var(--mint);padding:2px 8px;border-radius:20px}
+.pl-bg{background:rgba(255,255,255,.08);border-radius:4px;height:5px}
+.pl-bar{background:linear-gradient(90deg,var(--mint),var(--blue));height:5px;border-radius:4px;width:62%}
+.pl-meta{display:flex;justify-content:space-between;margin-top:5px;font-size:10px;color:var(--muted)}
+.portal-acts{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.pa{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:10px;
+  padding:10px 6px;text-align:center;font-size:9px;font-weight:600;color:rgba(255,255,255,.6)}
+.pa-ic{font-size:16px;margin-bottom:4px}
 
-    /* ── Stats strip ── */
-    .stats {
-      display: flex; justify-content: center;
-      gap: 0; flex-wrap: wrap;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      background: rgba(255,255,255,0.02);
-      animation: fadeUp 0.7s 0.5s ease both;
-    }
-    .stat {
-      flex: 1; min-width: 160px;
-      padding: 32px 24px;
-      text-align: center;
-      border-right: 1px solid var(--border);
-    }
-    .stat:last-child { border-right: none; }
-    .stat-num {
-      font-size: 32px; font-weight: 800;
-      letter-spacing: -1px;
-      background: linear-gradient(135deg, #fff, rgba(255,255,255,0.7));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .stat-label {
-      font-size: 11px; font-weight: 500;
-      color: var(--muted); margin-top: 4px;
-      text-transform: uppercase; letter-spacing: 1px;
-    }
+/* STATS */
+.sstrip{border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:rgba(255,255,255,.015)}
+.sstrip-in{display:flex;justify-content:center;flex-wrap:wrap;max-width:1080px;margin:0 auto}
+.si{flex:1;min-width:150px;padding:28px 20px;text-align:center;border-right:1px solid var(--border)}
+.si:last-child{border-right:none}
+.si-n{font-size:28px;font-weight:800;letter-spacing:-1px;line-height:1}
+.si-l{font-size:10px;font-weight:500;color:var(--muted);margin-top:5px;text-transform:uppercase;letter-spacing:1px}
 
-    /* ── Features ── */
-    .features {
-      padding: 100px 40px;
-      max-width: 1100px; margin: 0 auto;
-    }
-    .section-label {
-      font-size: 11px; font-weight: 600; letter-spacing: 2px;
-      text-transform: uppercase; color: var(--mint);
-      margin-bottom: 16px;
-    }
-    .section-title {
-      font-size: clamp(28px, 4vw, 44px);
-      font-weight: 800; letter-spacing: -1px;
-      line-height: 1.1; margin-bottom: 60px;
-      max-width: 480px;
-    }
-    .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-    }
-    .feature-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 32px 28px;
-      transition: border-color 0.3s, transform 0.3s;
-    }
-    .feature-card:hover {
-      border-color: rgba(255,255,255,0.18);
-      transform: translateY(-4px);
-    }
-    .feature-icon {
-      width: 48px; height: 48px;
-      background: linear-gradient(135deg, var(--blue), var(--sky));
-      border-radius: 14px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 22px; margin-bottom: 20px;
-    }
-    .feature-card h3 {
-      font-size: 16px; font-weight: 700;
-      margin-bottom: 10px; letter-spacing: -0.2px;
-    }
-    .feature-card p {
-      font-size: 13px; color: var(--muted);
-      line-height: 1.65;
-    }
+/* PROBLEM */
+.pgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:44px}
+.pcard{padding:22px;display:flex;align-items:flex-start;gap:13px}
+.picon{font-size:22px;flex-shrink:0;margin-top:1px}
+.pcard h3{margin-bottom:5px;font-size:14px}
+.pcard p{font-size:12px;color:var(--muted);line-height:1.65}
 
-    /* ── CTA ── */
-    .cta-section {
-      padding: 80px 40px;
-      text-align: center;
-      border-top: 1px solid var(--border);
-    }
-    .cta-section h2 {
-      font-size: clamp(28px, 4vw, 48px);
-      font-weight: 800; letter-spacing: -1.5px;
-      margin-bottom: 16px;
-    }
-    .cta-section p {
-      color: var(--muted); font-size: 16px;
-      margin-bottom: 36px;
-    }
+/* SOLUTION */
+.sgrid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.svis{border-radius:22px;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;
+  font-size:60px;position:relative;overflow:hidden}
+.svis-l{position:absolute;bottom:13px;left:50%;transform:translateX(-50%);font-size:10px;
+  font-weight:600;color:var(--muted);background:rgba(6,15,30,.75);border:1px solid var(--border);
+  padding:3px 12px;border-radius:20px;white-space:nowrap;backdrop-filter:blur(8px)}
+.cklist{list-style:none;margin-top:22px;display:flex;flex-direction:column;gap:10px}
+.cklist li{display:flex;align-items:flex-start;gap:10px;font-size:13px;color:var(--muted)}
+.ck{width:20px;height:20px;border-radius:50%;background:rgba(0,229,160,.12);border:1px solid var(--mint-bdr);
+  display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--mint);flex-shrink:0;margin-top:1px}
 
-    /* ── Footer ── */
-    footer {
-      padding: 28px 40px;
-      border-top: 1px solid var(--border);
-      display: flex; align-items: center;
-      justify-content: space-between; flex-wrap: wrap; gap: 12px;
-      font-size: 12px; color: var(--muted);
-    }
-    footer a { color: var(--muted); text-decoration: none; }
-    footer a:hover { color: var(--white); }
-    .footer-links { display: flex; gap: 24px; }
+/* FEATURES GRID compact */
+.fgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:11px;margin-top:38px}
+.fcard{padding:16px 14px}
+.fcard-top{display:flex;align-items:center;gap:9px;margin-bottom:6px}
+.ficon{width:32px;height:32px;background:linear-gradient(135deg,rgba(26,108,246,.28),rgba(26,108,246,.1));
+  border:1px solid rgba(26,108,246,.22);border-radius:9px;
+  display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+.fcard h3{font-size:12px;font-weight:700}
+.fcard p{font-size:11px;color:var(--muted);line-height:1.6}
 
-    /* ── Animations ── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+/* PRICING */
+.prgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:40px;align-items:start}
+.prcard{padding:22px;position:relative}
+.prcard.pop{border-color:var(--blue);background:rgba(26,108,246,.09);transform:translateY(-6px);
+  box-shadow:0 0 0 1px rgba(26,108,246,.28),0 16px 50px rgba(26,108,246,.18)}
+.pop-tag{position:absolute;top:-11px;left:50%;transform:translateX(-50%);
+  background:linear-gradient(135deg,var(--blue),#2196f3);font-size:9px;font-weight:700;
+  letter-spacing:1px;text-transform:uppercase;color:#fff;padding:3px 12px;border-radius:20px;white-space:nowrap}
+.pr-plan{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--mint);margin-bottom:8px}
+.pr-amt{font-size:22px;font-weight:800;letter-spacing:-1px;line-height:1;margin-bottom:3px}
+.pr-amt span{font-size:11px;font-weight:400;color:var(--muted)}
+.pr-setup{font-size:11px;color:var(--muted2);margin-bottom:3px}
+.pr-members{font-size:11px;color:rgba(110,198,255,.85);font-weight:600;margin-bottom:14px;
+  padding-bottom:13px;border-bottom:1px solid var(--border)}
+.pr-feats{list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:20px}
+.pr-feats li{display:flex;align-items:center;gap:7px;font-size:11px;color:var(--muted)}
+.py{color:var(--mint);font-size:12px}.pno{color:rgba(255,255,255,.18);font-size:11px}
+.pr-note{text-align:center;margin-top:24px;padding:18px 22px}
+.pr-note p{font-size:12px;color:var(--muted);line-height:1.7}
+.pr-note strong{color:var(--white)}
+.pr-note a{color:var(--mint);text-decoration:none;border-bottom:1px solid var(--mint-bdr);cursor:pointer}
 
-    /* ── Mobile ── */
-    @media (max-width: 600px) {
-      nav { padding: 18px 20px; }
-      .features { padding: 60px 20px; }
-      .hero { padding: 60px 20px 40px; }
-      .stat { min-width: 130px; padding: 24px 16px; }
-      footer { padding: 24px 20px; flex-direction: column; align-items: flex-start; }
-    }
-  </style>
+/* HOW IT WORKS */
+.how-bg{border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  background:linear-gradient(180deg,rgba(26,108,246,.06) 0%,transparent 100%)}
+.stgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:44px;position:relative}
+.stgrid::before{content:"";position:absolute;top:27px;left:12%;right:12%;height:1px;background:var(--border2);z-index:0}
+.stcard{text-align:center;position:relative;z-index:1}
+.stnum{width:54px;height:54px;border-radius:50%;background:rgba(26,108,246,.18);
+  border:1.5px solid rgba(26,108,246,.38);display:flex;align-items:center;justify-content:center;
+  font-size:20px;font-weight:800;margin:0 auto 14px;backdrop-filter:blur(4px)}
+.stcard h3{margin-bottom:6px;font-size:14px}
+.stcard p{font-size:12px;color:var(--muted);line-height:1.6}
+
+/* TESTIMONIALS */
+.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:40px}
+.tcard{padding:22px}
+.tstars{color:#ffd93d;font-size:12px;margin-bottom:11px;letter-spacing:1.5px}
+.tquote{font-size:12px;color:var(--muted);line-height:1.7;font-style:italic;margin-bottom:16px}
+.tauth{display:flex;align-items:center;gap:10px}
+.tav{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--mint));
+  display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#fff;flex-shrink:0}
+.tname{font-size:13px;font-weight:700}
+.torg{font-size:11px;color:var(--muted)}
+
+/* FAQ */
+.faq-list{max-width:640px;margin:40px auto 0}
+.faq-item{border:1px solid var(--border);border-radius:12px;margin-bottom:8px;overflow:hidden;transition:border-color .3s}
+.faq-item.open{border-color:rgba(26,108,246,.45)}
+.faq-q{display:flex;justify-content:space-between;align-items:center;padding:15px 18px;
+  cursor:pointer;font-size:13px;font-weight:600;background:var(--glass);user-select:none;transition:background .2s}
+.faq-q:hover{background:var(--glass2)}
+.faq-ch{width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,.06);
+  display:flex;align-items:center;justify-content:center;font-size:9px;
+  flex-shrink:0;margin-left:10px;transition:all .25s}
+.faq-item.open .faq-ch{transform:rotate(180deg);background:var(--mint-dim);color:var(--mint)}
+.faq-a{display:none;padding:0 18px 15px;font-size:12px;color:var(--muted);line-height:1.75;background:var(--glass)}
+.faq-item.open .faq-a{display:block}
+
+/* CTA BANNER */
+.cta-ban{text-align:center;padding:90px 24px;
+  background:linear-gradient(160deg,rgba(26,108,246,.14) 0%,rgba(0,229,160,.05) 100%);
+  border-top:1px solid var(--border)}
+.cta-ban h2{margin-bottom:13px}
+.cta-ban p{color:var(--muted);font-size:14px;margin-bottom:30px;max-width:420px;margin-left:auto;margin-right:auto}
+.cta-acts{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+
+/* FOOTER */
+.footer{border-top:1px solid var(--border);padding:50px 0 26px}
+.ftr-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:36px}
+.ftr-brand .logo-txt{font-size:18px;margin-bottom:10px;display:block}
+.ftr-brand p{font-size:12px;color:var(--muted);line-height:1.7;max-width:230px}
+.ftr-col h4{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted2);margin-bottom:13px}
+.ftr-col a{display:block;font-size:12px;color:var(--muted);text-decoration:none;margin-bottom:9px;cursor:pointer;transition:color .2s}
+.ftr-col a:hover{color:var(--white)}
+.ftr-bot{border-top:1px solid var(--border);padding-top:20px;display:flex;
+  justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;font-size:11px;color:var(--muted)}
+
+/* PAGE HERO */
+.page-hero{text-align:center;padding:80px 24px 60px;border-bottom:1px solid var(--border)}
+.page-hero h1{margin-bottom:13px}
+.page-hero p{font-size:15px;color:var(--muted);max-width:480px;margin:0 auto;line-height:1.7}
+
+/* FEATURE ACCORDION */
+.fd-list{margin-top:0}
+.fd-item{border-bottom:1px solid var(--border)}
+.fd-item:first-child{border-top:1px solid var(--border)}
+.fd-hdr{display:flex;align-items:center;justify-content:space-between;
+  padding:20px 0;cursor:pointer;user-select:none;transition:all .2s}
+.fd-hl{display:flex;align-items:center;gap:13px}
+.fd-hicon{width:38px;height:38px;background:rgba(26,108,246,.2);border:1px solid rgba(26,108,246,.22);
+  border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
+.fd-htitle{font-size:14px;font-weight:700;transition:color .2s}
+.fd-hsub{font-size:11px;color:var(--muted);margin-top:1px}
+.fd-arrow{width:26px;height:26px;border-radius:50%;background:var(--glass);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;font-size:9px;flex-shrink:0;transition:all .3s}
+.fd-item.open .fd-arrow{transform:rotate(180deg);background:var(--mint-dim);border-color:var(--mint-bdr);color:var(--mint)}
+.fd-item.open .fd-htitle{color:var(--mint)}
+.fd-body{display:none;padding:0 0 22px 51px}
+.fd-item.open .fd-body{display:block}
+.fd-body p{font-size:13px;color:var(--muted);line-height:1.75;margin-bottom:14px}
+.blist{list-style:none;display:flex;flex-direction:column;gap:8px}
+.blist li{display:flex;align-items:flex-start;gap:9px;font-size:12px;color:var(--muted)}
+
+/* COMPARE TABLE */
+.cmp-wrap{overflow-x:auto;margin-top:40px}
+.cmp{width:100%;border-collapse:collapse;font-size:12px}
+.cmp th,.cmp td{padding:11px 14px;text-align:center;border-bottom:1px solid var(--border)}
+.cmp thead th{font-weight:700;background:var(--glass);position:sticky;top:0;backdrop-filter:blur(8px)}
+.cmp .fc{text-align:left;color:var(--muted);font-weight:500}
+.cmp .ph{color:var(--mint);font-size:11px;letter-spacing:1px;text-transform:uppercase}
+.cmp .pr-row td{background:rgba(26,108,246,.07);font-weight:700}
+.cmp tr:hover td{background:var(--glass2)}
+.cmp .cat-row td{background:rgba(255,255,255,.02);font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted2)}
+.yc{color:var(--mint);font-size:14px}.nc{color:rgba(255,255,255,.15)}
+
+/* ABOUT & CONTACT */
+.agrid{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:start}
+.acontent h2{margin-bottom:16px}
+.acontent p{font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:13px}
+.vlist{display:flex;flex-direction:column;gap:15px}
+.vi{display:flex;align-items:flex-start;gap:12px}
+.vi-ic{width:36px;height:36px;flex-shrink:0;background:var(--glass2);border:1px solid var(--border);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px}
+.vi h4{font-size:13px;margin-bottom:3px}
+.vi p{font-size:12px;color:var(--muted)}
+.cgrid{display:grid;grid-template-columns:1fr 1.3fr;gap:52px;align-items:start}
+.cinfo h2{margin-bottom:11px}
+.cinfo > p{font-size:13px;color:var(--muted);line-height:1.75;margin-bottom:24px}
+.cit{display:flex;align-items:flex-start;gap:12px;margin-bottom:16px}
+.cit-ic{width:36px;height:36px;flex-shrink:0;background:rgba(26,108,246,.15);border:1px solid rgba(26,108,246,.28);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:14px}
+.cit h4{font-size:12px;font-weight:700;margin-bottom:2px}
+.cit p{font-size:12px;color:var(--muted)}
+.hours-card{padding:18px;margin-top:20px}
+.hours-card h4{font-size:10px;margin-bottom:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.hrow{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border);font-size:12px}
+.hrow:last-child{border-bottom:none}
+.hrow .day{color:var(--muted)}.hrow .time{font-weight:600}
+.form-card{padding:28px}
+.form-card h3{font-size:17px;margin-bottom:20px}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ff{margin-bottom:13px}
+.ff label{display:block;font-size:11px;font-weight:600;color:var(--muted);margin-bottom:5px;text-transform:uppercase;letter-spacing:.6px}
+.ff input,.ff select,.ff textarea{width:100%;padding:10px 12px;background:rgba(255,255,255,.05);
+  border:1px solid var(--border);border-radius:9px;font-family:'Sora',sans-serif;
+  font-size:12px;color:var(--white);outline:none;transition:all .2s;-webkit-appearance:none;appearance:none}
+.ff input::placeholder,.ff textarea::placeholder{color:var(--muted2)}
+.ff input:focus,.ff select:focus,.ff textarea:focus{border-color:rgba(26,108,246,.55);background:rgba(26,108,246,.07)}
+.ff select option{background:#0a1628}
+.ff textarea{resize:vertical;min-height:88px}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .prgrid{grid-template-columns:repeat(2,1fr)}
+  .prcard.pop{transform:none}
+  .ftr-grid{grid-template-columns:1fr 1fr;gap:28px}
+  .stgrid::before{display:none}
+  .stgrid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:768px){
+  .wrap{padding:0 18px}
+  nav{padding:15px 18px}
+  .nav-links,.nav-r{display:none}
+  .hbg{display:flex}
+  .sec{padding:60px 0}
+  .hero{padding:52px 18px 40px;min-height:unset}
+  .pgrid{grid-template-columns:1fr}
+  .sgrid{grid-template-columns:1fr;gap:28px}
+  .agrid{grid-template-columns:1fr;gap:32px}
+  .cgrid{grid-template-columns:1fr}
+  .frow{grid-template-columns:1fr}
+  .tgrid{grid-template-columns:1fr}
+  .prgrid{grid-template-columns:1fr}
+  .stgrid{grid-template-columns:1fr}
+  .portal-bals{grid-template-columns:1fr 1fr}
+  .ftr-grid{grid-template-columns:1fr;gap:22px}
+  h1{letter-spacing:-1.8px}
+  .fo1,.fo2,.fo3,.fo4,.fo5,.fo6{opacity:.45}
+}
+@media(max-width:500px){
+  .hero-act{flex-direction:column;align-items:center}
+  .cta-acts{flex-direction:column;align-items:center}
+  .si{min-width:120px;padding:20px 12px}
+}
+</style>
 </head>
 <body>
-  <div class="bg"></div>
-  <div class="page">
+<div class="bg-mesh"></div>
+<div class="site">
 
-    <!-- Nav -->
-    <nav>
-      <div class="logo">
-        <div class="logo-mark">PP</div>
-        <div class="logo-text">Pamoja<span>Pay</span></div>
-      </div>
-      <div class="nav-badge">Coming Soon</div>
-    </nav>
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-logo" onclick="goPage('home')">
+    <span class="logo-txt">Pamoja<span>Pay</span></span>
+  </div>
+  <ul class="nav-links">
+    <li><a onclick="goPage('home')" id="nl-home" class="act">Home</a></li>
+    <li><a onclick="goPage('features')" id="nl-features">Features</a></li>
+    <li><a onclick="goPage('pricing')" id="nl-pricing">Pricing</a></li>
+    <li><a onclick="goPage('about')" id="nl-about">Contact</a></li>
+  </ul>
+  <div class="nav-r">
+    <a class="btn-nav-o" onclick="goPage('about')">Request Demo</a>
+    <a class="btn-nav-p" onclick="goPage('pricing')">Get Started</a>
+  </div>
+  <button class="hbg" id="hbg" onclick="toggleMobile()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mmenu" id="mmenu">
+  <a onclick="goPage('home');closeMobile()">Home</a>
+  <a onclick="goPage('features');closeMobile()">Features</a>
+  <a onclick="goPage('pricing');closeMobile()">Pricing</a>
+  <a onclick="goPage('about');closeMobile()">Contact</a>
+  <div class="mmenu-btns">
+    <a class="btn b-gho b-md b-full" onclick="goPage('about');closeMobile()">Request Demo</a>
+    <a class="btn b-pri b-md b-full" onclick="goPage('pricing');closeMobile()">Get Started</a>
+  </div>
+</div>
 
-    <!-- Hero -->
-    <section class="hero">
-      <div class="hero-eyebrow">Now in early access</div>
-      <h1>
-        The cooperative<br/>
-        platform built for<br/>
-        <span class="accent">African SACCOs</span>
-      </h1>
-      <p class="hero-sub">
-        Savings, loans, expenses, member portals and dividend management —
-        all in one place. Built for how cooperatives actually work in Uganda and East Africa.
-      </p>
-      <div class="hero-actions">
-        <a href="mailto:paypamoja@gmail.com?subject=Early Access Request — PamojaPay&body=Hello PamojaPay team,%0D%0A%0D%0AI'd like to request early access for my SACCO.%0D%0A%0D%0ASACCO Name:%0D%0ANumber of Members:%0D%0AYour Name:%0D%0APhone:%0D%0A" class="btn-primary">
-          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
-          Request Early Access
-        </a>
-      </div>
+<!-- ======================================================
+     HOME
+====================================================== -->
+<div class="page active" id="page-home">
 
-      <div class="tenant-pill">
-        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
-        First tenant live at&nbsp;<strong>BIDA Co-operative</strong>
-      </div>
-    </section>
+<section class="hero">
+  <div class="fr fr1"></div>
+  <div class="fr fr2"></div>
+  <div class="fr fr3"></div>
+  <div class="fo fo1">&#128241;</div>
+  <div class="fo fo2">&#128176;</div>
+  <div class="fo fo3">&#11088;</div>
+  <div class="fo fo4">&#128179;</div>
+  <div class="fo fo5">&#128200;</div>
+  <div class="fo fo6">&#128737;</div>
 
-    <!-- Stats -->
-    <div class="stats">
-      <div class="stat">
-        <div class="stat-num">13</div>
-        <div class="stat-label">Modules</div>
+  <div class="hero-ey">SACCO Digitalization Solution</div>
+  <h1>Complete Financial<br/>Management for Your<br/><span class="grad">SACCO</span></h1>
+  <p class="hero-sub">Pamoja Pay brings your savings, loans, expenses, and governance into one modern platform. Members get a self-service portal. Managers get real-time control.</p>
+  <div class="hero-act">
+    <a class="btn b-pri b-lg" onclick="goPage('pricing')">Get Started &rarr;</a>
+    <a class="btn b-gho b-lg" onclick="goPage('about')">Request Demo</a>
+  </div>
+  <div class="hero-pill">
+    <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+    First tenant live at &nbsp;<strong>BIDA Co-operative</strong>&nbsp; &#127482;&#127468;
+  </div>
+
+  <div class="hero-portal">
+    <div class="portal-shell">
+      <div class="portal-bar">
+        <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+        <div class="portal-ttl">PamojaPay &mdash; Member Portal</div>
       </div>
-      <div class="stat">
-        <div class="stat-num">1,000+</div>
-        <div class="stat-label">Members managed</div>
+      <div class="portal-body">
+        <div class="portal-hdr">
+          <div class="portal-av">GN</div>
+          <div>
+            <div class="portal-name">Grace Nalwanga</div>
+            <div class="portal-id">ID: PAY-2024-0042 &nbsp;&bull;&nbsp; Member since Jan 2022</div>
+          </div>
+          <div class="portal-status">Active</div>
+        </div>
+        <div class="portal-bals">
+          <div class="pb"><div class="pb-l">Total Savings</div><div class="pb-v">UGX 2.4M</div><div class="pb-s">&#8593; Growing steadily</div></div>
+          <div class="pb"><div class="pb-l">Share Units</div><div class="pb-v">48 units</div><div class="pb-s">Up to date</div></div>
+          <div class="pb"><div class="pb-l">Welfare Balance</div><div class="pb-v">UGX 240k</div><div class="pb-s">Auto-calculated</div></div>
+          <div class="pb"><div class="pb-l">Loan Eligibility</div><div class="pb-v">UGX 7.2M</div><div class="pb-s">Based on savings</div></div>
+        </div>
+        <div class="portal-loan">
+          <div class="pl-hdr">
+            <div class="pl-title">Active Loan &mdash; #L-0198</div>
+            <div class="pl-badge">On Track</div>
+          </div>
+          <div class="pl-bg"><div class="pl-bar"></div></div>
+          <div class="pl-meta"><span>Paid: UGX 1.86M</span><span>Remaining: UGX 1.14M</span></div>
+        </div>
+        <div class="portal-acts">
+          <div class="pa"><div class="pa-ic">&#128176;</div>Pay Loan</div>
+          <div class="pa"><div class="pa-ic">&#128196;</div>Statement</div>
+          <div class="pa"><div class="pa-ic">&#128221;</div>Apply Loan</div>
+          <div class="pa"><div class="pa-ic">&#9745;</div>Vote</div>
+        </div>
       </div>
-      <div class="stat">
-        <div class="stat-num">UGX</div>
-        <div class="stat-label">Native currency</div>
+    </div>
+  </div>
+</section>
+
+<div class="sstrip"><div class="sstrip-in">
+  <div class="si"><div class="si-n wg">16+</div><div class="si-l">Modules</div></div>
+  <div class="si"><div class="si-n wg">1,000+</div><div class="si-l">Members managed</div></div>
+  <div class="si"><div class="si-n wg">24/7</div><div class="si-l">Self-service portal</div></div>
+  <div class="si"><div class="si-n wg">100%</div><div class="si-l">Audit-ready</div></div>
+</div></div>
+
+<section class="sec" id="s-problem">
+  <div class="wrap">
+    <div class="tc an">
+      <div class="eyebrow">The Challenge</div>
+      <h2 style="margin-bottom:12px">Running a SACCO shouldn&apos;t be this hard</h2>
+      <p style="color:var(--muted);font-size:14px;max-width:480px;margin:0 auto;line-height:1.7">Manual records, spreadsheet errors, no member self-service, no audit trail &mdash; these problems cost your SACCO every day.</p>
+    </div>
+    <div class="pgrid">
+      <div class="pcard gc an d1"><div class="picon">&#128203;</div><div><h3>Manual work wastes hours</h3><p>Staff spend hours every week reconciling savings and generating reports that a system should handle automatically.</p></div></div>
+      <div class="pcard gc an d2"><div class="picon">&#128721;</div><div><h3>Spreadsheets break and data gets lost</h3><p>Excel errors and corrupted files put months of records at risk with no version history and no recovery.</p></div></div>
+      <div class="pcard gc an d3"><div class="picon">&#128222;</div><div><h3>Members keep calling for balances</h3><p>Dozens of avoidable calls every week asking for information members should be able to check themselves.</p></div></div>
+      <div class="pcard gc an d4"><div class="picon">&#128270;</div><div><h3>No audit trail for compliance</h3><p>When auditors arrive there is no clear record of who did what and when &mdash; a serious compliance risk.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" style="border-top:1px solid var(--border)">
+  <div class="wrap"><div class="sgrid">
+    <div class="svis gc an"><span style="position:relative;z-index:1">&#128241;</span><div class="svis-l">Member Portal &mdash; any device, anytime</div></div>
+    <div class="an d2">
+      <div class="eyebrow">The Solution</div>
+      <h2 style="margin-bottom:12px">Pamoja Pay fixes all of this</h2>
+      <p style="font-size:13px;color:var(--muted);line-height:1.75">One platform for everyone &mdash; members, managers, treasurer, and auditor. Each role sees exactly what they need.</p>
+      <ul class="cklist">
+        <li><div class="ck">&#10003;</div><span>Members check balances and apply for loans from any phone, 24/7</span></li>
+        <li><div class="ck">&#10003;</div><span>Loan approvals completed in hours through a structured multi-step workflow</span></li>
+        <li><div class="ck">&#10003;</div><span>Repayment schedules generated and shared automatically for every loan</span></li>
+        <li><div class="ck">&#10003;</div><span>Every transaction permanently recorded with a complete audit trail</span></li>
+        <li><div class="ck">&#10003;</div><span>Works offline and syncs automatically when connectivity returns</span></li>
+      </ul>
+    </div>
+  </div></div>
+</section>
+
+<section class="sec" style="border-top:1px solid var(--border)" id="s-features">
+  <div class="wrap">
+    <div class="tc an">
+      <div class="eyebrow">Everything Included</div>
+      <h2 style="margin-bottom:10px">Everything your SACCO needs</h2>
+      <p style="color:var(--muted);font-size:13px;max-width:440px;margin:0 auto">From member onboarding to AGM reports &mdash; fully covered.</p>
+    </div>
+    <div class="fgrid">
+      <div class="fcard gc an d1"><div class="fcard-top"><div class="ficon">&#128101;</div><h3>Member Management</h3></div><p>Complete digital profiles with photo, ID, address and next of kin.</p></div>
+      <div class="fcard gc an d2"><div class="fcard-top"><div class="ficon">&#127974;</div><h3>Savings Tracking</h3></div><p>All contribution categories tracked separately with real-time balances.</p></div>
+      <div class="fcard gc an d3"><div class="fcard-top"><div class="ficon">&#128197;</div><h3>Loan Management</h3></div><p>Full loan lifecycle from application through approval to final settlement.</p></div>
+      <div class="fcard gc an d1"><div class="fcard-top"><div class="ficon">&#128466;</div><h3>Repayment Schedules</h3></div><p>Auto-generated, color-coded schedules shareable via WhatsApp or PDF.</p></div>
+      <div class="fcard gc an d2"><div class="fcard-top"><div class="ficon">&#9888;</div><h3>Overdue &amp; Penalties</h3></div><p>Overdue loans tracked with penalty application and NPL classification.</p></div>
+      <div class="fcard gc an d3"><div class="fcard-top"><div class="ficon">&#128722;</div><h3>Expense Tracking</h3></div><p>Record, approve, and monitor all SACCO expenses and service providers.</p></div>
+      <div class="fcard gc an d1"><div class="fcard-top"><div class="ficon">&#128200;</div><h3>Investments</h3></div><p>Track SACCO investments and distribute returns to members at year-end.</p></div>
+      <div class="fcard gc an d2"><div class="fcard-top"><div class="ficon">&#9745;</div><h3>Voting &amp; Elections</h3></div><p>Secure, anonymous digital polls for board elections and resolutions.</p></div>
+      <div class="fcard gc an d3"><div class="fcard-top"><div class="ficon">&#129309;</div><h3>Benevolent Fund</h3></div><p>Next of kin records, eligibility tracking, and automated payout calculation.</p></div>
+      <div class="fcard gc an d1"><div class="fcard-top"><div class="ficon">&#128193;</div><h3>Document Storage</h3></div><p>Central cloud repository for minutes, AGM docs, and member documents.</p></div>
+      <div class="fcard gc an d2"><div class="fcard-top"><div class="ficon">&#128274;</div><h3>Audit Trail</h3></div><p>Immutable record of every action &mdash; who did what, when, from which device.</p></div>
+      <div class="fcard gc an d3"><div class="fcard-top"><div class="ficon">&#128140;</div><h3>Communications</h3></div><p>Automated Email, SMS, and WhatsApp reminders for your members.</p></div>
+      <div class="fcard gc an d1"><div class="fcard-top"><div class="ficon">&#128244;</div><h3>Offline Mode</h3></div><p>Staff keep working without internet. Changes sync when back online.</p></div>
+      <div class="fcard gc an d2"><div class="fcard-top"><div class="ficon">&#128196;</div><h3>PDF Reports</h3></div><p>Statements, loan agreements, receipts, and AGM reports on demand.</p></div>
+      <div class="fcard gc an d3"><div class="fcard-top"><div class="ficon">&#128241;</div><h3>Member Portal</h3></div><p>Members log in securely to view balances, apply for loans, and vote.</p></div>
+      <div class="fcard gc an d1"><div class="fcard-top"><div class="ficon">&#128202;</div><h3>Auditor Hub</h3></div><p>Dedicated auditor dashboard with full oversight and approval tools.</p></div>
+    </div>
+    <div class="tc" style="margin-top:26px"><a class="btn b-omint b-md" onclick="goPage('features')">Deep dive into every feature &rarr;</a></div>
+  </div>
+</section>
+
+<section class="sec" style="border-top:1px solid var(--border)" id="s-pricing">
+  <div class="wrap">
+    <div class="tc an">
+      <div class="eyebrow">Pricing</div>
+      <h2 style="margin-bottom:10px">Simple, transparent pricing</h2>
+      <p style="color:var(--muted);font-size:13px;max-width:420px;margin:0 auto">One flat monthly fee. No per-transaction charges. No surprises.</p>
+    </div>
+    <div class="prgrid">
+      <div class="prcard gc an d1">
+        <div class="pr-plan">Basic</div>
+        <div class="pr-amt">UGX 150k <span>/ mo</span></div>
+        <div class="pr-setup">+ UGX 500k one-time setup</div>
+        <div class="pr-members">&#128101; 1 &ndash; 50 members</div>
+        <ul class="pr-feats">
+          <li><span class="py">&#10003;</span> Member management</li>
+          <li><span class="py">&#10003;</span> Savings tracking</li>
+          <li><span class="py">&#10003;</span> Member portal</li>
+          <li><span class="py">&#10003;</span> Basic reports</li>
+          <li><span class="py">&#10003;</span> Email reminders</li>
+          <li><span class="pno">&#10005;</span> Loans</li>
+          <li><span class="pno">&#10005;</span> Expenses</li>
+          <li><span class="pno">&#10005;</span> Investments</li>
+        </ul>
+        <a class="btn b-gho b-md b-full" onclick="goPage('about')">Get Started</a>
       </div>
-      <div class="stat">
-        <div class="stat-num">100%</div>
-        <div class="stat-label">Mobile friendly</div>
+      <div class="prcard gc pop an d2">
+        <div class="pop-tag">Most Popular</div>
+        <div class="pr-plan">Standard</div>
+        <div class="pr-amt">UGX 350k <span>/ mo</span></div>
+        <div class="pr-setup">+ UGX 700k one-time setup</div>
+        <div class="pr-members">&#128101; 51 &ndash; 100 members</div>
+        <ul class="pr-feats">
+          <li><span class="py">&#10003;</span> Everything in Basic</li>
+          <li><span class="py">&#10003;</span> Complete loan management</li>
+          <li><span class="py">&#10003;</span> Repayment schedules</li>
+          <li><span class="py">&#10003;</span> Payment receipts PDF</li>
+          <li><span class="py">&#10003;</span> Loan agreements PDF</li>
+          <li><span class="pno">&#10005;</span> Expenses</li>
+          <li><span class="pno">&#10005;</span> Investments</li>
+        </ul>
+        <a class="btn b-pri b-md b-full" onclick="goPage('about')">Get Started</a>
+      </div>
+      <div class="prcard gc an d3">
+        <div class="pr-plan">Premium</div>
+        <div class="pr-amt">UGX 650k <span>/ mo</span></div>
+        <div class="pr-setup">+ UGX 1M one-time setup</div>
+        <div class="pr-members">&#128101; 101 &ndash; 200 members</div>
+        <ul class="pr-feats">
+          <li><span class="py">&#10003;</span> Everything in Standard</li>
+          <li><span class="py">&#10003;</span> Expense tracking</li>
+          <li><span class="py">&#10003;</span> Service provider directory</li>
+          <li><span class="py">&#10003;</span> Investment management</li>
+          <li><span class="py">&#10003;</span> Dividend distribution</li>
+          <li><span class="pno">&#10005;</span> Voting</li>
+          <li><span class="pno">&#10005;</span> Auditor Hub</li>
+        </ul>
+        <a class="btn b-gho b-md b-full" onclick="goPage('about')">Get Started</a>
+      </div>
+      <div class="prcard gc an d4">
+        <div class="pr-plan" style="color:#6ec6ff">Enterprise</div>
+        <div class="pr-amt">UGX 1.2M <span>/ mo</span></div>
+        <div class="pr-setup">+ UGX 1.5M one-time setup</div>
+        <div class="pr-members">&#128101; 201 &ndash; 400 members</div>
+        <ul class="pr-feats">
+          <li><span class="py">&#10003;</span> Everything in Premium</li>
+          <li><span class="py">&#10003;</span> Voting &amp; elections</li>
+          <li><span class="py">&#10003;</span> Benevolent fund</li>
+          <li><span class="py">&#10003;</span> Document management</li>
+          <li><span class="py">&#10003;</span> AGM report generator</li>
+          <li><span class="py">&#10003;</span> Auditor Hub</li>
+          <li><span class="py">&#10003;</span> Priority support</li>
+        </ul>
+        <a class="btn b-mint b-md b-full" onclick="goPage('about')">Contact Sales</a>
+      </div>
+    </div>
+    <div class="pr-note gc an" style="margin-top:22px">
+      <p>&#128101; <strong>400+ members?</strong> Switch to our <strong>Digital Rent model &mdash; UGX 2,000 per member per month.</strong> Scales as you grow. <a onclick="goPage('about')">Get a custom quote &rarr;</a></p>
+    </div>
+    <div class="tc" style="margin-top:20px"><a class="btn b-omint b-md" onclick="goPage('pricing')">View full comparison &rarr;</a></div>
+  </div>
+</section>
+
+<section class="sec how-bg" id="s-how">
+  <div class="wrap">
+    <div class="tc an">
+      <div class="eyebrow">Get Started</div>
+      <h2 style="margin-bottom:10px">Up and running in 4 steps</h2>
+      <p style="color:var(--muted);font-size:13px;max-width:400px;margin:0 auto">From sign-up to live in days, not months.</p>
+    </div>
+    <div class="stgrid">
+      <div class="stcard an d1"><div class="stnum">1</div><h3>Sign Up</h3><p>Choose your plan and share your SACCO details. Takes under 10 minutes.</p></div>
+      <div class="stcard an d2"><div class="stnum">2</div><h3>Data Migration</h3><p>We import your member data from Excel, paper, or any existing system.</p></div>
+      <div class="stcard an d3"><div class="stnum">3</div><h3>Staff Training</h3><p>On-site or virtual training tailored to each role in your SACCO.</p></div>
+      <div class="stcard an d4"><div class="stnum">4</div><h3>Go Live</h3><p>Members get login access and can immediately start using the portal.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" style="border-top:1px solid var(--border)">
+  <div class="wrap">
+    <div class="tc an">
+      <div class="eyebrow">Testimonials</div>
+      <h2 style="margin-bottom:10px">Trusted by SACCOs in Uganda</h2>
+    </div>
+    <div class="tgrid">
+      <div class="tcard gc an d1">
+        <div class="tstars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="tquote">&ldquo;Manual reconciliations used to take our treasurer every Saturday. Now it is done in under 30 minutes. Our members love the self-service portal.&rdquo;</p>
+        <div class="tauth"><div class="tav">MK</div><div><div class="tname">Margaret Kizza</div><div class="torg">Chairperson, Kampala Teachers SACCO</div></div></div>
+      </div>
+      <div class="tcard gc an d2">
+        <div class="tstars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="tquote">&ldquo;Automated reminders before due dates changed everything. Members pay on time and our loan book is healthier than it has ever been.&rdquo;</p>
+        <div class="tauth"><div class="tav">RO</div><div><div class="tname">Robert Ocen</div><div class="torg">CEO, Gulu Farmers Cooperative</div></div></div>
+      </div>
+      <div class="tcard gc an d3">
+        <div class="tstars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="tquote">&ldquo;Our AGM was completely paperless. Reports, digital voting, real-time audit access &mdash; everything our auditor needed was right there.&rdquo;</p>
+        <div class="tauth"><div class="tav">AN</div><div><div class="tname">Aisha Namutebi</div><div class="torg">Secretary, Wakiso Women&apos;s SACCO</div></div></div>
+      </div>
+    </div>
+    <p style="text-align:center;font-size:10px;color:var(--muted2);margin-top:14px"><em>Illustrative testimonials. Replace with real client quotes.</em></p>
+  </div>
+</section>
+
+<section class="sec" style="border-top:1px solid var(--border)">
+  <div class="wrap">
+    <div class="tc an">
+      <div class="eyebrow">FAQ</div>
+      <h2 style="margin-bottom:10px">Common questions</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item"><div class="faq-q" onclick="faq(this)">What is Pamoja Pay?<span class="faq-ch">&#9660;</span></div><div class="faq-a">Pamoja Pay is a complete SACCO management platform built for cooperative societies in Uganda and Africa. It handles everything from member onboarding to loan management, governance, and reporting in one web-based system accessible from any device.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="faq(this)">How does pricing work?<span class="faq-ch">&#9660;</span></div><div class="faq-a">A flat monthly subscription based on your member count. A one-time setup fee covers data migration and staff training. For SACCOs above 400 members we offer a per-member Digital Rent model. No per-transaction fees ever.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="faq(this)">Is there a contract?<span class="faq-ch">&#9660;</span></div><div class="faq-a">Month-to-month with no long-term commitment. Cancel anytime. We offer a 30-day money-back guarantee if you are not satisfied after going live.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="faq(this)">Can members access from their phones?<span class="faq-ch">&#9660;</span></div><div class="faq-a">Yes. The member portal works on any smartphone browser with no app download needed. Members log in securely using a one-time password sent to their email.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="faq(this)">What happens when internet goes down?<span class="faq-ch">&#9660;</span></div><div class="faq-a">Pamoja Pay works fully offline. Staff continue working normally and all changes sync automatically to the cloud the moment connectivity returns.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="faq(this)">Is our data secure?<span class="faq-ch">&#9660;</span></div><div class="faq-a">Yes. Bank-level encryption, row-level security, daily automated backups, and an immutable audit trail. Your data belongs to your SACCO and we never share or sell it.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="faq(this)">Can we upgrade our plan later?<span class="faq-ch">&#9660;</span></div><div class="faq-a">Anytime. Your member records and all data stay completely intact when you upgrade. You simply unlock new features on the higher plan.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-ban">
+  <div class="wrap"><div class="an">
+    <div class="eyebrow" style="justify-content:center">Ready?</div>
+    <h2>Bring your SACCO online today</h2>
+    <p>Join SACCOs across Uganda that have made the move to digital management.</p>
+    <div class="cta-acts">
+      <a class="btn b-pri b-lg" onclick="goPage('pricing')">View Plans</a>
+      <a class="btn b-gho b-lg" onclick="goPage('about')">Talk to Us</a>
+    </div>
+  </div></div>
+</section>
+
+<footer class="footer"><div class="wrap">
+  <div class="ftr-grid">
+    <div class="ftr-brand">
+      <span class="logo-txt">Pamoja<span>Pay</span></span>
+      <p>Built for Uganda and Africa. Digitizing cooperative societies, one SACCO at a time. Together We Grow.</p>
+    </div>
+    <div class="ftr-col">
+      <h4>Product</h4>
+      <a onclick="goPage('features')">Features</a>
+      <a onclick="goPage('pricing')">Pricing</a>
+      <a onclick="goPage('home');scrollSec('s-how')">How It Works</a>
+    </div>
+    <div class="ftr-col">
+      <h4>Company</h4>
+      <a onclick="goPage('about')">About Us</a>
+      <a onclick="goPage('about')">Contact</a>
+      <a>Privacy Policy</a>
+    </div>
+    <div class="ftr-col">
+      <h4>Contact</h4>
+      <a href="/cdn-cgi/l/email-protection#0171607871606c6e6b6041666c60686d2f626e6c">&#128231; <span class="__cf_email__" data-cfemail="7e0e1f070e1f1311141f3e19131f1712501d1113">[email&#160;protected]</span></a>
+      <a>&#128222; +256 XXX XXX XXX</a>
+      <a>&#128172; WhatsApp</a>
+      <a>&#127482;&#127468; Kampala, Uganda</a>
+    </div>
+  </div>
+  <div class="ftr-bot">
+    <div>&copy; 2026 PamojaPay &middot; <em>Together, we grow stronger.</em></div>
+    <div>Built for Uganda and Africa &#127482;&#127468;</div>
+  </div>
+</div></footer>
+</div><!-- /home -->
+
+<!-- ======================================================
+     FEATURES
+====================================================== -->
+<div class="page" id="page-features">
+<section class="page-hero"><div class="wrap">
+  <div class="eyebrow" style="justify-content:center">All Features</div>
+  <h1 style="margin-bottom:13px">What&apos;s inside <span class="grad">Pamoja Pay</span></h1>
+  <p>Click any module below to see what it does and how it helps your SACCO.</p>
+</div></section>
+
+<section class="sec" style="border-top:1px solid var(--border)"><div class="wrap">
+  <div class="fd-list">
+
+    <div class="fd-item">
+      <div class="fd-hdr" onclick="fdToggle(this)">
+        <div class="fd-hl"><div class="fd-hicon">&#128101;</div><div><div class="fd-htitle">Member Management</div><div class="fd-hsub">Profiles, identity, next of kin</div></div></div>
+        <div class="fd-arrow">&#9660;</div>
+      </div>
+      <div class="fd-body">
+        <p>Every member gets a complete digital profile including their photo, national ID, contact details, employer information, and next of kin. Members can be searched instantly and their status tracked throughout their membership lifecycle.</p>
+        <ul class="blist">
+          <li><div class="ck">&#10003;</div>Complete digital profiles with photo and national ID</li>
+          <li><div class="ck">&#10003;</div>Member status tracking &mdash; Active, Dormant, or Exited</li>
+          <li><div class="ck">&#10003;</div>Instant search and filter across all member records</li>
+          <li><div class="ck">&#10003;</div>Next of kin records linked automatically to the benevolent fund</li>
+          <li><div class="ck">&#10003;</div>Supports identity verification and fraud prevention</li>
+        </ul>
       </div>
     </div>
 
-    <!-- Features -->
-    <section class="features">
-      <div class="section-label">What PamojaPay does</div>
-      <h2 class="section-title">Everything your SACCO needs, nothing it doesn't</h2>
-      <div class="feature-grid">
-        <div class="feature-card">
-          <div class="feature-icon">💰</div>
-          <h3>Savings Management</h3>
-          <p>Track membership fees, monthly savings, welfare, shares and voluntary deposits per member. Real-time totals, contribution history and reminders.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">🏦</div>
-          <h3>Loan Register</h3>
-          <p>Flat and reducing balance loans, automatic repayment schedules, overdue tracking and 2% monthly penalty calculation. Full NPL reporting.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">📊</div>
-          <h3>Finance Engine</h3>
-          <p>Live cash-in-bank balance, capital gains pool, AGM dividend distribution, expense tracking and investment management — all reconciled automatically.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">👥</div>
-          <h3>Member Portal</h3>
-          <p>Each member logs in to see their own savings, loan balances, contribution history and download statements. Secure, mobile-first.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">📋</div>
-          <h3>4-Step Approvals</h3>
-          <p>Treasurer → Finance Manager → Admin → Auditor. Every loan and member addition goes through a proper approval chain with full audit trail.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">📄</div>
-          <h3>PDF Documents</h3>
-          <p>Professional loan agreements, payment receipts, member statements, share certificates and overdue penalty reports — generated instantly.</p>
-        </div>
+    <div class="fd-item">
+      <div class="fd-hdr" onclick="fdToggle(this)">
+        <div class="fd-hl"><div class="fd-hicon">&#127974;</div><div><div class="fd-htitle">Savings Tracking</div><div class="fd-hsub">All contribution categories, real-time balances</div></div></div>
+        <div class="fd-arrow">&#9660;</div>
       </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="cta-section">
-      <h2>Ready to bring your SACCO online?</h2>
-      <p>Get your own subdomain — yourname.pamojapay.co — and go live in days, not months.</p>
-      <a href="mailto:paypamoja@gmail.com?subject=SACCO Enquiry — PamojaPay&body=Hello PamojaPay team,%0D%0A%0D%0AI'd like to learn more about getting my SACCO on PamojaPay.%0D%0A%0D%0ASACCO Name:%0D%0ANumber of Members:%0D%0AYour Name:%0D%0APhone:%0D%0A" class="btn-primary" style="font-size:15px;padding:16px 36px;">
-        Get in touch
-      </a>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-      <div>© 2026 PamojaPay · <em>Together, we grow stronger.</em></div>
-      <div class="footer-links">
-        <a href="mailto:paypamoja@gmail.com">paypamoja@gmail.com</a>
+      <div class="fd-body">
+        <p>Each member&apos;s contributions are tracked across all categories separately, giving your treasurer and members a clear real-time picture of every balance. Welfare contributions are calculated automatically based on your SACCO&apos;s own rules.</p>
+        <ul class="blist">
+          <li><div class="ck">&#10003;</div>Tracks membership fees, annual subscriptions, monthly savings, welfare, shares, and voluntary deposits</li>
+          <li><div class="ck">&#10003;</div>Welfare automatically calculated based on your SACCO&apos;s configured formula</li>
+          <li><div class="ck">&#10003;</div>Share units tracked and displayed per member</li>
+          <li><div class="ck">&#10003;</div>Downloadable savings statements as branded PDF</li>
+          <li><div class="ck">&#10003;</div>Full contribution history with who recorded each entry and when</li>
+        </ul>
       </div>
-    </footer>
+    </div>
+
+    <div class="fd-item">
+      <div class="fd-hdr" onclick="fdToggle(this)">
+        <div class="fd-hl"><div class="fd-hicon">&#128197;</div><div><div class="fd-htitle">Loan Management</div><div class="fd-hsub">Application to full settlement</div></div></div>
+        <div class="fd-arrow">&#9660;</div>
+      </div>
+      <div class="fd-body">
+        <p>Manage the complete loan lifecycle in one place &mdash; from a member&apos;s initial application all the way to final settlement. A structured multi-step approval process ensures no single person can approve a loan alone.</p>
+        <ul class="blist">
+          <li><div class="ck">&#10003;</div>Multi-step approval workflow &mdash; no single point of failure</li>
+          <li><div class="ck">&#10003;</div>Interest auto-calculated based on your SACCO&apos;s configured rates</li>
+          <li><div class="ck">&#10003;</div>Flexible loan terms configurable to your SACCO&apos;s policy</li>
+          <li><div class="ck">&#10003;</div>Disbursement tracking with downloadable loan agreement PDF</li>
+          <li><div class="ck">&#10003;</div>Partial payment support and full repayment history</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="fd-item">
+      <div class="fd-hdr" onclick="fdToggle(this)">
+        <div class="fd-hl"><div class="fd-hicon">&#128466;</div><div><div class="fd-htitle">Repayment Schedules</div><div class="fd-hsub">Auto-generated, color-coded, shareable</div></div></div>
+        <div class="fd-arrow">&#9660;</div>
+      </div>
+      <div class="fd-body">
+        <p>Every loan automatically gets a full repayment schedule so members know exactly what they owe and when. Schedules update in real time as payments come in and can be shared directly with the member.</p>
+        <ul class="blist">
+          <li><div class="ck">&#10003;</div>Auto-generated for every loan upon disbursement</li>
+          <li><div class="ck">&#10003;</div>Color-coded rows: paid, partially paid, overdue, and upcoming</li>
+          <li><div class="ck">&#10003;</div>Share directly via WhatsApp, email, or download as PDF</li>
+          <li><div class="ck">&#10003;</div>Updates in real time as payments are recorded</li>
+          <li><div class="ck">&#10003;</div>Members view their own schedule anytime from the portal</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="fd-item">
+      <div class="fd-hdr" onclick="fdToggle(this)">
+        <div class="fd-hl"><div class="fd-hicon">&#9888;</div><div><div class="fd-htitle">Overdue Tracking &amp; NPL Classification</div><div class="fd-hsub">Penalties, risk levels, portfolio health</div></div></div>
+        <div class="fd-arrow">&#9660;</div>
+      </div>
+      <div class="fd-body">
+        <p>Pamoja Pay automatically tracks overdue loans, applies configured penalties, and classifies your loan portfolio by risk level. Your management team gets a clear view of portfolio health at all times.</p>
+        <ul class="blist">
+          <li><div class="ck">&#10003;</div>Overdue loans flagged and tracked automatically</li>
+          <li><div class="ck">&#10003;</div>Penalty interest applied based on your SACCO&apos;s own policy</li>
+          <li><div class="ck">&#10003;</div>NPL classification: Performing, Watch, Substandard, Doubtful, Loss</li>
+          <li><div class="ck">&#10003;</div>Portfolio quality dashboard for management reporting</li>
+          <li><div class="ck">&#10003;</div>Supports regulatory compliance and audit readiness</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="fd-item">
+      <div class="fd-hdr" onclick="fdToggle(this)">
+        <div class="fd-hl"><div class="fd-hicon">&#128722;</div><div><div class="fd-htitle">Expense Tracking</div><div class="fd-hsub">Spending control, approvals, providers</div></div></div>
+        <div class="fd-arrow">&#9660;</div>
+      </div>
+      <div class="fd-body">
+        <p>Every SACCO expense is recorded, categorised, and where required passed through an approval process. Your treasurer always has a live view of what has been spent.</p>
+        <ul class="blist">
+          <li><div class="ck">&#10003;</div>Record and categorise all SACCO expenditure</li>
+          <li><div class="ck">&#10003;</div>Approval workflow for large or sensitive expenses</li>
+          <li><div class="ck">&#10003;</div>Service provider directory and compliance tracking</li>
+          <li><div class="ck">&#10003;</div>Running balance updated after every entry</li>
+          <li><div class="ck">&#10003;</div>Full expense history for audit and reporting</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="fd-item">
+      <div class="fd-hdr" onclick="fdToggle(this)">
+        <div class="fd-hl"><div class="fd-hicon">&#128200;</div><div><div class="fd-htitle">Investment Management</div><div class="fd-hsub">Returns, pools, member distribution</div></div></div>
+        <div class="fd-arrow">&#9660;</div>
+      </div>
+      <div class="fd-body">
+        <p>Track your SACCO&apos;s external investments and automatically distribute returns to members at year end according to your configured rules.</p>
+        <ul class="blist">
+          <li><div class="ck">&#10003;</div>Track multiple investment types in one place</li>
+          <li><div class="ck">&#10003;</div>Record returns and update the capital gains pool</li>
+          <li><div class="ck">&#10003;</div>Distribute returns to members based on their savings share</li>
+          <li><div class="ck">&#10003;</div>Full investment history and performance overview</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="fd-item">
+      <div class="fd-hdr" onclick="fdToggle(this)">
+        <div class="fd-hl"><div class="fd-hicon">&#9745;</div><div><div class="fd-htitle">Voting &amp; Elections</div><div class="fd-hsub">Secure, anonymous, cryptographically verified</div></div></div>
+        <div class="fd-arrow">&#9660;</div>
+      </div>
+      <div class="fd-body">
+        <p>Conduct fully digital elections and resolutions for your board, AGM, or any special resolution. Every vote is cryptographically secured and anonymised, with results available in real time to administrators.</p>
+        <ul class="blist">
+          <li><div class="ck">&#10003;</div>Secure digital polls with cryptographic vote verification</li>
+          <li><div class="ck">&#10003;</div>Device-level controls to prevent duplicate voting</li>
+          <li><div class="ck">&#10003;</div>Fully anonymous results visible to admins in real time</li>
+          <li><div class="ck">&#10003;</div>Members vote directly from their own portal</li>
+          <li><div class="ck">&#10003;</div>Complete audit trail from poll creation to result declaration</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="fd-item">
+      <div class="fd-hdr" onclick="fdToggle(this)">
+        <div class="fd-hl"><div class="fd-hicon">&#128274;</div><div><div class="fd-htitle">Audit Trail &amp; Reports</div><div class="fd-hsub">Immutable records, AGM reports, one click</div></div></div>
+        <div class="fd-arrow">&#9660;</div>
+      </div>
+      <div class="fd-body">
+        <p>Every action taken in Pamoja Pay is permanently recorded. Nothing can be changed or deleted without a trace. When auditors arrive everything they need is ready and waiting.</p>
+        <ul class="blist">
+          <li><div class="ck">&#10003;</div>Immutable double-entry ledger &mdash; nothing deleted silently</li>
+          <li><div class="ck">&#10003;</div>Full history: who did what, when, and from which device</li>
+          <li><div class="ck">&#10003;</div>One-click AGM reports with complete financial summary</li>
+          <li><div class="ck">&#10003;</div>Dedicated Auditor Hub with its own dashboard and tools</li>
+          <li><div class="ck">&#10003;</div>Export to PDF for board submissions and regulatory filings</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="fd-item">
+      <div class="fd-hdr" onclick="fdToggle(this)">
+        <div class="fd-hl"><div class="fd-hicon">&#128241;</div><div><div class="fd-htitle">Member Self-Service Portal</div><div class="fd-hsub">24/7 access, any device, no app needed</div></div></div>
+        <div class="fd-arrow">&#9660;</div>
+      </div>
+      <div class="fd-body">
+        <p>Your members get their own secure portal where they can do everything themselves with no calls to the office for simple information. Works on any smartphone browser with a secure login.</p>
+        <ul class="blist">
+          <li><div class="ck">&#10003;</div>Secure login via one-time password sent to email</li>
+          <li><div class="ck">&#10003;</div>View savings balances, share units, and contribution history</li>
+          <li><div class="ck">&#10003;</div>Check loan status, repayment schedule, and outstanding balance</li>
+          <li><div class="ck">&#10003;</div>Apply for loans and track approval progress</li>
+          <li><div class="ck">&#10003;</div>Vote in elections and resolutions from the portal</li>
+        </ul>
+      </div>
+    </div>
 
   </div>
+</div></section>
+
+<section class="cta-ban">
+  <div class="wrap">
+    <h2>Like what you see?</h2>
+    <p>Get started with the plan that fits your SACCO&apos;s size.</p>
+    <div class="cta-acts">
+      <a class="btn b-pri b-lg" onclick="goPage('pricing')">View Pricing</a>
+      <a class="btn b-gho b-lg" onclick="goPage('about')">Request a Demo</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer"><div class="wrap">
+  <div class="ftr-bot" style="border-top:1px solid var(--border);padding-top:20px">
+    <div>&copy; 2026 PamojaPay &middot; <em>Together, we grow stronger.</em></div>
+    <div style="display:flex;gap:20px">
+      <a style="color:var(--muted);text-decoration:none;cursor:pointer" onclick="goPage('home')">Home</a>
+      <a style="color:var(--muted);text-decoration:none;cursor:pointer" onclick="goPage('pricing')">Pricing</a>
+      <a style="color:var(--muted);text-decoration:none" href="/cdn-cgi/l/email-protection#87f7e6fef7e6eae8ede6c7e0eae6eeeba9e4e8ea"><span class="__cf_email__" data-cfemail="3d4d5c444d5c5052575c7d5a505c5451135e5250">[email&#160;protected]</span></a>
+    </div>
+  </div>
+</div></footer>
+</div><!-- /features -->
+
+<!-- ======================================================
+     PRICING
+====================================================== -->
+<div class="page" id="page-pricing">
+<section class="page-hero"><div class="wrap">
+  <div class="eyebrow" style="justify-content:center">Pricing</div>
+  <h1 style="margin-bottom:13px">One flat fee.<br/>No <span class="grad">surprises.</span></h1>
+  <p>Month-to-month. Cancel anytime. 30-day money-back guarantee.</p>
+</div></section>
+
+<section class="sec" style="border-top:1px solid var(--border)"><div class="wrap">
+  <div class="prgrid">
+    <div class="prcard gc an d1">
+      <div class="pr-plan">Basic</div>
+      <div class="pr-amt">UGX 150k <span>/ mo</span></div>
+      <div class="pr-setup">+ UGX 500k one-time setup</div>
+      <div class="pr-members">&#128101; 1 &ndash; 50 members</div>
+      <ul class="pr-feats">
+        <li><span class="py">&#10003;</span> Member management</li>
+        <li><span class="py">&#10003;</span> Savings tracking</li>
+        <li><span class="py">&#10003;</span> Member portal</li>
+        <li><span class="py">&#10003;</span> Basic reports</li>
+        <li><span class="py">&#10003;</span> Email reminders (500/mo)</li>
+        <li><span class="py">&#10003;</span> 2 GB storage</li>
+        <li><span class="pno">&#10005;</span> Loans</li>
+        <li><span class="pno">&#10005;</span> Expenses &amp; investments</li>
+      </ul>
+      <a class="btn b-gho b-md b-full" onclick="goPage('about')">Get Started</a>
+    </div>
+    <div class="prcard gc pop an d2">
+      <div class="pop-tag">Most Popular</div>
+      <div class="pr-plan">Standard</div>
+      <div class="pr-amt">UGX 350k <span>/ mo</span></div>
+      <div class="pr-setup">+ UGX 700k one-time setup</div>
+      <div class="pr-members">&#128101; 51 &ndash; 100 members</div>
+      <ul class="pr-feats">
+        <li><span class="py">&#10003;</span> Everything in BaLoan agreements PDF</li>
+        <li><span class="py">&#10003;</span> 1,000 email credits/mo</li>
+        <li><span class="py">&#10003;</span> 5 GB storage</li>
+        <li><span class="pno">&#10005;</span> Expenses &amp; investments</li>
+      </ul>
+      <a class="btn b-pri b-md b-full" onclick="goPage('about')">Get Started</a>
+    </div>
+    <div class="prcard gc an d3">
+      <div class="pr-plan">Premium</div>
+      <div class="pr-amt">UGX 650k <span>/ mo</span></div>
+      <div class="pr-setup">+ UGX 1M one-time setup</div>
+      <div class="pr-members">&#128101; 101 &ndash; 200 members</div>
+      <ul class="pr-feats">
+        <li><span class="py">&#10003;</span> Everything in Standard</li>
+        <li><span class="py">&#10003;</span> Expense tracking</li>
+        <li><span class="py">&#10003;</span> Investment management</li>
+        <li><span class="py">&#10003;</span> Dividend distribution</li>
+        <li><span class="py">&#10003;</span> 2,000 email credits/mo</li>
+        <li><span class="py">&#10003;</span> 10 GB storage</li>
+        <li><span class="pno">&#10005;</span> Voting</li>
+        <li><span class="pno">&#10005;</span> Auditor Hub</li>
+      </ul>
+      <a class="btn b-gho b-md b-full" onclick="goPage('about')">Get Started</a>
+    </div>
+    <div class="prcard gc an d4">
+      <div class="pr-plan" style="color:#6ec6ff">Enterprise</div>
+      <div class="pr-amt">UGX 1.2M <span>/ mo</span></div>
+      <div class="pr-setup">+ UGX 1.5M one-time setup</div>
+      <div class="pr-members">&#128101; 201 &ndash; 400 members</div>
+      <ul class="pr-feats">
+        <li><span class="py">&#10003;</span> Everything in Premium</li>
+        <li><span class="py">&#10003;</span> Voting &amp; elections</li>
+        <li><span class="py">&#10003;</span> Benevolent fund</li>
+        <li><span class="py">&#10003;</span> Document management</li>
+        <li><span class="py">&#10003;</span> AGM report generator</li>
+        <li><span class="py">&#10003;</span> Auditor Hub</li>
+        <li><span class="py">&#10003;</span> Priority support</li>
+        <li><span class="py">&#10003;</span> 25 GB storage</li>
+      </ul>
+      <a class="btn b-mint b-md b-full" onclick="goPage('about')">Contact Sales</a>
+    </div>
+  </div>
+  <div class="pr-note gc an" style="margin-top:20px">
+    <p>&#128101; <strong>400+ members?</strong> Switch to <strong>Digital Rent &mdash; UGX 2,000 per member per month.</strong> Scales as your SACCO grows. <a onclick="goPage('about')">Get a custom quote &rarr;</a></p>
+  </div>
+</div></section>
+
+<section class="sec" style="border-top:1px solid var(--border)"><div class="wrap">
+  <div class="tc an">
+    <div class="eyebrow">Compare</div>
+    <h2 style="margin-bottom:10px">Full plan comparison</h2>
+  </div>
+  <div class="cmp-wrap">
+    <table class="cmp">
+      <thead>
+        <tr>
+          <th class="fc" style="width:35%">Feature</th>
+          <th class="ph">Basic</th>
+          <th class="ph" style="color:#6ec6ff">Standard &#11088;</th>
+          <th class="ph">Premium</th>
+          <th class="ph" style="color:#6ec6ff">Enterprise</th>
+        </tr>
+        <tr class="pr-row">
+          <td class="fc">Monthly Price</td><td>UGX 150k</td><td>UGX 350k</td><td>UGX 650k</td><td>UGX 1.2M</td>
+        </tr>
+        <tr class="pr-row">
+          <td class="fc">Setup Fee</td><td>UGX 500k</td><td>UGX 700k</td><td>UGX 1M</td><td>UGX 1.5M</td>
+        </tr>
+        <tr class="pr-row">
+          <td class="fc">Members</td><td>1&ndash;50</td><td>51&ndash;100</td><td>101&ndash;200</td><td>201&ndash;400</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="cat-row"><td colspan="5">Core</td></tr>
+        <tr><td class="fc">Member Management</td><td class="yc">&#10003;</td><td class="yc">&#10003;</td><td class="yc">&#10003;</td><td class="yc">&#10003;</td></tr>
+        <tr><td class="fc">Savings Tracking</td><td class="yc">&#10003;</td><td class="yc">&#10003;</td><td class="yc">&#10003;</td><td class="yc">&#10003;</td></tr>
+        <tr><td class="fc">Member Portal</td><td class="yc">&#10003;</td><td class="yc">&#10003;</td><td class="yc">&#10003;</td><td class="yc">&#10003;</td></tr>
+        <tr><td class="fc">Basic Reports</td><td class="yc">&#10003;</td><td class="yc">&#10003;</td><td class="yc">&#10003;</td><td class="yc">&#10003;</td></tr>
+        <tr><td class="fc">Email Reminders</td><td class="yc">&#10003;</td><td class="yc">&#10003;</td><td class="yc">&#10003;</td><td class="yc">&#10003;</td></tr>
+        <tr class="cat-row"><td colspan="5">Loans</td></tr>
+        <tr><td class="fc">Loan Management</td><td class="nc">&#10005;</td><td class="yc">&#10003;</td><td class="yc">&#10003;</td><td class="yc">&#10003;</td></tr>
+        <tr><td class="fc">Repayment Schedules</td><td class="nc">&#10005;</td><td class="yc">&#10003;</td><td class="yc">&#10003;</td><td class="yc">&#10003;</td></tr>
+        <tr><td class="fc">Payment Receipts PDF</td><td class="nc">&#10005;</td><td class="yc">&#10003;</td><td class="yc">&#10003;</td><td class="yc">&#10003;</td></tr>
+        <tr><td class="fc">Overdue Tracking &amp; NPL</td><td class="nc">&#10005;</td><td class="yc">&#10003;</td><td class="yc">&#10003;</td><td class="yc">&#10003;</td></tr>
+        <tr class="cat-row"><td colspan="5">Finance</td></tr>
+        <tr><td class="fc">Expense Tracking</td><td class="nc">&#10005;</td><td class="nc">&#10005;</td><td class="yc">&#10003;</td><td class="yc">&#10003;</td></tr>
+        <tr><td class="fc">Investment Management</td><td class="nc">&#10005;</td><td class="nc">&#10005;</td><td class="yc">&#10003;</td><td class="yc">&#10003;</td></tr>
+        <tr><td class="fc">Dividend Distribution</td><td class="nc">&#10005;</td><td class="nc">&#10005;</td><td class="yc">&#10003;</td><td class="yc">&#10003;</td></tr>
+        <tr class="cat-row"><td colspan="5">Governance</td></tr>
+        <tr><td class="fc">Voting &amp; Elections</td><td class="nc">&#10005;</td><td class="nc">&#10005;</td><td class="nc">&#10005;</td><td class="yc">&#10003;</td></tr>
+        <tr><td class="fc">Benevolent Fund</td><td class="nc">&#10005;</td><td class="nc">&#10005;</td><td class="nc">&#10005;</td><td class="yc">&#10003;</td></tr>
+        <tr><td class="fc">Document Management</td><td class="nc">&#10005;</td><td class="nc">&#10005;</td><td class="nc">&#10005;</td><td class="yc">&#10003;</td></tr>
+        <tr><td class="fc">AGM Report Generator</td><td class="nc">&#10005;</td><td class="nc">&#10005;</td><td class="nc">&#10005;</td><td class="yc">&#10003;</td></tr>
+        <tr><td class="fc">Auditor Hub</td><td class="nc">&#10005;</td><td class="nc">&#10005;</td><td class="nc">&#10005;</td><td class="yc">&#10003;</td></tr>
+        <tr><td class="fc">Priority Support</td><td class="nc">&#10005;</td><td class="nc">&#10005;</td><td class="nc">&#10005;</td><td class="yc">&#10003;</td></tr>
+        <tr class="cat-row"><td colspan="5">Limits</td></tr>
+        <tr><td class="fc">Email Credits / Month</td><td>500</td><td>1,000</td><td>2,000</td><td>5,000</td></tr>
+        <tr><td class="fc">Storage</td><td>2 GB</td><td>5 GB</td><td>10 GB</td><td>25 GB</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div></section>
+
+<section class="cta-ban">
+  <div class="wrap">
+    <h2>Ready to move forward?</h2>
+    <p>Our team is here to help you choose and get set up.</p>
+    <div class="cta-acts">
+      <a class="btn b-mint b-lg" onclick="goPage('about')">Contact Sales</a>
+      <a class="btn b-gho b-lg" onclick="goPage('home')">Back to Home</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer"><div class="wrap">
+  <div class="ftr-bot" style="border-top:1px solid var(--border);padding-top:20px">
+    <div>&copy; 2026 PamojaPay &middot; <em>Together, we grow stronger.</em></div>
+    <div style="display:flex;gap:20px">
+      <a style="color:var(--muted);text-decoration:none;cursor:pointer" onclick="goPage('home')">Home</a>
+      <a style="color:var(--muted);text-decoration:none;cursor:pointer" onclick="goPage('features')">Features</a>
+      <a style="color:var(--muted);text-decoration:none" href="mailto:paypamoja@gmail.com">paypamoja@gmail.com</a>
+    </div>
+  </div>
+</div></footer>
+</div><!-- /pricing -->
+
+<!-- ======================================================
+     ABOUT & CONTACT
+====================================================== -->
+<div class="page" id="page-about">
+<section class="page-hero"><div class="wrap">
+  <div class="eyebrow" style="justify-content:center">Our Story</div>
+  <h1 style="margin-bottom:13px">Built for Uganda<br/>and <span class="grad">Africa</span></h1>
+  <p>Pamoja Pay exists to bring cooperative societies into the digital age &mdash; everywhere people come together to save and grow.</p>
+</div></section>
+
+<section class="sec" style="border-top:1px solid var(--border)"><div class="wrap">
+  <div class="agrid">
+    <div class="acontent an">
+      <div class="eyebrow">About PamojaPay</div>
+      <h2>The name says it all</h2>
+      <p>&ldquo;Pamoja&rdquo; means &ldquo;Together&rdquo; in Swahili &mdash; and that spirit of togetherness is at the heart of every cooperative. SACCOs exist because people come together to pool resources, support each other, and build collective wealth.</p>
+      <p>We built Pamoja Pay because we saw too many SACCOs across Uganda and Africa struggling with paper records, spreadsheets, and systems not built for the cooperative context. Members could not check their own balances. Loan approvals dragged on. Audits were painful and manual.</p>
+      <p>Pamoja Pay is the answer &mdash; a complete, modern platform built specifically for how cooperatives in Uganda and across Africa actually work.</p>
+      <p style="color:var(--mint);font-weight:600">Our mission: To digitize and empower cooperative societies across Uganda and Africa.</p>
+    </div>
+    <div class="an d2">
+      <div class="vlist">
+        <div class="vi"><div class="vi-ic">&#127482;&#127468;</div><div><h4>Built for Uganda and Africa</h4><p>Every workflow and feature reflects the real cooperative context across the continent.</p></div></div>
+        <div class="vi"><div class="vi-ic">&#128274;</div><div><h4>Bank-Level Security</h4><p>Encryption, row-level security, daily backups, and an immutable audit trail.</p></div></div>
+        <div class="vi"><div class="vi-ic">&#128241;</div><div><h4>Any Device, Anywhere</h4><p>Works on basic Android phones and desktops alike. No app download ever needed.</p></div></div>
+        <div class="vi"><div class="vi-ic">&#128244;</div><div><h4>Works Offline</h4><p>Staff keep working without internet. Everything syncs when connectivity returns.</p></div></div>
+        <div class="vi"><div class="vi-ic">&#128200;</div><div><h4>Scales With You</h4><p>From a 20-member village SACCO to a 400-member institution &mdash; Pamoja Pay grows with you.</p></div></div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<section class="sec" style="border-top:1px solid var(--border)" id="contact-section"><div class="wrap">
+  <div class="cgrid">
+    <div class="an">
+      <div class="eyebrow">Contact</div>
+      <h2 style="font-size:clamp(20px,3vw,32px);margin-bottom:11px">Let&apos;s talk about your SACCO</h2>
+      <p class="cinfo">Whether you are ready to sign up or just exploring, we would love to hear from you. We respond within 24 hours.</p>
+      <div class="cit"><div class="cit-ic">&#128231;</div><div><h4>Email</h4><p><a href="mailto:paypamoja@gmail.com" style="color:var(--mint);text-decoration:none">paypamoja@gmail.com</a></p></div></div>
+      <div class="cit"><div class="cit-ic">&#128222;</div><div><h4>Phone</h4><p>+256 XXX XXX XXX</p></div></div>
+      <div class="cit"><div class="cit-ic">&#128172;</div><div><h4>WhatsApp</h4><p>+256 XXX XXX XXX</p></div></div>
+      <div class="cit"><div class="cit-ic">&#127482;&#127468;</div><div><h4>Location</h4><p>Kampala, Uganda</p></div></div>
+      <div class="hours-card gc">
+        <h4>Office Hours</h4>
+        <div class="hrow"><span class="day">Monday &ndash; Friday</span><span class="time">9:00 AM &ndash; 5:00 PM</span></div>
+        <div class="hrow"><span class="day">Saturday</span><span class="time">10:00 AM &ndash; 2:00 PM</span></div>
+        <div class="hrow"><span class="day">Sunday</span><span class="time">Closed</span></div>
+      </div>
+    </div>
+    <div class="form-card gc an d2">
+      <h3>Send us a message</h3>
+      <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" onsubmit="handleForm(event)">
+        <div class="frow">
+          <div class="ff"><label>Full Name *</label><input type="text" name="name" placeholder="e.g. Robert Okello" required/></div>
+          <div class="ff"><label>Email *</label><input type="email" name="email" placeholder="robert@sacco.com" required/></div>
+        </div>
+        <div class="frow">
+          <div class="ff"><label>Phone / WhatsApp *</label><input type="tel" name="phone" placeholder="+256 7XX XXX XXX" required/></div>
+          <div class="ff"><label>SACCO Name *</label><input type="text" name="sacco_name" placeholder="e.g. Kampala Teachers SACCO" required/></div>
+        </div>
+        <div class="ff">
+          <label>Number of Members *</label>
+          <select name="members" required>
+            <option value="" disabled selected>Select member count</option>
+            <option>1 &ndash; 50 members</option>
+            <option>51 &ndash; 100 members</option>
+            <option>101 &ndash; 200 members</option>
+            <option>201 &ndash; 400 members</option>
+            <option>400+ members</option>
+          </select>
+        </div>
+        <div class="ff">
+          <label>Interested In</label>
+          <select name="plan">
+            <option value="" disabled selected>Which plan suits you?</option>
+            <option>Basic (1&ndash;50 members)</option>
+            <option>Standard (51&ndash;100 members)</option>
+            <option>Premium (101&ndash;200 members)</option>
+            <option>Enterprise (201&ndash;400 members)</option>
+            <option>Digital Rent (400+ members)</option>
+            <option>Just want a demo</option>
+          </select>
+        </div>
+        <div class="ff"><label>Message</label><textarea name="message" placeholder="Tell us about your SACCO..." rows="3"></textarea></div>
+        <button type="submit" class="btn b-pri b-lg b-full" id="submitBtn">Send Message &rarr;</button>
+        <p id="formSuccess" style="display:none;text-align:center;color:var(--mint);font-weight:600;margin-top:13px;font-size:13px">&#10003; Message sent! We will be in touch within 24 hours.</p>
+      </form>
+    </div>
+  </div>
+</div></section>
+
+<section class="cta-ban">
+  <div class="wrap">
+    <h2><span class="grad">Together</span> we grow</h2>
+    <p>Joining SACCOs across Uganda and Africa in the digital era.</p>
+    <div class="cta-acts">
+      <a class="btn b-pri b-lg" onclick="goPage('pricing')">View Pricing</a>
+      <a class="btn b-gho b-lg" onclick="goPage('home')">Back to Home</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer"><div class="wrap">
+  <div class="ftr-grid">
+    <div class="ftr-brand">
+      <span class="logo-txt">Pamoja<span>Pay</span></span>
+      <p>Built for Uganda and Africa. Digitizing cooperative societies, one SACCO at a time.</p>
+    </div>
+    <div class="ftr-col">
+      <h4>Product</h4>
+      <a onclick="goPage('home')">Home</a>
+      <a onclick="goPage('features')">Features</a>
+      <a onclick="goPage('pricing')">Pricing</a>
+    </div>
+    <div class="ftr-col">
+      <h4>Company</h4>
+      <a onclick="goPage('about')">About</a>
+      <a onclick="goPage('about')">Contact</a>
+      <a>Privacy Policy</a>
+    </div>
+    <div class="ftr-col">
+      <h4>Contact</h4>
+      <a href="mailto:paypamoja@gmail.com">&#128231; paypamoja@gmail.com</a>
+      <a>&#128222; +256 XXX XXX XXX</a>
+      <a>&#128172; WhatsApp</a>
+      <a>&#127482;&#127468; Kampala, Uganda</a>
+    </div>
+  </div>
+  <div class="ftr-bot">
+    <div>&copy; 2026 PamojaPay &middot; <em>Together, we grow stronger.</em></div>
+    <div>Built for Uganda and Africa &#127482;&#127468;</div>
+  </div>
+</div></footer>
+</div><!-- /about -->
+
+</div><!-- .site -->
+
+<script>
+function goPage(n) {
+  document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active'); });
+  var pg = document.getElementById('page-' + n);
+  if (pg) pg.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  ['home','features','pricing','about'].forEach(function(x){
+    var e = document.getElementById('nl-' + x);
+    if (e) e.classList.toggle('act', x === n);
+  });
+  closeMobile();
+  setTimeout(observeAnims, 80);
+}
+
+function scrollSec(id) {
+  setTimeout(function(){
+    var e = document.getElementById(id);
+    if (e) e.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 100);
+}
+
+function toggleMobile() {
+  document.getElementById('hbg').classList.toggle('open');
+  document.getElementById('mmenu').classList.toggle('open');
+}
+
+function closeMobile() {
+  document.getElementById('hbg').classList.remove('open');
+  document.getElementById('mmenu').classList.remove('open');
+}
+
+function faq(el) {
+  var item = el.closest('.faq-item');
+  var isOpen = item.classList.contains('open');
+  item.closest('.faq-list').querySelectorAll('.faq-item').forEach(function(i){ i.classList.remove('open'); });
+  if (!isOpen) item.classList.add('open');
+}
+
+function fdToggle(el) {
+  el.closest('.fd-item').classList.toggle('open');
+}
+
+function observeAnims() {
+  if (!window.IntersectionObserver) {
+    document.querySelectorAll('.an').forEach(function(el){ el.classList.add('in'); });
+    return;
+  }
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.07 });
+  document.querySelectorAll('.page.active .an:not(.in)').forEach(function(el){ obs.observe(el); });
+}
+
+function handleForm(e) {
+  e.preventDefault();
+  var btn = document.getElementById('submitBtn');
+  var ok  = document.getElementById('formSuccess');
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+  setTimeout(function(){ btn.style.display = 'none'; ok.style.display = 'block'; }, 1200);
+}
+
+window.addEventListener('scroll', function(){
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 8);
+});
+
+observeAnims();
+</script>
+
+<script>
+// ============================================================
+// DYNAMIC CONTENT LOADER
+// Loads content from localStorage (set by admin.html) or
+// falls back to content.json (committed to GitHub)
+// ============================================================
+(function() {
+  var CONTENT_KEY = 'pp_content';
+
+  function applyContent(c) {
+    if (!c) return;
+
+    // HERO
+    if (c.hero) {
+      var h = c.hero;
+      setText('.hero-ey', h.eyebrow);
+      // h1 lines
+      var h1 = document.querySelector('.hero h1');
+      if (h1) h1.innerHTML = (h.h1_l1||'') + '<br/>' + (h.h1_l2||'') + '<br/><span class="grad">' + (h.h1_l3||'') + '</span>';
+      setText('.hero-sub', h.sub);
+      // buttons
+      var btns = document.querySelectorAll('.hero-act .btn');
+      if (btns[0]) btns[0].textContent = (h.btn1||'Get Started') + ' →';
+      if (btns[1]) btns[1].textContent = h.btn2||'Request Demo';
+      // tenant pill
+      var pill = document.querySelector('.hero-pill');
+      if (pill && h.tenant) {
+        pill.innerHTML = '<svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>&nbsp;' + h.tenant + '&nbsp; &#127482;&#127468;';
+      }
+    }
+
+    // STATS
+    if (c.stats) {
+      var sis = document.querySelectorAll('.si');
+      c.stats.forEach(function(s, i) {
+        if (sis[i]) {
+          var n = sis[i].querySelector('.si-n');
+          var l = sis[i].querySelector('.si-l');
+          if (n) n.textContent = s.value;
+          if (l) l.textContent = s.label;
+        }
+      });
+    }
+
+    // CONTACT
+    if (c.contact) {
+      var ct = c.contact;
+      // Update email links
+      document.querySelectorAll('a[href^="mailto:"]').forEach(function(a) {
+        a.href = 'mailto:' + ct.email;
+        if (a.textContent.indexOf('@') > -1) a.textContent = ct.email;
+      });
+      // Update footer contact col
+      var ftrLinks = document.querySelectorAll('.ftr-col a');
+      ftrLinks.forEach(function(a) {
+        var t = a.textContent;
+        if (t.indexOf('@') > -1) a.innerHTML = '&#128231; ' + ct.email;
+        if (t.indexOf('+256') > -1 && t.indexOf('WhatsApp') === -1) a.innerHTML = '&#128222; ' + ct.phone;
+        if (t.indexOf('WhatsApp') > -1) a.innerHTML = '&#128172; WhatsApp: ' + ct.whatsapp;
+      });
+      // Hours
+      var hrows = document.querySelectorAll('.hrow');
+      if (hrows[0]) {
+        hrows[0].querySelector('.day').textContent = ct.hours_weekday_label;
+        hrows[0].querySelector('.time').textContent = ct.hours_weekday_time;
+      }
+      if (hrows[1]) hrows[1].querySelector('.time').textContent = ct.hours_sat_time;
+    }
+
+    // SETTINGS
+    if (c.settings) {
+      document.querySelectorAll('.ftr-bot div').forEach(function(d) {
+        if (d.textContent.indexOf('PamojaPay') > -1 && d.querySelector) {
+          // leave logo alone
+        }
+      });
+      if (c.settings.footer_copy) {
+        var ftrbots = document.querySelectorAll('.ftr-bot div:first-child');
+        ftrbots.forEach(function(d) {
+          if (d.textContent.indexOf('2026') > -1 || d.textContent.indexOf('2024') > -1) {
+            d.textContent = c.settings.footer_copy;
+          }
+        });
+      }
+    }
+
+    // DIGITAL RENT NOTE
+    if (c.digital_rent_note) {
+      document.querySelectorAll('.pr-note p').forEach(function(p) {
+        if (p.textContent.indexOf('400+') > -1 || p.textContent.indexOf('members') > -1) {
+          p.innerHTML = '&#128101; <strong>400+ members?</strong> ' + c.digital_rent_note + ' <a onclick="goPage(\'about\')" style="color:var(--mint);text-decoration:none;border-bottom:1px solid var(--mint-bdr);cursor:pointer">Get a custom quote &rarr;</a>';
+        }
+      });
+    }
+  }
+
+  function setText(selector, text) {
+    if (!text) return;
+    var el = document.querySelector(selector);
+    if (el) el.textContent = text;
+  }
+
+  function loadContent() {
+    // 1. Try localStorage first (admin edits take priority)
+    var local = localStorage.getItem(CONTENT_KEY);
+    if (local) {
+      try {
+        applyContent(JSON.parse(local));
+        return;
+      } catch(e) {}
+    }
+
+    // 2. Fall back to content.json file
+    fetch('content.json')
+      .then(function(r){ return r.json(); })
+      .then(function(data){ applyContent(data); })
+      .catch(function(){
+        // content.json not found - use hardcoded defaults, no action needed
+      });
+  }
+
+  // Run after DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', loadContent);
+  } else {
+    loadContent();
+  }
+})();
+</script>
+
 </body>
 </html>
