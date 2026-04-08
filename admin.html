@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>PamojaPay CMS &mdash; Admin</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --navy:#060f1e;--blue:#1a6cf6;--blue2:#1458cc;--mint:#00e5a0;
+  --white:#fff;--muted:rgba(255,255,255,.5);--muted2:rgba(255,255,255,.28);
+  --glass:rgba(255,255,255,.055);--glass2:rgba(255,255,255,.09);
+  --border:rgba(255,255,255,.08);--border2:rgba(255,255,255,.15);
+  --red:#ff5252;--green:#00e5a0;--amber:#ffc107;
+  --sidebar:220px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;font-family:'Sora',sans-serif;background:var(--navy);color:var(--white);font-size:14px}
+
+/* LAYOUT */
+.cms-layout{display:flex;height:100vh;overflow:hidden}
+
+/* SIDEBAR */
+.sidebar{width:var(--sidebar);flex-shrink:0;background:rgba(6,15,30,.95);
+  border-right:1px solid var(--border);display:flex;flex-direction:column;
+  overflow-y:auto;position:relative;z-index:10}
+.sidebar-logo{padding:20px 18px;border-bottom:1px solid var(--border)}
+.sidebar-logo .logo-txt{font-size:17px;font-weight:800;letter-spacing:-.4px}
+.sidebar-logo .logo-txt span{color:var(--mint)}
+.sidebar-logo .cms-label{font-size:9px;font-weight:600;letter-spacing:2px;
+  text-transform:uppercase;color:var(--muted);margin-top:2px}
+.sidebar-nav{padding:12px 10px;flex:1}
+.nav-group{margin-bottom:20px}
+.nav-group-label{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  color:var(--muted2);padding:0 8px;margin-bottom:6px}
+.nav-item{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:9px;
+  cursor:pointer;font-size:12px;font-weight:500;color:var(--muted);
+  transition:all .2s;margin-bottom:2px;border:none;background:none;width:100%;text-align:left}
+.nav-item:hover{color:var(--white);background:var(--glass2)}
+.nav-item.active{color:var(--white);background:rgba(26,108,246,.2);font-weight:600}
+.nav-item .nav-icon{font-size:15px;width:20px;text-align:center}
+.sidebar-footer{padding:14px 16px;border-top:1px solid var(--border)}
+.sidebar-footer .site-link{display:flex;align-items:center;gap:7px;font-size:11px;
+  color:var(--muted);text-decoration:none;transition:color .2s}
+.sidebar-footer .site-link:hover{color:var(--mint)}
+
+/* MAIN */
+.cms-main{flex:1;overflow-y:auto;display:flex;flex-direction:column}
+.cms-header{padding:16px 28px;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(6,15,30,.6);backdrop-filter:blur(10px);position:sticky;top:0;z-index:5}
+.cms-header h1{font-size:16px;font-weight:700}
+.cms-header .hdr-sub{font-size:11px;color:var(--muted);margin-top:1px}
+.hdr-actions{display:flex;align-items:center;gap:10px}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:7px;font-family:'Sora',sans-serif;
+  font-weight:600;border-radius:9px;border:none;cursor:pointer;transition:all .2s;
+  text-decoration:none;white-space:nowrap}
+.btn-sm{font-size:11px;padding:8px 14px}
+.btn-md{font-size:12px;padding:10px 18px}
+.btn-lg{font-size:13px;padding:12px 22px}
+.btn-full{width:100%;justify-content:center}
+.btn-pri{background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff;
+  box-shadow:0 3px 12px rgba(26,108,246,.35)}
+.btn-pri:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(26,108,246,.45)}
+.btn-mint{background:linear-gradient(135deg,var(--mint),#00c886);color:#060f1e}
+.btn-mint:hover{transform:translateY(-1px)}
+.btn-ghost{background:var(--glass);color:var(--white);border:1px solid var(--border2)}
+.btn-ghost:hover{background:var(--glass2)}
+.btn-danger{background:rgba(255,82,82,.15);color:var(--red);border:1px solid rgba(255,82,82,.25)}
+.btn-danger:hover{background:rgba(255,82,82,.25)}
+.btn-success{background:rgba(0,229,160,.15);color:var(--green);border:1px solid rgba(0,229,160,.25)}
+
+/* CONTENT AREA */
+.cms-content{padding:24px 28px;flex:1}
+
+/* CARDS */
+.card{background:var(--glass);border:1px solid var(--border);border-radius:16px;padding:20px;margin-bottom:18px}
+.card h2{font-size:14px;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.card h2 .card-icon{font-size:16px}
+.card-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.card-grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+
+/* FORM FIELDS */
+.ff{margin-bottom:14px}
+.ff label{display:block;font-size:10px;font-weight:700;letter-spacing:.8px;
+  text-transform:uppercase;color:var(--muted);margin-bottom:5px}
+.ff input,.ff textarea,.ff select{
+  width:100%;padding:9px 11px;background:rgba(255,255,255,.05);
+  border:1px solid var(--border);border-radius:8px;
+  font-family:'Sora',sans-serif;font-size:12px;color:var(--white);
+  outline:none;transition:all .2s;-webkit-appearance:none;appearance:none}
+.ff input::placeholder,.ff textarea::placeholder{color:var(--muted2)}
+.ff input:focus,.ff textarea:focus,.ff select:focus{
+  border-color:rgba(26,108,246,.6);background:rgba(26,108,246,.07)}
+.ff textarea{resize:vertical;min-height:80px}
+.ff select option{background:#0a1628}
+.ff-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ff-row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.ff-hint{font-size:10px;color:var(--muted2);margin-top:3px}
+
+/* TOGGLE */
+.toggle-wrap{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--muted)}
+.toggle{width:36px;height:20px;background:rgba(255,255,255,.1);border-radius:10px;
+  position:relative;cursor:pointer;transition:background .2s}
+.toggle.on{background:var(--mint)}
+.toggle::after{content:"";position:absolute;width:14px;height:14px;background:#fff;
+  border-radius:50%;top:3px;left:3px;transition:transform .2s}
+.toggle.on::after{transform:translateX(16px)}
+
+/* TABLE */
+.cms-table{width:100%;border-collapse:collapse;font-size:12px}
+.cms-table th,.cms-table td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--border)}
+.cms-table th{font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;
+  color:var(--muted2);background:rgba(255,255,255,.02)}
+.cms-table tr:hover td{background:var(--glass2)}
+.cms-table td:last-child{text-align:right}
+
+/* BADGE */
+.badge{display:inline-flex;align-items:center;font-size:10px;font-weight:700;
+  padding:2px 8px;border-radius:20px}
+.badge-green{background:rgba(0,229,160,.15);color:var(--green)}
+.badge-blue{background:rgba(26,108,246,.15);color:#6ec6ff}
+.badge-amber{background:rgba(255,193,7,.15);color:var(--amber)}
+.badge-red{background:rgba(255,82,82,.15);color:var(--red)}
+
+/* TOAST */
+.toast-container{position:fixed;bottom:24px;right:24px;z-index:1000;display:flex;flex-direction:column;gap:8px}
+.toast{display:flex;align-items:center;gap:10px;padding:12px 16px;border-radius:11px;
+  font-size:12px;font-weight:600;backdrop-filter:blur(12px);
+  animation:slideIn .3s ease;min-width:220px}
+.toast.success{background:rgba(0,229,160,.15);border:1px solid rgba(0,229,160,.3);color:var(--green)}
+.toast.error{background:rgba(255,82,82,.15);border:1px solid rgba(255,82,82,.3);color:var(--red)}
+.toast.info{background:rgba(26,108,246,.15);border:1px solid rgba(26,108,246,.3);color:#6ec6ff}
+@keyframes slideIn{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:none}}
+
+/* LOGIN SCREEN */
+.login-screen{display:flex;align-items:center;justify-content:center;
+  height:100vh;background:var(--navy);position:fixed;inset:0;z-index:100}
+.login-card{background:var(--glass);border:1px solid var(--border2);border-radius:20px;
+  padding:36px;width:100%;max-width:380px;text-align:center}
+.login-card .logo-txt{font-size:22px;font-weight:800;letter-spacing:-.5px;margin-bottom:4px}
+.login-card .logo-txt span{color:var(--mint)}
+.login-card p{font-size:12px;color:var(--muted);margin-bottom:24px}
+
+/* STAT CARDS */
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px}
+.stat-card{padding:18px;border-radius:14px;background:var(--glass);border:1px solid var(--border)}
+.stat-card .stat-val{font-size:24px;font-weight:800;line-height:1}
+.stat-card .stat-lbl{font-size:10px;font-weight:500;color:var(--muted);margin-top:4px;
+  text-transform:uppercase;letter-spacing:.8px}
+.stat-card .stat-delta{font-size:10px;color:var(--green);margin-top:6px}
+
+/* SECTION PANEL */
+.section-panel{display:none}
+.section-panel.active{display:block}
+
+/* REPEATER */
+.repeater{display:flex;flex-direction:column;gap:10px}
+.repeater-item{background:rgba(255,255,255,.03);border:1px solid var(--border);
+  border-radius:12px;padding:14px;position:relative}
+.repeater-item .ri-handle{cursor:grab;color:var(--muted);font-size:14px;margin-right:8px}
+.repeater-item .ri-del{position:absolute;top:10px;right:10px;background:none;border:none;
+  cursor:pointer;color:var(--red);font-size:12px;opacity:.6;transition:opacity .2s}
+.repeater-item .ri-del:hover{opacity:1}
+.add-row-btn{display:flex;align-items:center;justify-content:center;gap:7px;
+  width:100%;padding:10px;border:1px dashed var(--border2);border-radius:10px;
+  background:none;color:var(--muted);font-family:'Sora',sans-serif;font-size:12px;
+  cursor:pointer;transition:all .2s;margin-top:8px}
+.add-row-btn:hover{border-color:var(--mint);color:var(--mint)}
+
+/* LOADING */
+.loading-overlay{position:fixed;inset:0;background:rgba(6,15,30,.85);
+  display:flex;align-items:center;justify-content:center;z-index:200;display:none}
+.spinner{width:36px;height:36px;border:3px solid var(--border2);
+  border-top-color:var(--blue);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* MOBILE */
+@media(max-width:768px){
+  .sidebar{display:none}
+  .cms-content{padding:16px}
+  .stats-row{grid-template-columns:repeat(2,1fr)}
+  .card-grid,.ff-row{grid-template-columns:1fr}
+  .ff-row-3{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- Loading overlay -->
+<div class="loading-overlay" id="loadingOverlay">
+  <div class="spinner"></div>
+</div>
+
+<!-- LOGIN SCREEN -->
+<div class="login-screen" id="loginScreen">
+  <div class="login-card">
+    <div class="logo-txt">Pamoja<span>Pay</span></div>
+    <p>Admin CMS &mdash; Sign in to manage your website</p>
+    <div class="ff" style="text-align:left">
+      <label>Admin Password</label>
+      <input type="password" id="loginPass" placeholder="Enter admin password" onkeydown="if(event.key==='Enter')doLogin()"/>
+    </div>
+    <button class="btn btn-pri btn-md btn-full" onclick="doLogin()" style="margin-top:4px">Sign In &rarr;</button>
+    <p id="loginErr" style="color:var(--red);font-size:11px;margin-top:10px;display:none">Incorrect password. Try again.</p>
+  </div>
+</div>
+
+<!-- CMS LAYOUT -->
+<div class="cms-layout" id="cmsApp" style="display:none">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-txt">Pamoja<span>Pay</span></div>
+      <div class="cms-label">Content Manager</div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-group">
+        <div class="nav-group-label">Overview</div>
+        <button class="nav-item active" onclick="showSection('dashboard')">
+          <span class="nav-icon">&#128200;</span> Dashboard
+        </button>
+      </div>
+      <div class="nav-group">
+        <div class="nav-group-label">Home Page</div>
+        <button class="nav-item" onclick="showSection('hero')">
+          <span class="nav-icon">&#127968;</span> Hero Section
+        </button>
+        <button class="nav-item" onclick="showSection('features')">
+          <span class="nav-icon">&#9889;</span> Features Grid
+        </button>
+        <button class="nav-item" onclick="showSection('pricing')">
+          <span class="nav-icon">&#128179;</span> Pricing Plans
+        </button>
+        <button class="nav-item" onclick="showSection('testimonials')">
+          <span class="nav-icon">&#11088;</span> Testimonials
+        </button>
+        <button class="nav-item" onclick="showSection('faq')">
+          <span class="nav-icon">&#10067;</span> FAQ
+        </button>
+      </div>
+      <div class="nav-group">
+        <div class="nav-group-label">Other Pages</div>
+        <button class="nav-item" onclick="showSection('about')">
+          <span class="nav-icon">&#128222;</span> About &amp; Contact
+        </button>
+        <button class="nav-item" onclick="showSection('stats')">
+          <span class="nav-icon">&#128101;</span> Stats Bar
+        </button>
+      </div>
+      <div class="nav-group">
+        <div class="nav-group-label">Settings</div>
+        <button class="nav-item" onclick="showSection('settings')">
+          <span class="nav-icon">&#9881;</span> Site Settings
+        </button>
+        <button class="nav-item" onclick="doLogout()">
+          <span class="nav-icon">&#128682;</span> Sign Out
+        </button>
+      </div>
+    </nav>
+    <div class="sidebar-footer">
+      <a href="/" target="_blank" class="site-link">&#128279; View Live Site &rarr;</a>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="cms-main">
+    <div class="cms-header">
+      <div>
+        <h1 id="sectionTitle">Dashboard</h1>
+        <div class="hdr-sub" id="sectionSub">Overview of your website content</div>
+      </div>
+      <div class="hdr-actions">
+        <span id="saveStatus" style="font-size:11px;color:var(--muted)"></span>
+        <button class="btn btn-mint btn-sm" id="saveBtn" onclick="saveCurrentSection()" style="display:none">
+          &#10003; Save Changes
+        </button>
+      </div>
+    </div>
+
+    <div class="cms-content">
+
+      <!-- DASHBOARD -->
+      <div class="section-panel active" id="panel-dashboard">
+        <div class="stats-row">
+          <div class="stat-card">
+            <div class="stat-val">4</div>
+            <div class="stat-lbl">Pages</div>
+            <div class="stat-delta">Home, Features, Pricing, Contact</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-val" id="db-features">16</div>
+            <div class="stat-lbl">Feature Cards</div>
+            <div class="stat-delta">On home page</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-val" id="db-faqs">7</div>
+            <div class="stat-lbl">FAQ Items</div>
+            <div class="stat-delta">Accordion</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-val" id="db-testis">3</div>
+            <div class="stat-lbl">Testimonials</div>
+            <div class="stat-delta">Placeholder</div>
+          </div>
+        </div>
+        <div class="card">
+          <h2><span class="card-icon">&#128640;</span> Quick Actions</h2>
+          <div class="card-grid">
+            <button class="btn btn-ghost btn-md" onclick="showSection('hero')">&#9999; Edit Hero Text</button>
+            <button class="btn btn-ghost btn-md" onclick="showSection('pricing')">&#128179; Update Pricing</button>
+            <button class="btn btn-ghost btn-md" onclick="showSection('testimonials')">&#11088; Edit Testimonials</button>
+            <button class="btn btn-ghost btn-md" onclick="showSection('about')">&#128222; Update Contact Info</button>
+            <button class="btn btn-ghost btn-md" onclick="showSection('faq')">&#10067; Manage FAQ</button>
+            <button class="btn btn-ghost btn-md" onclick="showSection('settings')">&#9881; Site Settings</button>
+          </div>
+        </div>
+        <div class="card">
+          <h2><span class="card-icon">&#128218;</span> How This CMS Works</h2>
+          <p style="font-size:12px;color:var(--muted);line-height:1.8">
+            This admin panel saves all your website content to your browser&apos;s local storage. 
+            When you save changes, the content is stored locally and the main <code style="font-family:'DM Mono',monospace;font-size:11px;background:rgba(255,255,255,.1);padding:1px 5px;border-radius:4px">index.html</code> reads it on load.<br/><br/>
+            <strong style="color:var(--white)">To make changes permanent:</strong> After saving here, click &ldquo;Export Content JSON&rdquo; in Settings, then paste that JSON into your <code style="font-family:'DM Mono',monospace;font-size:11px;background:rgba(255,255,255,.1);padding:1px 5px;border-radius:4px">content.json</code> file in your GitHub repo. Vercel will auto-deploy.<br/><br/>
+            <strong style="color:var(--mint)">Hosting recommendation:</strong> You are already set up perfectly. Keep Vercel + GitHub. See the Setup Guide in Settings.
+          </p>
+        </div>
+      </div>
+
+      <!-- HERO -->
+      <div class="section-panel" id="panel-hero">
+        <div class="card">
+          <h2><span class="card-icon">&#127775;</span> Hero Section</h2>
+          <div class="ff"><label>Eyebrow Tag (small text above heading)</label><input type="text" id="hero_eyebrow" placeholder="SACCO Digitalization Solution"/></div>
+          <div class="ff"><label>Main Heading Line 1</label><input type="text" id="hero_h1_l1" placeholder="Complete Financial"/></div>
+          <div class="ff"><label>Main Heading Line 2</label><input type="text" id="hero_h1_l2" placeholder="Management for Your"/></div>
+          <div class="ff"><label>Main Heading Line 3 (gradient accent word)</label><input type="text" id="hero_h1_l3" placeholder="SACCO"/></div>
+          <div class="ff"><label>Subheadline / Description</label><textarea id="hero_sub" rows="3" placeholder="Pamoja Pay brings your savings, loans..."></textarea></div>
+          <div class="ff-row">
+            <div class="ff"><label>Primary Button Text</label><input type="text" id="hero_btn1" placeholder="Get Started &rarr;"/></div>
+            <div class="ff"><label>Secondary Button Text</label><input type="text" id="hero_btn2" placeholder="Request Demo"/></div>
+          </div>
+          <div class="ff"><label>Tenant Pill Text (below buttons)</label><input type="text" id="hero_tenant" placeholder="First tenant live at BIDA Co-operative"/></div>
+        </div>
+      </div>
+
+      <!-- FEATURES -->
+      <div class="section-panel" id="panel-features">
+        <div class="card">
+          <h2><span class="card-icon">&#9889;</span> Features Grid</h2>
+          <p style="font-size:11px;color:var(--muted);margin-bottom:14px">Edit each feature card shown on the home page.</p>
+          <div class="repeater" id="features-repeater"></div>
+          <button class="add-row-btn" onclick="addFeature()">&#43; Add Feature Card</button>
+        </div>
+      </div>
+
+      <!-- PRICING -->
+      <div class="section-panel" id="panel-pricing">
+        <div class="card">
+          <h2><span class="card-icon">&#128179;</span> Pricing Plans</h2>
+          <div id="pricing-panels"></div>
+        </div>
+        <div class="card">
+          <h2><span class="card-icon">&#128101;</span> Digital Rent Note (400+ members)</h2>
+          <div class="ff"><label>Note Text</label><textarea id="digital_rent_note" rows="2"></textarea></div>
+        </div>
+      </div>
+
+      <!-- TESTIMONIALS -->
+      <div class="section-panel" id="panel-testimonials">
+        <div class="card">
+          <h2><span class="card-icon">&#11088;</span> Testimonials</h2>
+          <p style="font-size:11px;color:var(--muted);margin-bottom:14px">Add or edit what your clients say.</p>
+          <div class="repeater" id="testi-repeater"></div>
+          <button class="add-row-btn" onclick="addTestimonial()">&#43; Add Testimonial</button>
+        </div>
+      </div>
+
+      <!-- FAQ -->
+      <div class="section-panel" id="panel-faq">
+        <div class="card">
+          <h2><span class="card-icon">&#10067;</span> FAQ Items</h2>
+          <div class="repeater" id="faq-repeater"></div>
+          <button class="add-row-btn" onclick="addFaq()">&#43; Add FAQ Item</button>
+        </div>
+      </div>
+
+      <!-- ABOUT -->
+      <div class="section-panel" id="panel-about">
+        <div class="card">
+          <h2><span class="card-icon">&#128222;</span> Contact Information</h2>
+          <div class="ff-row">
+            <div class="ff"><label>Email Address</label><input type="email" id="contact_email" placeholder="paypamoja@gmail.com"/></div>
+            <div class="ff"><label>Phone Number</label><input type="tel" id="contact_phone" placeholder="+256 XXX XXX XXX"/></div>
+          </div>
+          <div class="ff-row">
+            <div class="ff"><label>WhatsApp Number</label><input type="tel" id="contact_whatsapp" placeholder="+256 XXX XXX XXX"/></div>
+            <div class="ff"><label>City / Location</label><input type="text" id="contact_location" placeholder="Kampala, Uganda"/></div>
+          </div>
+        </div>
+        <div class="card">
+          <h2><span class="card-icon">&#128336;</span> Office Hours</h2>
+          <div class="ff-row-3">
+            <div class="ff"><label>Weekday Label</label><input type="text" id="hours_weekday_label" placeholder="Monday &ndash; Friday"/></div>
+            <div class="ff"><label>Weekday Hours</label><input type="text" id="hours_weekday_time" placeholder="9:00 AM &ndash; 5:00 PM"/></div>
+            <div class="ff"><label>Saturday Hours</label><input type="text" id="hours_sat_time" placeholder="10:00 AM &ndash; 2:00 PM"/></div>
+          </div>
+        </div>
+        <div class="card">
+          <h2><span class="card-icon">&#127976;</span> About Page Text</h2>
+          <div class="ff"><label>Mission Statement</label><textarea id="about_mission" rows="2"></textarea></div>
+          <div class="ff"><label>About Paragraph 1</label><textarea id="about_p1" rows="3"></textarea></div>
+          <div class="ff"><label>About Paragraph 2</label><textarea id="about_p2" rows="3"></textarea></div>
+        </div>
+      </div>
+
+      <!-- STATS -->
+      <div class="section-panel" id="panel-stats">
+        <div class="card">
+          <h2><span class="card-icon">&#128202;</span> Stats Bar (below hero)</h2>
+          <div id="stats-fields"></div>
+        </div>
+      </div>
+
+      <!-- SETTINGS -->
+      <div class="section-panel" id="panel-settings">
+        <div class="card">
+          <h2><span class="card-icon">&#9881;</span> Site Settings</h2>
+          <div class="ff-row">
+            <div class="ff"><label>Site Name</label><input type="text" id="site_name" placeholder="PamojaPay"/></div>
+            <div class="ff"><label>Tagline</label><input type="text" id="site_tagline" placeholder="SACCO Digitalization Solution"/></div>
+          </div>
+          <div class="ff"><label>Footer Copyright Text</label><input type="text" id="footer_copy" placeholder="&copy; 2026 PamojaPay &middot; Together, we grow stronger."/></div>
+          <div class="ff"><label>Google Fonts URL (leave default unless changing fonts)</label><input type="text" id="fonts_url" placeholder="https://fonts.googleapis.com/..."/></div>
+        </div>
+        <div class="card">
+          <h2><span class="card-icon">&#128640;</span> Hosting Setup Guide</h2>
+          <div style="font-size:12px;color:var(--muted);line-height:1.9">
+            <p style="color:var(--white);font-weight:700;margin-bottom:10px">Your current setup: GitHub + Vercel &#10003;</p>
+            <p>This is the <strong style="color:var(--mint)">best free hosting stack</strong> for a static site like this. Here is how your workflow works:</p>
+            <ol style="margin:10px 0 10px 16px;display:flex;flex-direction:column;gap:8px">
+              <li>You edit content here in the Admin CMS</li>
+              <li>Click <strong style="color:var(--white)">"Save Changes"</strong> &rarr; stored in browser localStorage immediately</li>
+              <li>Click <strong style="color:var(--white)">"Export content.json"</strong> below &rarr; downloads a JSON file</li>
+              <li>In your GitHub repo, replace <code style="font-family:'DM Mono',monospace;background:rgba(255,255,255,.1);padding:1px 5px;border-radius:3px">content.json</code> with the new file</li>
+              <li>Vercel auto-deploys within ~30 seconds</li>
+              <li>Live site now shows your updated content</li>
+            </ol>
+            <p style="color:var(--amber)">&#9888; Admin panel access: Host <code style="font-family:'DM Mono',monospace;background:rgba(255,255,255,.1);padding:1px 5px;border-radius:3px">admin.html</code> in the same Vercel project. Protect it by adding a Vercel password or just keeping the URL private.</p>
+          </div>
+        </div>
+        <div class="card">
+          <h2><span class="card-icon">&#128229;</span> Export &amp; Import</h2>
+          <div class="card-grid">
+            <div>
+              <p style="font-size:11px;color:var(--muted);margin-bottom:10px">Download all content as a JSON file to commit to GitHub.</p>
+              <button class="btn btn-mint btn-md btn-full" onclick="exportContent()">&#128229; Export content.json</button>
+            </div>
+            <div>
+              <p style="font-size:11px;color:var(--muted);margin-bottom:10px">Load content from a previously exported JSON file.</p>
+              <label class="btn btn-ghost btn-md btn-full" style="cursor:pointer">
+                &#128228; Import content.json
+                <input type="file" accept=".json" onchange="importContent(event)" style="display:none"/>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <h2><span class="card-icon">&#128274;</span> Change Admin Password</h2>
+          <div class="ff-row">
+            <div class="ff"><label>New Password</label><input type="password" id="new_pass" placeholder="Enter new password"/></div>
+            <div class="ff"><label>Confirm Password</label><input type="password" id="confirm_pass" placeholder="Confirm new password"/></div>
+          </div>
+          <button class="btn btn-ghost btn-md" onclick="changePassword()">Update Password</button>
+        </div>
+      </div>
+
+    </div><!-- /cms-content -->
+  </main>
+</div>
+
+<!-- Toast container -->
+<div class="toast-container" id="toastContainer"></div>
+
+<script>
+// ============================================================
+// CONFIG
+// ============================================================
+var ADMIN_PASS_KEY = 'pp_admin_pass';
+var CONTENT_KEY    = 'pp_content';
+var SESSION_KEY    = 'pp_session';
+var DEFAULT_PASS   = 'pamoja2024';
+
+// ============================================================
+// DEFAULT CONTENT
+// ============================================================
+var DEFAULT_CONTENT = {
+  hero: {
+    eyebrow: 'SACCO Digitalization Solution',
+    h1_l1: 'Complete Financial',
+    h1_l2: 'Management for Your',
+    h1_l3: 'SACCO',
+    sub: 'Pamoja Pay brings your savings, loans, expenses, and governance into one modern platform. Members get a self-service portal. Managers get real-time control.',
+    btn1: 'Get Started',
+    btn2: 'Request Demo',
+    tenant: 'First tenant live at BIDA Co-operative'
+  },
+  stats: [
+    { value: '16+', label: 'Modules' },
+    { value: '1,000+', label: 'Members managed' },
+    { value: '24/7', label: 'Self-service portal' },
+    { value: '100%', label: 'Audit-ready' }
+  ],
+  features: [
+    { icon: '&#128101;', title: 'Member Management', desc: 'Complete digital profiles with photo, ID, address and next of kin.' },
+    { icon: '&#127974;', title: 'Savings Tracking', desc: 'All contribution categories tracked separately with real-time balances.' },
+    { icon: '&#128197;', title: 'Loan Management', desc: 'Full loan lifecycle from application through approval to final settlement.' },
+    { icon: '&#128466;', title: 'Repayment Schedules', desc: 'Auto-generated, color-coded schedules shareable via WhatsApp or PDF.' },
+    { icon: '&#9888;', title: 'Overdue & Penalties', desc: 'Overdue loans tracked with penalty application and NPL classification.' },
+    { icon: '&#128722;', title: 'Expense Tracking', desc: 'Record, approve, and monitor all SACCO expenses and service providers.' },
+    { icon: '&#128200;', title: 'Investments', desc: 'Track SACCO investments and distribute returns to members at year-end.' },
+    { icon: '&#9745;', title: 'Voting & Elections', desc: 'Secure, anonymous digital polls for board elections and resolutions.' },
+    { icon: '&#129309;', title: 'Benevolent Fund', desc: 'Next of kin records, eligibility tracking, and automated payout calculation.' },
+    { icon: '&#128193;', title: 'Document Storage', desc: 'Central cloud repository for minutes, AGM docs, and member documents.' },
+    { icon: '&#128274;', title: 'Audit Trail', desc: 'Immutable record of every action — who did what, when, from which device.' },
+    { icon: '&#128140;', title: 'Communications', desc: 'Automated Email, SMS, and WhatsApp reminders for your members.' },
+    { icon: '&#128244;', title: 'Offline Mode', desc: 'Staff keep working without internet. Changes sync when back online.' },
+    { icon: '&#128196;', title: 'PDF Reports', desc: 'Statements, loan agreements, receipts, and AGM reports on demand.' },
+    { icon: '&#128241;', title: 'Member Portal', desc: 'Members log in securely to view balances, apply for loans, and vote.' },
+    { icon: '&#128202;', title: 'Auditor Hub', desc: 'Dedicated auditor dashboard with full oversight and approval tools.' }
+  ],
+  pricing: [
+    {
+      plan: 'Basic', color: 'var(--mint)',
+      price: 'UGX 150k', period: '/ mo',
+      setup: '+ UGX 500k one-time setup',
+      members: '1 – 50 members',
+      features_yes: ['Member management','Savings tracking','Member portal','Basic reports','Email reminders'],
+      features_no: ['Loans','Expenses','Investments'],
+      btn: 'Get Started', btn_style: 'ghost', popular: false
+    },
+    {
+      plan: 'Standard', color: 'var(--mint)',
+      price: 'UGX 350k', period: '/ mo',
+      setup: '+ UGX 700k one-time setup',
+      members: '51 – 100 members',
+      features_yes: ['Everything in Basic','Complete loan management','Repayment schedules','Payment receipts PDF','Loan agreements PDF'],
+      features_no: ['Expenses','Investments'],
+      btn: 'Get Started', btn_style: 'primary', popular: true
+    },
+    {
+      plan: 'Premium', color: 'var(--mint)',
+      price: 'UGX 650k', period: '/ mo',
+      setup: '+ UGX 1M one-time setup',
+      members: '101 – 200 members',
+      features_yes: ['Everything in Standard','Expense tracking','Investment management','Dividend distribution'],
+      features_no: ['Voting','Auditor Hub'],
+      btn: 'Get Started', btn_style: 'ghost', popular: false
+    },
+    {
+      plan: 'Enterprise', color: '#6ec6ff',
+      price: 'UGX 1.2M', period: '/ mo',
+      setup: '+ UGX 1.5M one-time setup',
+      members: '201 – 400 members',
+      features_yes: ['Everything in Premium','Voting & elections','Benevolent fund','Document management','AGM report generator','Auditor Hub','Priority support'],
+      features_no: [],
+      btn: 'Contact Sales', btn_style: 'mint', popular: false
+    }
+  ],
+  digital_rent_note: '400+ members? Switch to Digital Rent — UGX 2,000 per member per month. Scales as your SACCO grows.',
+  testimonials: [
+    { name: 'Margaret Kizza', org: 'Chairperson, Kampala Teachers SACCO', initials: 'MK', stars: 5, quote: 'Manual reconciliations used to take our treasurer every Saturday. Now it is done in under 30 minutes. Our members love the self-service portal.' },
+    { name: 'Robert Ocen', org: 'CEO, Gulu Farmers Cooperative', initials: 'RO', stars: 5, quote: 'Automated reminders before due dates changed everything. Members pay on time and our loan book is healthier than it has ever been.' },
+    { name: 'Aisha Namutebi', org: 'Secretary, Wakiso Women\'s SACCO', initials: 'AN', stars: 5, quote: 'Our AGM was completely paperless. Reports, digital voting, real-time audit access — everything our auditor needed was right there.' }
+  ],
+  faq: [
+    { q: 'What is Pamoja Pay?', a: 'Pamoja Pay is a complete SACCO management platform built for cooperative societies in Uganda and Africa.' },
+    { q: 'How does pricing work?', a: 'A flat monthly subscription based on your member count. A one-time setup fee covers data migration and staff training.' },
+    { q: 'Is there a contract?', a: 'Month-to-month with no long-term commitment. Cancel anytime. 30-day money-back guarantee.' },
+    { q: 'Can members access from their phones?', a: 'Yes. The member portal works on any smartphone browser with no app download needed.' },
+    { q: 'What happens when internet goes down?', a: 'Pamoja Pay works fully offline. Staff continue working and changes sync when connectivity returns.' },
+    { q: 'Is our data secure?', a: 'Yes. Bank-level encryption, row-level security, daily backups, and an immutable audit trail.' },
+    { q: 'Can we upgrade our plan later?', a: 'Anytime. Your data stays intact and you simply unlock new features.' }
+  ],
+  contact: {
+    email: 'paypamoja@gmail.com',
+    phone: '+256 XXX XXX XXX',
+    whatsapp: '+256 XXX XXX XXX',
+    location: 'Kampala, Uganda',
+    hours_weekday_label: 'Monday – Friday',
+    hours_weekday_time: '9:00 AM – 5:00 PM',
+    hours_sat_time: '10:00 AM – 2:00 PM'
+  },
+  about: {
+    mission: 'Our mission: To digitize and empower cooperative societies across Uganda and Africa.',
+    p1: '"Pamoja" means "Together" in Swahili — and that spirit of togetherness is at the heart of every cooperative. SACCOs exist because people come together to pool resources, support each other, and build collective wealth.',
+    p2: 'We built Pamoja Pay because we saw too many SACCOs across Uganda and Africa struggling with paper records, spreadsheets, and systems not built for the cooperative context.'
+  },
+  settings: {
+    site_name: 'PamojaPay',
+    tagline: 'SACCO Digitalization Solution',
+    footer_copy: '© 2026 PamojaPay · Together, we grow stronger.'
+  }
+};
+
+// ============================================================
+// STATE
+// ============================================================
+var content = {};
+var currentSection = 'dashboard';
+
+// ============================================================
+// LOGIN
+// ============================================================
+function doLogin() {
+  var pass = document.getElementById('loginPass').value;
+  var stored = localStorage.getItem(ADMIN_PASS_KEY) || DEFAULT_PASS;
+  if (pass === stored) {
+    sessionStorage.setItem(SESSION_KEY, '1');
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('cmsApp').style.display = 'flex';
+    initCMS();
+  } else {
+    document.getElementById('loginErr').style.display = 'block';
+  }
+}
+
+function doLogout() {
+  sessionStorage.removeItem(SESSION_KEY);
+  location.reload();
+}
+
+function checkSession() {
+  if (sessionStorage.getItem(SESSION_KEY)) {
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('cmsApp').style.display = 'flex';
+    initCMS();
+  }
+}
+
+// ============================================================
+// INIT
+// ============================================================
+function initCMS() {
+  var stored = localStorage.getItem(CONTENT_KEY);
+  content = stored ? JSON.parse(stored) : JSON.parse(JSON.stringify(DEFAULT_CONTENT));
+  // merge defaults for any missing keys
+  Object.keys(DEFAULT_CONTENT).forEach(function(k) {
+    if (!content[k]) content[k] = JSON.parse(JSON.stringify(DEFAULT_CONTENT[k]));
+  });
+  renderAllPanels();
+  showSection('dashboard');
+}
+
+function renderAllPanels() {
+  renderHero();
+  renderStats();
+  renderFeatures();
+  renderPricing();
+  renderTestimonials();
+  renderFaq();
+  renderAbout();
+  renderSettings();
+}
+
+// ============================================================
+// SECTION NAVIGATION
+// ============================================================
+var SECTION_TITLES = {
+  dashboard: ['Dashboard', 'Overview of your website content'],
+  hero: ['Hero Section', 'Edit the main heading, subtext, and call-to-action buttons'],
+  features: ['Features Grid', 'Manage the feature cards shown on the home page'],
+  pricing: ['Pricing Plans', 'Update prices, member ranges, and included features'],
+  testimonials: ['Testimonials', 'Add or edit what your clients say'],
+  faq: ['FAQ', 'Manage frequently asked questions'],
+  about: ['About & Contact', 'Update your contact details and about page text'],
+  stats: ['Stats Bar', 'Edit the four numbers shown below the hero'],
+  settings: ['Site Settings', 'Global settings, export/import, and password']
+};
+
+function showSection(name) {
+  currentSection = name;
+  document.querySelectorAll('.section-panel').forEach(function(p){ p.classList.remove('active'); });
+  document.querySelectorAll('.nav-item').forEach(function(n){ n.classList.remove('active'); });
+  var panel = document.getElementById('panel-' + name);
+  if (panel) panel.classList.add('active');
+  // activate nav item
+  document.querySelectorAll('.nav-item').forEach(function(btn) {
+    if (btn.textContent.toLowerCase().includes(name === 'about' ? 'about' :
+        name === 'hero' ? 'hero' : name === 'features' ? 'features' :
+        name === 'pricing' ? 'pricing' : name === 'testimonials' ? 'testi' :
+        name === 'faq' ? 'faq' : name === 'stats' ? 'stats' :
+        name === 'settings' ? 'settings' : name === 'dashboard' ? 'dashboard' : '___')) {
+      btn.classList.add('active');
+    }
+  });
+  var titles = SECTION_TITLES[name] || [name, ''];
+  document.getElementById('sectionTitle').textContent = titles[0];
+  document.getElementById('sectionSub').textContent = titles[1];
+  var saveBtn = document.getElementById('saveBtn');
+  saveBtn.style.display = (name === 'dashboard') ? 'none' : 'inline-flex';
+  document.getElementById('saveStatus').textContent = '';
+}
+
+// ============================================================
+// RENDER FUNCTIONS
+// ============================================================
+function renderHero() {
+  var h = content.hero || {};
+  setVal('hero_eyebrow', h.eyebrow);
+  setVal('hero_h1_l1', h.h1_l1);
+  setVal('hero_h1_l2', h.h1_l2);
+  setVal('hero_h1_l3', h.h1_l3);
+  setVal('hero_sub', h.sub);
+  setVal('hero_btn1', h.btn1);
+  setVal('hero_btn2', h.btn2);
+  setVal('hero_tenant', h.tenant);
+}
+
+function renderStats() {
+  var c = content.stats || DEFAULT_CONTENT.stats;
+  var html = '<div class="ff-row">';
+  c.forEach(function(s, i) {
+    html += '<div class="ff"><label>Stat ' + (i+1) + ' Value</label><input type="text" id="stat_val_' + i + '" value="' + esc(s.value) + '"/></div>';
+    html += '<div class="ff"><label>Stat ' + (i+1) + ' Label</label><input type="text" id="stat_lbl_' + i + '" value="' + esc(s.label) + '"/></div>';
+  });
+  html += '</div>';
+  document.getElementById('stats-fields').innerHTML = html;
+}
+
+function renderFeatures() {
+  var c = content.features || [];
+  var rep = document.getElementById('features-repeater');
+  rep.innerHTML = '';
+  c.forEach(function(f, i) {
+    var div = document.createElement('div');
+    div.className = 'repeater-item';
+    div.innerHTML = '<button class="ri-del" onclick="delFeature(' + i + ')">&#10005;</button>' +
+      '<div class="ff-row"><div class="ff"><label>Icon (emoji)</label><input type="text" id="feat_icon_' + i + '" value="' + esc(f.icon) + '" style="font-size:18px"/></div>' +
+      '<div class="ff"><label>Title</label><input type="text" id="feat_title_' + i + '" value="' + esc(f.title) + '"/></div></div>' +
+      '<div class="ff"><label>Description</label><textarea id="feat_desc_' + i + '" rows="2">' + esc(f.desc) + '</textarea></div>';
+    rep.appendChild(div);
+  });
+  document.getElementById('db-features').textContent = c.length;
+}
+
+function renderPricing() {
+  var c = content.pricing || [];
+  var html = '';
+  c.forEach(function(p, i) {
+    html += '<div style="margin-bottom:20px;padding:16px;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:12px">';
+    html += '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">';
+    html += '<span style="font-size:13px;font-weight:700;color:' + (p.color || 'var(--mint)') + '">' + esc(p.plan) + '</span>';
+    if (p.popular) html += '<span class="badge badge-blue">Most Popular</span>';
+    html += '</div>';
+    html += '<div class="ff-row">';
+    html += '<div class="ff"><label>Plan Name</label><input type="text" id="pr_plan_' + i + '" value="' + esc(p.plan) + '"/></div>';
+    html += '<div class="ff"><label>Monthly Price</label><input type="text" id="pr_price_' + i + '" value="' + esc(p.price) + '"/></div>';
+    html += '</div><div class="ff-row">';
+    html += '<div class="ff"><label>Setup Fee Text</label><input type="text" id="pr_setup_' + i + '" value="' + esc(p.setup) + '"/></div>';
+    html += '<div class="ff"><label>Member Range</label><input type="text" id="pr_members_' + i + '" value="' + esc(p.members) + '"/></div>';
+    html += '</div>';
+    html += '<div class="ff"><label>Included Features (one per line)</label>';
+    html += '<textarea id="pr_yes_' + i + '" rows="5">' + esc((p.features_yes||[]).join('\n')) + '</textarea></div>';
+    html += '<div class="ff"><label>Not Included Features (one per line)</label>';
+    html += '<textarea id="pr_no_' + i + '" rows="3">' + esc((p.features_no||[]).join('\n')) + '</textarea></div>';
+    html += '</div>';
+  });
+  document.getElementById('pricing-panels').innerHTML = html;
+  setVal('digital_rent_note', content.digital_rent_note);
+}
+
+function renderTestimonials() {
+  var c = content.testimonials || [];
+  var rep = document.getElementById('testi-repeater');
+  rep.innerHTML = '';
+  c.forEach(function(t, i) {
+    var div = document.createElement('div');
+    div.className = 'repeater-item';
+    div.innerHTML = '<button class="ri-del" onclick="delTesti(' + i + ')">&#10005;</button>' +
+      '<div class="ff-row">' +
+        '<div class="ff"><label>Name</label><input type="text" id="testi_name_' + i + '" value="' + esc(t.name) + '"/></div>' +
+        '<div class="ff"><label>Initials (for avatar)</label><input type="text" id="testi_init_' + i + '" value="' + esc(t.initials) + '" maxlength="3"/></div>' +
+      '</div>' +
+      '<div class="ff"><label>Organisation / Role</label><input type="text" id="testi_org_' + i + '" value="' + esc(t.org) + '"/></div>' +
+      '<div class="ff"><label>Quote</label><textarea id="testi_quote_' + i + '" rows="3">' + esc(t.quote) + '</textarea></div>';
+    rep.appendChild(div);
+  });
+  document.getElementById('db-testis').textContent = c.length;
+}
+
+function renderFaq() {
+  var c = content.faq || [];
+  var rep = document.getElementById('faq-repeater');
+  rep.innerHTML = '';
+  c.forEach(function(f, i) {
+    var div = document.createElement('div');
+    div.className = 'repeater-item';
+    div.innerHTML = '<button class="ri-del" onclick="delFaq(' + i + ')">&#10005;</button>' +
+      '<div class="ff"><label>Question</label><input type="text" id="faq_q_' + i + '" value="' + esc(f.q) + '"/></div>' +
+      '<div class="ff"><label>Answer</label><textarea id="faq_a_' + i + '" rows="3">' + esc(f.a) + '</textarea></div>';
+    rep.appendChild(div);
+  });
+  document.getElementById('db-faqs').textContent = c.length;
+}
+
+function renderAbout() {
+  var c = content.contact || {};
+  var a = content.about || {};
+  setVal('contact_email', c.email);
+  setVal('contact_phone', c.phone);
+  setVal('contact_whatsapp', c.whatsapp);
+  setVal('contact_location', c.location);
+  setVal('hours_weekday_label', c.hours_weekday_label);
+  setVal('hours_weekday_time', c.hours_weekday_time);
+  setVal('hours_sat_time', c.hours_sat_time);
+  setVal('about_mission', a.mission);
+  setVal('about_p1', a.p1);
+  setVal('about_p2', a.p2);
+}
+
+function renderSettings() {
+  var s = content.settings || {};
+  setVal('site_name', s.site_name);
+  setVal('site_tagline', s.tagline);
+  setVal('footer_copy', s.footer_copy);
+}
+
+// ============================================================
+// COLLECT (read form back into content)
+// ============================================================
+function collectHero() {
+  content.hero = {
+    eyebrow: getVal('hero_eyebrow'),
+    h1_l1: getVal('hero_h1_l1'),
+    h1_l2: getVal('hero_h1_l2'),
+    h1_l3: getVal('hero_h1_l3'),
+    sub: getVal('hero_sub'),
+    btn1: getVal('hero_btn1'),
+    btn2: getVal('hero_btn2'),
+    tenant: getVal('hero_tenant')
+  };
+}
+
+function collectStats() {
+  var stats = [];
+  for (var i = 0; i < 4; i++) {
+    stats.push({ value: getVal('stat_val_' + i), label: getVal('stat_lbl_' + i) });
+  }
+  content.stats = stats;
+}
+
+function collectFeatures() {
+  var feats = [];
+  var c = content.features || [];
+  c.forEach(function(_, i) {
+    feats.push({
+      icon: getVal('feat_icon_' + i),
+      title: getVal('feat_title_' + i),
+      desc: getVal('feat_desc_' + i)
+    });
+  });
+  content.features = feats;
+}
+
+function collectPricing() {
+  var plans = [];
+  var c = content.pricing || [];
+  c.forEach(function(orig, i) {
+    var yes_raw = getVal('pr_yes_' + i);
+    var no_raw  = getVal('pr_no_' + i);
+    plans.push({
+      plan: getVal('pr_plan_' + i),
+      color: orig.color,
+      price: getVal('pr_price_' + i),
+      period: orig.period,
+      setup: getVal('pr_setup_' + i),
+      members: getVal('pr_members_' + i),
+      features_yes: yes_raw.split('\n').map(function(s){return s.trim();}).filter(Boolean),
+      features_no:  no_raw.split('\n').map(function(s){return s.trim();}).filter(Boolean),
+      btn: orig.btn, btn_style: orig.btn_style, popular: orig.popular
+    });
+  });
+  content.pricing = plans;
+  content.digital_rent_note = getVal('digital_rent_note');
+}
+
+function collectTestimonials() {
+  var testis = [];
+  var c = content.testimonials || [];
+  c.forEach(function(_, i) {
+    testis.push({
+      name: getVal('testi_name_' + i),
+      org:  getVal('testi_org_' + i),
+      initials: getVal('testi_init_' + i),
+      stars: 5,
+      quote: getVal('testi_quote_' + i)
+    });
+  });
+  content.testimonials = testis;
+}
+
+function collectFaq() {
+  var faqs = [];
+  var c = content.faq || [];
+  c.forEach(function(_, i) {
+    faqs.push({ q: getVal('faq_q_' + i), a: getVal('faq_a_' + i) });
+  });
+  content.faq = faqs;
+}
+
+function collectAbout() {
+  content.contact = {
+    email: getVal('contact_email'),
+    phone: getVal('contact_phone'),
+    whatsapp: getVal('contact_whatsapp'),
+    location: getVal('contact_location'),
+    hours_weekday_label: getVal('hours_weekday_label'),
+    hours_weekday_time: getVal('hours_weekday_time'),
+    hours_sat_time: getVal('hours_sat_time')
+  };
+  content.about = {
+    mission: getVal('about_mission'),
+    p1: getVal('about_p1'),
+    p2: getVal('about_p2')
+  };
+}
+
+function collectSettings() {
+  content.settings = {
+    site_name: getVal('site_name'),
+    tagline: getVal('site_tagline'),
+    footer_copy: getVal('footer_copy')
+  };
+}
+
+// ============================================================
+// SAVE
+// ============================================================
+var COLLECTORS = {
+  hero: collectHero,
+  stats: collectStats,
+  features: collectFeatures,
+  pricing: collectPricing,
+  testimonials: collectTestimonials,
+  faq: collectFaq,
+  about: collectAbout,
+  settings: collectSettings
+};
+
+function saveCurrentSection() {
+  var col = COLLECTORS[currentSection];
+  if (col) col();
+  localStorage.setItem(CONTENT_KEY, JSON.stringify(content));
+  var status = document.getElementById('saveStatus');
+  status.textContent = '✓ Saved to browser';
+  status.style.color = 'var(--green)';
+  setTimeout(function(){ status.textContent = ''; }, 3000);
+  showToast('Changes saved successfully', 'success');
+}
+
+// ============================================================
+// ADD / DELETE ROWS
+// ============================================================
+function addFeature() {
+  collectFeatures();
+  content.features.push({ icon: '⭐', title: 'New Feature', desc: 'Describe this feature.' });
+  renderFeatures();
+  showToast('Feature added', 'info');
+}
+function delFeature(i) {
+  collectFeatures();
+  content.features.splice(i, 1);
+  renderFeatures();
+}
+function addTestimonial() {
+  collectTestimonials();
+  content.testimonials.push({ name: 'Client Name', org: 'SACCO Name', initials: 'CN', stars: 5, quote: 'Enter testimonial quote here.' });
+  renderTestimonials();
+  showToast('Testimonial added', 'info');
+}
+function delTesti(i) {
+  collectTestimonials();
+  content.testimonials.splice(i, 1);
+  renderTestimonials();
+}
+function addFaq() {
+  collectFaq();
+  content.faq.push({ q: 'New question?', a: 'Answer goes here.' });
+  renderFaq();
+  showToast('FAQ item added', 'info');
+}
+function delFaq(i) {
+  collectFaq();
+  content.faq.splice(i, 1);
+  renderFaq();
+}
+
+// ============================================================
+// EXPORT / IMPORT
+// ============================================================
+function exportContent() {
+  Object.keys(COLLECTORS).forEach(function(k){ if(COLLECTORS[k]) COLLECTORS[k](); });
+  localStorage.setItem(CONTENT_KEY, JSON.stringify(content));
+  var blob = new Blob([JSON.stringify(content, null, 2)], { type: 'application/json' });
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'content.json';
+  a.click();
+  showToast('content.json downloaded — commit to GitHub!', 'success');
+}
+
+function importContent(evt) {
+  var file = evt.target.files[0];
+  if (!file) return;
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      content = JSON.parse(e.target.result);
+      localStorage.setItem(CONTENT_KEY, JSON.stringify(content));
+      renderAllPanels();
+      showToast('Content imported successfully', 'success');
+    } catch(err) {
+      showToast('Invalid JSON file', 'error');
+    }
+  };
+  reader.readAsText(file);
+}
+
+// ============================================================
+// PASSWORD
+// ============================================================
+function changePassword() {
+  var np = document.getElementById('new_pass').value;
+  var cp = document.getElementById('confirm_pass').value;
+  if (!np) { showToast('Enter a new password', 'error'); return; }
+  if (np !== cp) { showToast('Passwords do not match', 'error'); return; }
+  if (np.length < 6) { showToast('Password must be at least 6 characters', 'error'); return; }
+  localStorage.setItem(ADMIN_PASS_KEY, np);
+  document.getElementById('new_pass').value = '';
+  document.getElementById('confirm_pass').value = '';
+  showToast('Password updated successfully', 'success');
+}
+
+// ============================================================
+// TOAST
+// ============================================================
+function showToast(msg, type) {
+  var tc = document.getElementById('toastContainer');
+  var icons = { success: '✓', error: '✕', info: 'ℹ' };
+  var t = document.createElement('div');
+  t.className = 'toast ' + (type || 'info');
+  t.innerHTML = '<span>' + (icons[type]||'ℹ') + '</span><span>' + msg + '</span>';
+  tc.appendChild(t);
+  setTimeout(function(){ if(t.parentNode) t.parentNode.removeChild(t); }, 3500);
+}
+
+// ============================================================
+// HELPERS
+// ============================================================
+function esc(s) {
+  if (!s) return '';
+  return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+function setVal(id, val) {
+  var el = document.getElementById(id);
+  if (el) el.value = (val === undefined || val === null) ? '' : val;
+}
+function getVal(id) {
+  var el = document.getElementById(id);
+  return el ? el.value : '';
+}
+
+// ============================================================
+// BOOT
+// ============================================================
+checkSession();
+</script>
+</body>
+</html>
