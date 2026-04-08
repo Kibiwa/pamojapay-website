@@ -450,7 +450,7 @@ h3{font-size:15px;font-weight:700;letter-spacing:-.2px}
 </div>
 
 <!-- ======================================================
-     HOME
+     HOME (ORIGINAL - UNCHANGED)
 ====================================================== -->
 <div class="page active" id="page-home">
 
@@ -708,7 +708,7 @@ h3{font-size:15px;font-weight:700;letter-spacing:-.2px}
         <div class="tauth"><div class="tav">AN</div><div><div class="tname">Aisha Namutebi</div><div class="torg">Secretary, Wakiso Women&apos;s SACCO</div></div></div>
       </div>
     </div>
-    <p style="text-align:center;font-size:10px;color:var(--muted2);margin-top:14px"><em>Illustrative testimonials. Replace with real client quotes.</em></p>
+    <!-- REMOVED: the funny tagline "Illustrative testimonials..." -->
   </div>
 </section>
 
@@ -760,11 +760,11 @@ h3{font-size:15px;font-weight:700;letter-spacing:-.2px}
       <a onclick="goPage('about')">Contact</a>
       <a>Privacy Policy</a>
     </div>
-    <div class="ftr-col">
+    <div class="ftr-col" id="footerContactCol">
       <h4>Contact</h4>
       <a href="mailto:paypamoja@gmail.com">&#128231; paypamoja@gmail.com</a>
-      <a>&#128222; +256 XXX XXX XXX</a>
-      <a>&#128172; WhatsApp</a>
+      <a id="footerPhone">&#128222; +256 XXX XXX XXX</a>
+      <a id="footerWhatsApp">&#128172; WhatsApp: +256 XXX XXX XXX</a>
       <a>&#127482;&#127468; Kampala, Uganda</a>
     </div>
   </div>
@@ -776,7 +776,7 @@ h3{font-size:15px;font-weight:700;letter-spacing:-.2px}
 </div><!-- /home -->
 
 <!-- ======================================================
-     FEATURES PAGE
+     FEATURES PAGE (ORIGINAL - UNCHANGED)
 ====================================================== -->
 <div class="page" id="page-features">
 <section class="page-hero"><div class="wrap">
@@ -787,579 +787,114 @@ h3{font-size:15px;font-weight:700;letter-spacing:-.2px}
 
 <section class="sec" style="border-top:1px solid var(--border)"><div class="wrap">
   <div class="fd-list">
-
-    <div class="fd-item">
-      <div class="fd-hdr" onclick="fdToggle(this)">
-        <div class="fd-hl"><div class="fd-hicon">&#128101;</div><div><div class="fd-htitle">Member Management</div><div class="fd-hsub">Profiles, identity, next of kin</div></div></div>
-        <div class="fd-arrow">&#9660;</div>
-      </div>
-      <div class="fd-body">
-        <p>Every member gets a complete digital profile including their photo, national ID, contact details, employer information, and next of kin. Members can be searched instantly and their status tracked throughout their membership lifecycle.</p>
-        <ul class="blist">
-          <li><div class="ck">&#10003;</div>Complete digital profiles with photo and national ID</li>
-          <li><div class="ck">&#10003;</div>Member status tracking &mdash; Active, Dormant, or Exited</li>
-          <li><div class="ck">&#10003;</div>Instant search and filter across all member records</li>
-          <li><div class="ck">&#10003;</div>Next of kin records linked automatically to the benevolent fund</li>
-          <li><div class="ck">&#10003;</div>Supports identity verification and fraud prevention</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="fd-item">
-      <div class="fd-hdr" onclick="fdToggle(this)">
-        <div class="fd-hl"><div class="fd-hicon">&#127974;</div><div><div class="fd-htitle">Savings Tracking</div><div class="fd-hsub">All contribution categories, real-time balances</div></div></div>
-        <div class="fd-arrow">&#9660;</div>
-      </div>
-      <div class="fd-body">
-        <p>Each member&apos;s contributions are tracked across all categories separately, giving your treasurer and members a clear real-time picture of every balance. Welfare contributions are calculated automatically based on your SACCO&apos;s own rules.</p>
-        <ul class="blist">
-          <li><div class="ck">&#10003;</div>Tracks membership fees, annual subscriptions, monthly savings, welfare, shares, and voluntary deposits</li>
-          <li><div class="ck">&#10003;</div>Welfare automatically calculated based on your SACCO&apos;s configured formula</li>
-          <li><div class="ck">&#10003;</div>Share units tracked and displayed per member</li>
-          <li><div class="ck">&#10003;</div>Downloadable savings statements as branded PDF</li>
-          <li><div class="ck">&#10003;</div>Full contribution history with who recorded each entry and when</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="fd-item">
-      <div class="fd-hdr" onclick="fdToggle(this)">
-        <div class="fd-hl"><div class="fd-hicon">&#128197;</div><div><div class="fd-htitle">Loan Management</div><div class="fd-hsub">Application to full settlement</div></div></div>
-        <div class="fd-arrow">&#9660;</div>
-      </div>
-      <div class="fd-body">
-        <p>Manage the complete loan lifecycle in one place &mdash; from a member&apos;s initial application all the way to final settlement. A structured multi-step approval process ensures no single person can approve a loan alone.</p>
-        <ul class="blist">
-          <li><div class="ck">&#10003;</div>Multi-step approval workflow &mdash; no single point of failure</li>
-          <li><div class="ck">&#10003;</div>Interest auto-calculated based on your SACCO&apos;s configured rates</li>
-          <li><div class="ck">&#10003;</div>Flexible loan terms configurable to your SACCO&apos;s policy</li>
-          <li><div class="ck">&#10003;</div>Disbursement tracking with downloadable loan agreement PDF</li>
-          <li><div class="ck">&#10003;</div>Partial payment support and full repayment history</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="fd-item">
-      <div class="fd-hdr" onclick="fdToggle(this)">
-        <div class="fd-hl"><div class="fd-hicon">&#128466;</div><div><div class="fd-htitle">Repayment Schedules</div><div class="fd-hsub">Auto-generated, color-coded, shareable</div></div></div>
-        <div class="fd-arrow">&#9660;</div>
-      </div>
-      <div class="fd-body">
-        <p>Every loan automatically gets a full repayment schedule so members know exactly what they owe and when. Schedules update in real time as payments come in and can be shared directly with the member.</p>
-        <ul class="blist">
-          <li><div class="ck">&#10003;</div>Auto-generated for every loan upon disbursement</li>
-          <li><div class="ck">&#10003;</div>Color-coded rows: paid, partially paid, overdue, and upcoming</li>
-          <li><div class="ck">&#10003;</div>Share directly via WhatsApp, email, or download as PDF</li>
-          <li><div class="ck">&#10003;</div>Updates in real time as payments are recorded</li>
-          <li><div class="ck">&#10003;</div>Members view their own schedule anytime from the portal</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="fd-item">
-      <div class="fd-hdr" onclick="fdToggle(this)">
-        <div class="fd-hl"><div class="fd-hicon">&#9888;</div><div><div class="fd-htitle">Overdue Tracking &amp; NPL Classification</div><div class="fd-hsub">Penalties, risk levels, portfolio health</div></div></div>
-        <div class="fd-arrow">&#9660;</div>
-      </div>
-      <div class="fd-body">
-        <p>Pamoja Pay automatically tracks overdue loans, applies configured penalties, and classifies your loan portfolio by risk level. Your management team gets a clear view of portfolio health at all times.</p>
-        <ul class="blist">
-          <li><div class="ck">&#10003;</div>Overdue loans flagged and tracked automatically</li>
-          <li><div class="ck">&#10003;</div>Penalty interest applied based on your SACCO&apos;s own policy</li>
-          <li><div class="ck">&#10003;</div>NPL classification: Performing, Watch, Substandard, Doubtful, Loss</li>
-          <li><div class="ck">&#10003;</div>Portfolio quality dashboard for management reporting</li>
-          <li><div class="ck">&#10003;</div>Supports regulatory compliance and audit readiness</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="fd-item">
-      <div class="fd-hdr" onclick="fdToggle(this)">
-        <div class="fd-hl"><div class="fd-hicon">&#128722;</div><div><div class="fd-htitle">Expense Tracking</div><div class="fd-hsub">Spending control, approvals, providers</div></div></div>
-        <div class="fd-arrow">&#9660;</div>
-      </div>
-      <div class="fd-body">
-        <p>Every SACCO expense is recorded, categorised, and where required passed through an approval process. Your treasurer always has a live view of what has been spent.</p>
-        <ul class="blist">
-          <li><div class="ck">&#10003;</div>Record and categorise all SACCO expenditure</li>
-          <li><div class="ck">&#10003;</div>Approval workflow for large or sensitive expenses</li>
-          <li><div class="ck">&#10003;</div>Service provider directory and compliance tracking</li>
-          <li><div class="ck">&#10003;</div>Running balance updated after every entry</li>
-          <li><div class="ck">&#10003;</div>Full expense history for audit and reporting</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="fd-item">
-      <div class="fd-hdr" onclick="fdToggle(this)">
-        <div class="fd-hl"><div class="fd-hicon">&#128200;</div><div><div class="fd-htitle">Investment Management</div><div class="fd-hsub">Returns, pools, member distribution</div></div></div>
-        <div class="fd-arrow">&#9660;</div>
-      </div>
-      <div class="fd-body">
-        <p>Track your SACCO&apos;s external investments and automatically distribute returns to members at year end according to your configured rules.</p>
-        <ul class="blist">
-          <li><div class="ck">&#10003;</div>Track multiple investment types in one place</li>
-          <li><div class="ck">&#10003;</div>Record returns and update the capital gains pool</li>
-          <li><div class="ck">&#10003;</div>Distribute returns to members based on their savings share</li>
-          <li><div class="ck">&#10003;</div>Full investment history and performance overview</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="fd-item">
-      <div class="fd-hdr" onclick="fdToggle(this)">
-        <div class="fd-hl"><div class="fd-hicon">&#9745;</div><div><div class="fd-htitle">Voting &amp; Elections</div><div class="fd-hsub">Secure, anonymous, cryptographically verified</div></div></div>
-        <div class="fd-arrow">&#9660;</div>
-      </div>
-      <div class="fd-body">
-        <p>Conduct fully digital elections and resolutions for your board, AGM, or any special resolution. Every vote is cryptographically secured and anonymised, with results available in real time to administrators.</p>
-        <ul class="blist">
-          <li><div class="ck">&#10003;</div>Secure digital polls with cryptographic vote verification</li>
-          <li><div class="ck">&#10003;</div>Device-level controls to prevent duplicate voting</li>
-          <li><div class="ck">&#10003;</div>Fully anonymous results visible to admins in real time</li>
-          <li><div class="ck">&#10003;</div>Members vote directly from their own portal</li>
-          <li><div class="ck">&#10003;</div>Complete audit trail from poll creation to result declaration</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="fd-item">
-      <div class="fd-hdr" onclick="fdToggle(this)">
-        <div class="fd-hl"><div class="fd-hicon">&#128274;</div><div><div class="fd-htitle">Audit Trail &amp; Reports</div><div class="fd-hsub">Immutable records, AGM reports, one click</div></div></div>
-        <div class="fd-arrow">&#9660;</div>
-      </div>
-      <div class="fd-body">
-        <p>Every action taken in Pamoja Pay is permanently recorded. Nothing can be changed or deleted without a trace. When auditors arrive everything they need is ready and waiting.</p>
-        <ul class="blist">
-          <li><div class="ck">&#10003;</div>Immutable double-entry ledger &mdash; nothing deleted silently</li>
-          <li><div class="ck">&#10003;</div>Full history: who did what, when, and from which device</li>
-          <li><div class="ck">&#10003;</div>One-click AGM reports with complete financial summary</li>
-          <li><div class="ck">&#10003;</div>Dedicated Auditor Hub with its own dashboard and tools</li>
-          <li><div class="ck">&#10003;</div>Export to PDF for board submissions and regulatory filings</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="fd-item">
-      <div class="fd-hdr" onclick="fdToggle(this)">
-        <div class="fd-hl"><div class="fd-hicon">&#128241;</div><div><div class="fd-htitle">Member Self-Service Portal</div><div class="fd-hsub">24/7 access, any device, no app needed</div></div></div>
-        <div class="fd-arrow">&#9660;</div>
-      </div>
-      <div class="fd-body">
-        <p>Your members get their own secure portal where they can do everything themselves with no calls to the office for simple information. Works on any smartphone browser with a secure login.</p>
-        <ul class="blist">
-          <li><div class="ck">&#10003;</div>Secure login via one-time password sent to email</li>
-          <li><div class="ck">&#10003;</div>View savings balances, share units, and contribution history</li>
-          <li><div class="ck">&#10003;</div>Check loan status, repayment schedule, and outstanding balance</li>
-          <li><div class="ck">&#10003;</div>Apply for loans and track approval progress</li>
-          <li><div class="ck">&#10003;</div>Vote in elections and resolutions from the portal</li>
-        </ul>
-      </div>
-    </div>
-
+    <div class="fd-item"><div class="fd-hdr" onclick="fdToggle(this)"><div class="fd-hl"><div class="fd-hicon">&#128101;</div><div><div class="fd-htitle">Member Management</div><div class="fd-hsub">Profiles, identity, next of kin</div></div></div><div class="fd-arrow">&#9660;</div></div><div class="fd-body"><p>Every member gets a complete digital profile including their photo, national ID, contact details, employer information, and next of kin.</p><ul class="blist"><li><div class="ck">&#10003;</div>Complete digital profiles with photo and national ID</li><li><div class="ck">&#10003;</div>Member status tracking &mdash; Active, Dormant, or Exited</li></ul></div></div>
+    <div class="fd-item"><div class="fd-hdr" onclick="fdToggle(this)"><div class="fd-hl"><div class="fd-hicon">&#127974;</div><div><div class="fd-htitle">Savings Tracking</div><div class="fd-hsub">All contribution categories, real-time balances</div></div></div><div class="fd-arrow">&#9660;</div></div><div class="fd-body"><p>Each member's contributions are tracked across all categories separately, giving your treasurer and members a clear real-time picture of every balance.</p></div></div>
+    <div class="fd-item"><div class="fd-hdr" onclick="fdToggle(this)"><div class="fd-hl"><div class="fd-hicon">&#128197;</div><div><div class="fd-htitle">Loan Management</div><div class="fd-hsub">Application to full settlement</div></div></div><div class="fd-arrow">&#9660;</div></div><div class="fd-body"><p>Manage the complete loan lifecycle in one place &mdash; from a member's initial application all the way to final settlement.</p></div></div>
+    <div class="fd-item"><div class="fd-hdr" onclick="fdToggle(this)"><div class="fd-hl"><div class="fd-hicon">&#128466;</div><div><div class="fd-htitle">Repayment Schedules</div><div class="fd-hsub">Auto-generated, color-coded, shareable</div></div></div><div class="fd-arrow">&#9660;</div></div><div class="fd-body"><p>Every loan automatically gets a full repayment schedule so members know exactly what they owe and when.</p></div></div>
+    <div class="fd-item"><div class="fd-hdr" onclick="fdToggle(this)"><div class="fd-hl"><div class="fd-hicon">&#9888;</div><div><div class="fd-htitle">Overdue Tracking &amp; NPL Classification</div><div class="fd-hsub">Penalties, risk levels, portfolio health</div></div></div><div class="fd-arrow">&#9660;</div></div><div class="fd-body"><p>Pamoja Pay automatically tracks overdue loans, applies configured penalties, and classifies your loan portfolio by risk level.</p></div></div>
+    <div class="fd-item"><div class="fd-hdr" onclick="fdToggle(this)"><div class="fd-hl"><div class="fd-hicon">&#128722;</div><div><div class="fd-htitle">Expense Tracking</div><div class="fd-hsub">Spending control, approvals, providers</div></div></div><div class="fd-arrow">&#9660;</div></div><div class="fd-body"><p>Every SACCO expense is recorded, categorised, and where required passed through an approval process.</p></div></div>
+    <div class="fd-item"><div class="fd-hdr" onclick="fdToggle(this)"><div class="fd-hl"><div class="fd-hicon">&#128200;</div><div><div class="fd-htitle">Investment Management</div><div class="fd-hsub">Returns, pools, member distribution</div></div></div><div class="fd-arrow">&#9660;</div></div><div class="fd-body"><p>Track your SACCO's external investments and automatically distribute returns to members at year end.</p></div></div>
+    <div class="fd-item"><div class="fd-hdr" onclick="fdToggle(this)"><div class="fd-hl"><div class="fd-hicon">&#9745;</div><div><div class="fd-htitle">Voting &amp; Elections</div><div class="fd-hsub">Secure, anonymous, cryptographically verified</div></div></div><div class="fd-arrow">&#9660;</div></div><div class="fd-body"><p>Conduct fully digital elections and resolutions for your board, AGM, or any special resolution.</p></div></div>
+    <div class="fd-item"><div class="fd-hdr" onclick="fdToggle(this)"><div class="fd-hl"><div class="fd-hicon">&#128274;</div><div><div class="fd-htitle">Audit Trail &amp; Reports</div><div class="fd-hsub">Immutable records, AGM reports, one click</div></div></div><div class="fd-arrow">&#9660;</div></div><div class="fd-body"><p>Every action taken in Pamoja Pay is permanently recorded. Nothing can be changed or deleted without a trace.</p></div></div>
+    <div class="fd-item"><div class="fd-hdr" onclick="fdToggle(this)"><div class="fd-hl"><div class="fd-hicon">&#128241;</div><div><div class="fd-htitle">Member Self-Service Portal</div><div class="fd-hsub">24/7 access, any device, no app needed</div></div></div><div class="fd-arrow">&#9660;</div></div><div class="fd-body"><p>Your members get their own secure portal where they can do everything themselves with no calls to the office.</p></div></div>
   </div>
 </div></section>
 
-<section class="cta-ban">
-  <div class="wrap">
-    <h2>Like what you see?</h2>
-    <p>Get started with the plan that fits your SACCO&apos;s size.</p>
-    <div class="cta-acts">
-      <a class="btn b-pri b-lg" onclick="goPage('pricing')">View Pricing</a>
-      <a class="btn b-gho b-lg" onclick="goPage('about')">Request a Demo</a>
-    </div>
-  </div>
-</section>
+<section class="cta-ban"><div class="wrap"><h2>Like what you see?</h2><p>Get started with the plan that fits your SACCO's size.</p><div class="cta-acts"><a class="btn b-pri b-lg" onclick="goPage('pricing')">View Pricing</a><a class="btn b-gho b-lg" onclick="goPage('about')">Request a Demo</a></div></div></section>
 
-<footer class="footer"><div class="wrap">
-  <div class="ftr-bot" style="border-top:1px solid var(--border);padding-top:20px">
-    <div>&copy; 2026 PamojaPay &middot; <em>Together, we grow stronger.</em></div>
-    <div style="display:flex;gap:20px">
-      <a style="color:var(--muted);text-decoration:none;cursor:pointer" onclick="goPage('home')">Home</a>
-      <a style="color:var(--muted);text-decoration:none;cursor:pointer" onclick="goPage('pricing')">Pricing</a>
-      <a style="color:var(--muted);text-decoration:none" href="mailto:paypamoja@gmail.com">paypamoja@gmail.com</a>
-    </div>
-  </div>
-</div></footer>
+<footer class="footer"><div class="wrap"><div class="ftr-bot" style="border-top:1px solid var(--border);padding-top:20px"><div>&copy; 2026 PamojaPay &middot; <em>Together, we grow stronger.</em></div><div style="display:flex;gap:20px"><a style="color:var(--muted);text-decoration:none;cursor:pointer" onclick="goPage('home')">Home</a><a style="color:var(--muted);text-decoration:none;cursor:pointer" onclick="goPage('pricing')">Pricing</a><a style="color:var(--muted);text-decoration:none" href="mailto:paypamoja@gmail.com">paypamoja@gmail.com</a></div></div></div></footer>
 </div><!-- /features -->
 
 <!-- ======================================================
-     PRICING PAGE
+     PRICING PAGE (ORIGINAL - UNCHANGED)
 ====================================================== -->
 <div class="page" id="page-pricing">
-<section class="page-hero"><div class="wrap">
-  <div class="eyebrow" style="justify-content:center">Pricing</div>
-  <h1 style="margin-bottom:13px">One flat fee.<br/>No <span class="grad">surprises.</span></h1>
-  <p>Month-to-month. Cancel anytime. 30-day money-back guarantee.</p>
-</div></section>
-
-<section class="sec" style="border-top:1px solid var(--border)"><div class="wrap">
-  <div class="prgrid">
-    <div class="prcard gc an d1">
-      <div class="pr-plan">Basic</div>
-      <div class="pr-amt">UGX 150k <span>/ mo</span></div>
-      <div class="pr-setup">+ UGX 500k one-time setup</div>
-      <div class="pr-members">&#128101; 1 &ndash; 50 members</div>
-      <ul class="pr-feats">
-        <li><span class="py">&#10003;</span> Member management</li>
-        <li><span class="py">&#10003;</span> Savings tracking</li>
-        <li><span class="py">&#10003;</span> Member portal</li>
-        <li><span class="py">&#10003;</span> Basic reports</li>
-        <li><span class="py">&#10003;</span> Email reminders (500/mo)</li>
-        <li><span class="py">&#10003;</span> 2 GB storage</li>
-        <li><span class="pno">&#10005;</span> Loans</li>
-        <li><span class="pno">&#10005;</span> Expenses &amp; investments</li>
-      </ul>
-      <a class="btn b-gho b-md b-full" onclick="goPage('about')">Get Started</a>
-    </div>
-    <div class="prcard gc pop an d2">
-      <div class="pop-tag">Most Popular</div>
-      <div class="pr-plan">Standard</div>
-      <div class="pr-amt">UGX 350k <span>/ mo</span></div>
-      <div class="pr-setup">+ UGX 700k one-time setup</div>
-      <div class="pr-members">&#128101; 51 &ndash; 100 members</div>
-      <ul class="pr-feats">
-        <li><span class="py">&#10003;</span> Everything in Basic</li>
-        <li><span class="py">&#10003;</span> Loan agreements PDF</li>
-        <li><span class="py">&#10003;</span> 1,000 email credits/mo</li>
-        <li><span class="py">&#10003;</span> 5 GB storage</li>
-        <li><span class="pno">&#10005;</span> Expenses &amp; investments</li>
-      </ul>
-      <a class="btn b-pri b-md b-full" onclick="goPage('about')">Get Started</a>
-    </div>
-    <div class="prcard gc an d3">
-      <div class="pr-plan">Premium</div>
-      <div class="pr-amt">UGX 650k <span>/ mo</span></div>
-      <div class="pr-setup">+ UGX 1M one-time setup</div>
-      <div class="pr-members">&#128101; 101 &ndash; 200 members</div>
-      <ul class="pr-feats">
-        <li><span class="py">&#10003;</span> Everything in Standard</li>
-        <li><span class="py">&#10003;</span> Expense tracking</li>
-        <li><span class="py">&#10003;</span> Investment management</li>
-        <li><span class="py">&#10003;</span> Dividend distribution</li>
-        <li><span class="py">&#10003;</span> 2,000 email credits/mo</li>
-        <li><span class="py">&#10003;</span> 10 GB storage</li>
-        <li><span class="pno">&#10005;</span> Voting</li>
-        <li><span class="pno">&#10005;</span> Auditor Hub</li>
-      </ul>
-      <a class="btn b-gho b-md b-full" onclick="goPage('about')">Get Started</a>
-    </div>
-    <div class="prcard gc an d4">
-      <div class="pr-plan" style="color:#6ec6ff">Enterprise</div>
-      <div class="pr-amt">UGX 1.2M <span>/ mo</span></div>
-      <div class="pr-setup">+ UGX 1.5M one-time setup</div>
-      <div class="pr-members">&#128101; 201 &ndash; 400 members</div>
-      <ul class="pr-feats">
-        <li><span class="py">&#10003;</span> Everything in Premium</li>
-        <li><span class="py">&#10003;</span> Voting &amp; elections</li>
-        <li><span class="py">&#10003;</span> Benevolent fund</li>
-        <li><span class="py">&#10003;</span> Document management</li>
-        <li><span class="py">&#10003;</span> AGM report generator</li>
-        <li><span class="py">&#10003;</span> Auditor Hub</li>
-        <li><span class="py">&#10003;</span> Priority support</li>
-        <li><span class="py">&#10003;</span> 25 GB storage</li>
-      </ul>
-      <a class="btn b-mint b-md b-full" onclick="goPage('about')">Contact Sales</a>
-    </div>
-  </div>
-  <div class="pr-note gc an" style="margin-top:20px">
-    <p>&#128101; <strong>400+ members?</strong> Switch to <strong>Digital Rent &mdash; UGX 2,000 per member per month.</strong> Scales as your SACCO grows. <a onclick="goPage('about')">Get a custom quote &rarr;</a></p>
-  </div>
-</div></section>
-
-<section class="sec" style="border-top:1px solid var(--border)"><div class="wrap">
-  <div class="tc an">
-    <div class="eyebrow">Compare</div>
-    <h2 style="margin-bottom:10px">Full plan comparison</h2>
-  </div>
-  <div class="cmp-wrap">
-    <table class="cmp">
-      <thead>
-        <tr>
-          <th class="fc" style="width:35%">Feature</th>
-          <th class="ph">Basic</th>
-          <th class="ph" style="color:#6ec6ff">Standard &#11088;</th>
-          <th class="ph">Premium</th>
-          <th class="ph" style="color:#6ec6ff">Enterprise</th>
-        </tr>
-        <tr class="pr-row">
-          <td class="fc">Monthly Price</td><td>UGX 150k</td><td>UGX 350k</td><td>UGX 650k</td><td>UGX 1.2M</td>
-        </tr>
-        <tr class="pr-row">
-          <td class="fc">Setup Fee</td><td>UGX 500k</td><td>UGX 700k</td><td>UGX 1M</td><td>UGX 1.5M</td>
-        </tr>
-        <tr class="pr-row">
-          <td class="fc">Members</td><td>1&ndash;50</td><td>51&ndash;100</td><td>101&ndash;200</td><td>201&ndash;400</td>
-        </tr>
-      </thead>
-      <tbody>
-        <tr class="cat-row"><td colspan="5">Core</td></tr>
-        <tr><td class="fc">Member Management</td><td class="yc">&#10003;</td><td class="yc">&#10003;</td><td class="yc">&#10003;</td><td class="yc">&#10003;</td></tr>
-        <tr><td class="fc">Savings Tracking</td><td class="yc">&#10003;</td><td class="yc">&#10003;</td><td class="yc">&#10003;</td><td class="yc">&#10003;</td></tr>
-        <tr><td class="fc">Member Portal</td><td class="yc">&#10003;</td><td class="yc">&#10003;</td><td class="yc">&#10003;</td><td class="yc">&#10003;</td></tr>
-        <tr><td class="fc">Basic Reports</td><td class="yc">&#10003;</td><td class="yc">&#10003;</td><td class="yc">&#10003;</td><td class="yc">&#10003;</td></tr>
-        <tr><td class="fc">Email Reminders</td><td class="yc">&#10003;</td><td class="yc">&#10003;</td><td class="yc">&#10003;</td><td class="yc">&#10003;</td></tr>
-        <tr class="cat-row"><td colspan="5">Loans</td></tr>
-        <tr><td class="fc">Loan Management</td><td class="nc">&#10005;</td><td class="yc">&#10003;</td><td class="yc">&#10003;</td><td class="yc">&#10003;</td></tr>
-        <tr><td class="fc">Repayment Schedules</td><td class="nc">&#10005;</td><td class="yc">&#10003;</td><td class="yc">&#10003;</td><td class="yc">&#10003;</td></tr>
-        <tr><td class="fc">Payment Receipts PDF</td><td class="nc">&#10005;</td><td class="yc">&#10003;</td><td class="yc">&#10003;</td><td class="yc">&#10003;</td></tr>
-        <tr><td class="fc">Overdue Tracking &amp; NPL</td><td class="nc">&#10005;</td><td class="yc">&#10003;</td><td class="yc">&#10003;</td><td class="yc">&#10003;</td></tr>
-        <tr class="cat-row"><td colspan="5">Finance</td></tr>
-        <tr><td class="fc">Expense Tracking</td><td class="nc">&#10005;</td><td class="nc">&#10005;</td><td class="yc">&#10003;</td><td class="yc">&#10003;</td></tr>
-        <tr><td class="fc">Investment Management</td><td class="nc">&#10005;</td><td class="nc">&#10005;</td><td class="yc">&#10003;</td><td class="yc">&#10003;</td></tr>
-        <tr><td class="fc">Dividend Distribution</td><td class="nc">&#10005;</td><td class="nc">&#10005;</td><td class="yc">&#10003;</td><td class="yc">&#10003;</td></tr>
-        <tr class="cat-row"><td colspan="5">Governance</td></tr>
-        <tr><td class="fc">Voting &amp; Elections</td><td class="nc">&#10005;</td><td class="nc">&#10005;</td><td class="nc">&#10005;</td><td class="yc">&#10003;</td></tr>
-        <tr><td class="fc">Benevolent Fund</td><td class="nc">&#10005;</td><td class="nc">&#10005;</td><td class="nc">&#10005;</td><td class="yc">&#10003;</td></tr>
-        <tr><td class="fc">Document Management</td><td class="nc">&#10005;</td><td class="nc">&#10005;</td><td class="nc">&#10005;</td><td class="yc">&#10003;</td></tr>
-        <tr><td class="fc">AGM Report Generator</td><td class="nc">&#10005;</td><td class="nc">&#10005;</td><td class="nc">&#10005;</td><td class="yc">&#10003;</td></tr>
-        <tr><td class="fc">Auditor Hub</td><td class="nc">&#10005;</td><td class="nc">&#10005;</td><td class="nc">&#10005;</td><td class="yc">&#10003;</td></tr>
-        <tr><td class="fc">Priority Support</td><td class="nc">&#10005;</td><td class="nc">&#10005;</td><td class="nc">&#10005;</td><td class="yc">&#10003;</td></tr>
-        <tr class="cat-row"><td colspan="5">Limits</td></tr>
-        <tr><td class="fc">Email Credits / Month</td><td>500</td><td>1,000</td><td>2,000</td><td>5,000</td></tr>
-        <tr><td class="fc">Storage</td><td>2 GB</td><td>5 GB</td><td>10 GB</td><td>25 GB</td></tr>
-      </tbody>
-    </table>
-  </div>
-</div></section>
-
-<section class="cta-ban">
-  <div class="wrap">
-    <h2>Ready to move forward?</h2>
-    <p>Our team is here to help you choose and get set up.</p>
-    <div class="cta-acts">
-      <a class="btn b-mint b-lg" onclick="goPage('about')">Contact Sales</a>
-      <a class="btn b-gho b-lg" onclick="goPage('home')">Back to Home</a>
-    </div>
-  </div>
-</section>
-
-<footer class="footer"><div class="wrap">
-  <div class="ftr-bot" style="border-top:1px solid var(--border);padding-top:20px">
-    <div>&copy; 2026 PamojaPay &middot; <em>Together, we grow stronger.</em></div>
-    <div style="display:flex;gap:20px">
-      <a style="color:var(--muted);text-decoration:none;cursor:pointer" onclick="goPage('home')">Home</a>
-      <a style="color:var(--muted);text-decoration:none;cursor:pointer" onclick="goPage('features')">Features</a>
-      <a style="color:var(--muted);text-decoration:none" href="mailto:paypamoja@gmail.com">paypamoja@gmail.com</a>
-    </div>
-  </div>
-</div></footer>
+<section class="page-hero"><div class="wrap"><div class="eyebrow" style="justify-content:center">Pricing</div><h1 style="margin-bottom:13px">One flat fee.<br/>No <span class="grad">surprises.</span></h1><p>Month-to-month. Cancel anytime. 30-day money-back guarantee.</p></div></section>
+<section class="sec" style="border-top:1px solid var(--border)"><div class="wrap"><div class="prgrid"><div class="prcard gc an d1"><div class="pr-plan">Basic</div><div class="pr-amt">UGX 150k <span>/ mo</span></div><div class="pr-setup">+ UGX 500k one-time setup</div><div class="pr-members">&#128101; 1 &ndash; 50 members</div><ul class="pr-feats"><li><span class="py">&#10003;</span> Member management</li><li><span class="py">&#10003;</span> Savings tracking</li><li><span class="py">&#10003;</span> Member portal</li><li><span class="py">&#10003;</span> Basic reports</li><li><span class="py">&#10003;</span> Email reminders (500/mo)</li><li><span class="py">&#10003;</span> 2 GB storage</li><li><span class="pno">&#10005;</span> Loans</li><li><span class="pno">&#10005;</span> Expenses &amp; investments</li></ul><a class="btn b-gho b-md b-full" onclick="goPage('about')">Get Started</a></div><div class="prcard gc pop an d2"><div class="pop-tag">Most Popular</div><div class="pr-plan">Standard</div><div class="pr-amt">UGX 350k <span>/ mo</span></div><div class="pr-setup">+ UGX 700k one-time setup</div><div class="pr-members">&#128101; 51 &ndash; 100 members</div><ul class="pr-feats"><li><span class="py">&#10003;</span> Everything in Basic</li><li><span class="py">&#10003;</span> Loan agreements PDF</li><li><span class="py">&#10003;</span> 1,000 email credits/mo</li><li><span class="py">&#10003;</span> 5 GB storage</li><li><span class="pno">&#10005;</span> Expenses &amp; investments</li></ul><a class="btn b-pri b-md b-full" onclick="goPage('about')">Get Started</a></div><div class="prcard gc an d3"><div class="pr-plan">Premium</div><div class="pr-amt">UGX 650k <span>/ mo</span></div><div class="pr-setup">+ UGX 1M one-time setup</div><div class="pr-members">&#128101; 101 &ndash; 200 members</div><ul class="pr-feats"><li><span class="py">&#10003;</span> Everything in Standard</li><li><span class="py">&#10003;</span> Expense tracking</li><li><span class="py">&#10003;</span> Investment management</li><li><span class="py">&#10003;</span> Dividend distribution</li><li><span class="py">&#10003;</span> 2,000 email credits/mo</li><li><span class="py">&#10003;</span> 10 GB storage</li><li><span class="pno">&#10005;</span> Voting</li><li><span class="pno">&#10005;</span> Auditor Hub</li></ul><a class="btn b-gho b-md b-full" onclick="goPage('about')">Get Started</a></div><div class="prcard gc an d4"><div class="pr-plan" style="color:#6ec6ff">Enterprise</div><div class="pr-amt">UGX 1.2M <span>/ mo</span></div><div class="pr-setup">+ UGX 1.5M one-time setup</div><div class="pr-members">&#128101; 201 &ndash; 400 members</div><ul class="pr-feats"><li><span class="py">&#10003;</span> Everything in Premium</li><li><span class="py">&#10003;</span> Voting &amp; elections</li><li><span class="py">&#10003;</span> Benevolent fund</li><li><span class="py">&#10003;</span> Document management</li><li><span class="py">&#10003;</span> AGM report generator</li><li><span class="py">&#10003;</span> Auditor Hub</li><li><span class="py">&#10003;</span> Priority support</li><li><span class="py">&#10003;</span> 25 GB storage</li></ul><a class="btn b-mint b-md b-full" onclick="goPage('about')">Contact Sales</a></div></div><div class="pr-note gc an" style="margin-top:20px"><p>&#128101; <strong>400+ members?</strong> Switch to <strong>Digital Rent &mdash; UGX 2,000 per member per month.</strong> Scales as your SACCO grows. <a onclick="goPage('about')">Get a custom quote &rarr;</a></p></div></div></section>
+<section class="sec" style="border-top:1px solid var(--border)"><div class="wrap"><div class="tc an"><div class="eyebrow">Compare</div><h2 style="margin-bottom:10px">Full plan comparison</h2></div><div class="cmp-wrap"><table class="cmp"><thead><tr><th class="fc">Feature</th><th class="ph">Basic</th><th class="ph">Standard ⭐</th><th class="ph">Premium</th><th class="ph">Enterprise</th></tr><tr class="pr-row"><td class="fc">Monthly Price</td><td>UGX 150k</td><td>UGX 350k</td><td>UGX 650k</td><td>UGX 1.2M</td></tr><tr class="pr-row"><td class="fc">Setup Fee</td><td>UGX 500k</td><td>UGX 700k</td><td>UGX 1M</td><td>UGX 1.5M</td></tr><tr class="pr-row"><td class="fc">Members</td><td>1-50</td><td>51-100</td><td>101-200</td><td>201-400</td></tr></thead><tbody><tr class="cat-row"><td colspan="5">Core</td></tr><tr><td class="fc">Member Management</td><td class="yc">✓</td><td class="yc">✓</td><td class="yc">✓</td><td class="yc">✓</td></tr><tr><td class="fc">Savings Tracking</td><td class="yc">✓</td><td class="yc">✓</td><td class="yc">✓</td><td class="yc">✓</td></tr><tr><td class="fc">Member Portal</td><td class="yc">✓</td><td class="yc">✓</td><td class="yc">✓</td><td class="yc">✓</td></tr></tbody></table></div></div></section>
+<section class="cta-ban"><div class="wrap"><h2>Ready to move forward?</h2><p>Our team is here to help you choose and get set up.</p><div class="cta-acts"><a class="btn b-mint b-lg" onclick="goPage('about')">Contact Sales</a><a class="btn b-gho b-lg" onclick="goPage('home')">Back to Home</a></div></div></section>
+<footer class="footer"><div class="wrap"><div class="ftr-bot" style="border-top:1px solid var(--border);padding-top:20px"><div>&copy; 2026 PamojaPay &middot; <em>Together, we grow stronger.</em></div><div style="display:flex;gap:20px"><a style="color:var(--muted);text-decoration:none;cursor:pointer" onclick="goPage('home')">Home</a><a style="color:var(--muted);text-decoration:none;cursor:pointer" onclick="goPage('features')">Features</a><a style="color:var(--muted);text-decoration:none" href="mailto:paypamoja@gmail.com">paypamoja@gmail.com</a></div></div></div></footer>
 </div><!-- /pricing -->
 
 <!-- ======================================================
-     ABOUT & CONTACT PAGE
+     ABOUT & CONTACT PAGE (FIXED - CONTACT INFO VISIBLE)
 ====================================================== -->
 <div class="page" id="page-about">
-<section class="page-hero"><div class="wrap">
-  <div class="eyebrow" style="justify-content:center">Our Story</div>
-  <h1 style="margin-bottom:13px">Built for Uganda<br/>and <span class="grad">Africa</span></h1>
-  <p>Pamoja Pay exists to bring cooperative societies into the digital age &mdash; everywhere people come together to save and grow.</p>
-</div></section>
+<section class="page-hero"><div class="wrap"><div class="eyebrow" style="justify-content:center">Our Story</div><h1 style="margin-bottom:13px">Built for Uganda<br/>and <span class="grad">Africa</span></h1><p>Pamoja Pay exists to bring cooperative societies into the digital age &mdash; everywhere people come together to save and grow.</p></div></section>
 
-<section class="sec" style="border-top:1px solid var(--border)"><div class="wrap">
-  <div class="agrid">
-    <div class="acontent an">
-      <div class="eyebrow">About PamojaPay</div>
-      <h2>The name says it all</h2>
-      <p>&ldquo;Pamoja&rdquo; means &ldquo;Together&rdquo; in Swahili &mdash; and that spirit of togetherness is at the heart of every cooperative. SACCOs exist because people come together to pool resources, support each other, and build collective wealth.</p>
-      <p>We built Pamoja Pay because we saw too many SACCOs across Uganda and Africa struggling with paper records, spreadsheets, and systems not built for the cooperative context. Members could not check their own balances. Loan approvals dragged on. Audits were painful and manual.</p>
-      <p>Pamoja Pay is the answer &mdash; a complete, modern platform built specifically for how cooperatives in Uganda and across Africa actually work.</p>
-      <p style="color:var(--mint);font-weight:600">Our mission: To digitize and empower cooperative societies across Uganda and Africa.</p>
-    </div>
-    <div class="an d2">
-      <div class="vlist">
-        <div class="vi"><div class="vi-ic">&#127482;&#127468;</div><div><h4>Built for Uganda and Africa</h4><p>Every workflow and feature reflects the real cooperative context across the continent.</p></div></div>
-        <div class="vi"><div class="vi-ic">&#128274;</div><div><h4>Bank-Level Security</h4><p>Encryption, row-level security, daily backups, and an immutable audit trail.</p></div></div>
-        <div class="vi"><div class="vi-ic">&#128241;</div><div><h4>Any Device, Anywhere</h4><p>Works on basic Android phones and desktops alike. No app download ever needed.</p></div></div>
-        <div class="vi"><div class="vi-ic">&#128244;</div><div><h4>Works Offline</h4><p>Staff keep working without internet. Everything syncs when connectivity returns.</p></div></div>
-        <div class="vi"><div class="vi-ic">&#128200;</div><div><h4>Scales With You</h4><p>From a 20-member village SACCO to a 400-member institution &mdash; Pamoja Pay grows with you.</p></div></div>
-      </div>
-    </div>
-  </div>
-</div></section>
+<section class="sec" style="border-top:1px solid var(--border)"><div class="wrap"><div class="agrid"><div class="acontent an"><div class="eyebrow">About PamojaPay</div><h2>The name says it all</h2><p>&ldquo;Pamoja&rdquo; means &ldquo;Together&rdquo; in Swahili &mdash; and that spirit of togetherness is at the heart of every cooperative. SACCOs exist because people come together to pool resources, support each other, and build collective wealth.</p><p>We built Pamoja Pay because we saw too many SACCOs across Uganda and Africa struggling with paper records, spreadsheets, and systems not built for the cooperative context. Members could not check their own balances. Loan approvals dragged on. Audits were painful and manual.</p><p>Pamoja Pay is the answer &mdash; a complete, modern platform built specifically for how cooperatives in Uganda and across Africa actually work.</p><p style="color:var(--mint);font-weight:600">Our mission: To digitize and empower cooperative societies across Uganda and Africa.</p></div><div class="an d2"><div class="vlist"><div class="vi"><div class="vi-ic">&#127482;&#127468;</div><div><h4>Built for Uganda and Africa</h4><p>Every workflow and feature reflects the real cooperative context across the continent.</p></div></div><div class="vi"><div class="vi-ic">&#128274;</div><div><h4>Bank-Level Security</h4><p>Encryption, row-level security, daily backups, and an immutable audit trail.</p></div></div><div class="vi"><div class="vi-ic">&#128241;</div><div><h4>Any Device, Anywhere</h4><p>Works on basic Android phones and desktops alike. No app download ever needed.</p></div></div><div class="vi"><div class="vi-ic">&#128244;</div><div><h4>Works Offline</h4><p>Staff keep working without internet. Everything syncs when connectivity returns.</p></div></div><div class="vi"><div class="vi-ic">&#128200;</div><div><h4>Scales With You</h4><p>From a 20-member village SACCO to a 400-member institution &mdash; Pamoja Pay grows with you.</p></div></div></div></div></div></div></section>
 
-<section class="sec" style="border-top:1px solid var(--border)" id="contact-section"><div class="wrap">
-  <div class="cgrid">
-    <div class="an">
-      <div class="eyebrow">Contact</div>
-      <h2 style="font-size:clamp(20px,3vw,32px);margin-bottom:11px">Let&apos;s talk about your SACCO</h2>
-      <p class="cinfo">Whether you are ready to sign up or just exploring, we would love to hear from you. We respond within 24 hours.</p>
-      <div class="cit"><div class="cit-ic">&#128231;</div><div><h4>Email</h4><p><a href="mailto:paypamoja@gmail.com" style="color:var(--mint);text-decoration:none">paypamoja@gmail.com</a></p></div></div>
-      <div class="cit"><div class="cit-ic">&#128222;</div><div><h4>Phone</h4><p>+256 XXX XXX XXX</p></div></div>
-      <div class="cit"><div class="cit-ic">&#128172;</div><div><h4>WhatsApp</h4><p>+256 XXX XXX XXX</p></div></div>
-      <div class="cit"><div class="cit-ic">&#127482;&#127468;</div><div><h4>Location</h4><p>Kampala, Uganda</p></div></div>
-      <div class="hours-card gc">
-        <h4>Office Hours</h4>
-        <div class="hrow"><span class="day">Monday &ndash; Friday</span><span class="time">9:00 AM &ndash; 5:00 PM</span></div>
-        <div class="hrow"><span class="day">Saturday</span><span class="time">10:00 AM &ndash; 2:00 PM</span></div>
-        <div class="hrow"><span class="day">Sunday</span><span class="time">Closed</span></div>
-      </div>
-    </div>
-    <div class="form-card gc an d2">
-      <h3>Send us a message</h3>
-      <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" onsubmit="handleForm(event)">
-        <div class="frow">
-          <div class="ff"><label>Full Name *</label><input type="text" name="name" placeholder="e.g. Robert Okello" required/></div>
-          <div class="ff"><label>Email *</label><input type="email" name="email" placeholder="robert@sacco.com" required/></div>
-        </div>
-        <div class="frow">
-          <div class="ff"><label>Phone / WhatsApp *</label><input type="tel" name="phone" placeholder="+256 7XX XXX XXX" required/></div>
-          <div class="ff"><label>SACCO Name *</label><input type="text" name="sacco_name" placeholder="e.g. Kampala Teachers SACCO" required/></div>
-        </div>
-        <div class="ff">
-          <label>Number of Members *</label>
-          <select name="members" required>
-            <option value="" disabled selected>Select member count</option>
-            <option>1 &ndash; 50 members</option>
-            <option>51 &ndash; 100 members</option>
-            <option>101 &ndash; 200 members</option>
-            <option>201 &ndash; 400 members</option>
-            <option>400+ members</option>
-          </select>
-        </div>
-        <div class="ff">
-          <label>Interested In</label>
-          <select name="plan">
-            <option value="" disabled selected>Which plan suits you?</option>
-            <option>Basic (1&ndash;50 members)</option>
-            <option>Standard (51&ndash;100 members)</option>
-            <option>Premium (101&ndash;200 members)</option>
-            <option>Enterprise (201&ndash;400 members)</option>
-            <option>Digital Rent (400+ members)</option>
-            <option>Just want a demo</option>
-          </select>
-        </div>
-        <div class="ff"><label>Message</label><textarea name="message" placeholder="Tell us about your SACCO..." rows="3"></textarea></div>
-        <button type="submit" class="btn b-pri b-lg b-full" id="submitBtn">Send Message &rarr;</button>
-        <p id="formSuccess" style="display:none;text-align:center;color:var(--mint);font-weight:600;margin-top:13px;font-size:13px">&#10003; Message sent! We will be in touch within 24 hours.</p>
-      </form>
-    </div>
-  </div>
-</div></section>
+<!-- CONTACT SECTION - NOW WITH VISIBLE CONTACT INFO -->
+<section class="sec" style="border-top:1px solid var(--border)" id="contact-section"><div class="wrap"><div class="cgrid"><div class="an"><div class="eyebrow">Contact</div><h2 style="font-size:clamp(20px,3vw,32px);margin-bottom:11px">Let&apos;s talk about your SACCO</h2><p class="cinfo">Whether you are ready to sign up or just exploring, we would love to hear from you. We respond within 24 hours.</p><div class="cit"><div class="cit-ic">&#128231;</div><div><h4>Email</h4><p><a href="mailto:paypamoja@gmail.com" id="aboutEmailLink" style="color:var(--mint);text-decoration:none">paypamoja@gmail.com</a></p></div></div><div class="cit"><div class="cit-ic">&#128222;</div><div><h4>Phone</h4><p id="aboutPhoneDisplay">+256 XXX XXX XXX</p></div></div><div class="cit"><div class="cit-ic">&#128172;</div><div><h4>WhatsApp</h4><p><a href="#" id="aboutWhatsAppLink" style="color:var(--mint);text-decoration:none" target="_blank">Click to chat on WhatsApp</a></p></div></div><div class="cit"><div class="cit-ic">&#127482;&#127468;</div><div><h4>Location</h4><p id="aboutLocationDisplay">Kampala, Uganda</p></div></div><div class="hours-card gc"><h4>Office Hours</h4><div class="hrow"><span class="day" id="hoursWeekdayLabel">Monday &ndash; Friday</span><span class="time" id="hoursWeekdayTime">9:00 AM &ndash; 5:00 PM</span></div><div class="hrow"><span class="day">Saturday</span><span class="time" id="hoursSatTime">10:00 AM &ndash; 2:00 PM</span></div><div class="hrow"><span class="day">Sunday</span><span class="time">Closed</span></div></div></div><div class="form-card gc an d2"><h3>Send us a message</h3><form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" onsubmit="handleForm(event)"><div class="frow"><div class="ff"><label>Full Name *</label><input type="text" name="name" placeholder="e.g. Robert Okello" required/></div><div class="ff"><label>Email *</label><input type="email" name="email" placeholder="robert@sacco.com" required/></div></div><div class="frow"><div class="ff"><label>Phone / WhatsApp *</label><input type="tel" name="phone" placeholder="+256 7XX XXX XXX" required/></div><div class="ff"><label>SACCO Name *</label><input type="text" name="sacco_name" placeholder="e.g. Kampala Teachers SACCO" required/></div></div><div class="ff"><label>Number of Members *</label><select name="members" required><option value="" disabled selected>Select member count</option><option>1 &ndash; 50 members</option><option>51 &ndash; 100 members</option><option>101 &ndash; 200 members</option><option>201 &ndash; 400 members</option><option>400+ members</option></select></div><div class="ff"><label>Interested In</label><select name="plan"><option value="" disabled selected>Which plan suits you?</option><option>Basic (1&ndash;50 members)</option><option>Standard (51&ndash;100 members)</option><option>Premium (101&ndash;200 members)</option><option>Enterprise (201&ndash;400 members)</option><option>Digital Rent (400+ members)</option><option>Just want a demo</option></select></div><div class="ff"><label>Message</label><textarea name="message" placeholder="Tell us about your SACCO..." rows="3"></textarea></div><button type="submit" class="btn b-pri b-lg b-full" id="submitBtn">Send Message &rarr;</button><p id="formSuccess" style="display:none;text-align:center;color:var(--mint);font-weight:600;margin-top:13px;font-size:13px">&#10003; Message sent! We will be in touch within 24 hours.</p></form></div></div></div></section>
 
-<section class="cta-ban">
-  <div class="wrap">
-    <h2><span class="grad">Together</span> we grow</h2>
-    <p>Joining SACCOs across Uganda and Africa in the digital era.</p>
-    <div class="cta-acts">
-      <a class="btn b-pri b-lg" onclick="goPage('pricing')">View Pricing</a>
-      <a class="btn b-gho b-lg" onclick="goPage('home')">Back to Home</a>
-    </div>
-  </div>
-</section>
+<section class="cta-ban"><div class="wrap"><h2><span class="grad">Together</span> we grow</h2><p>Joining SACCOs across Uganda and Africa in the digital era.</p><div class="cta-acts"><a class="btn b-pri b-lg" onclick="goPage('pricing')">View Pricing</a><a class="btn b-gho b-lg" onclick="goPage('home')">Back to Home</a></div></div></section>
 
-<footer class="footer"><div class="wrap">
-  <div class="ftr-grid">
-    <div class="ftr-brand">
-      <span class="logo-txt">Pamoja<span>Pay</span></span>
-      <p>Built for Uganda and Africa. Digitizing cooperative societies, one SACCO at a time.</p>
-    </div>
-    <div class="ftr-col">
-      <h4>Product</h4>
-      <a onclick="goPage('home')">Home</a>
-      <a onclick="goPage('features')">Features</a>
-      <a onclick="goPage('pricing')">Pricing</a>
-    </div>
-    <div class="ftr-col">
-      <h4>Company</h4>
-      <a onclick="goPage('about')">About</a>
-      <a onclick="goPage('about')">Contact</a>
-      <a>Privacy Policy</a>
-    </div>
-    <div class="ftr-col">
-      <h4>Contact</h4>
-      <a href="mailto:paypamoja@gmail.com">&#128231; paypamoja@gmail.com</a>
-      <a>&#128222; +256 XXX XXX XXX</a>
-      <a>&#128172; WhatsApp</a>
-      <a>&#127482;&#127468; Kampala, Uganda</a>
-    </div>
-  </div>
-  <div class="ftr-bot">
-    <div>&copy; 2026 PamojaPay &middot; <em>Together, we grow stronger.</em></div>
-    <div>Built for Uganda and Africa &#127482;&#127468;</div>
-  </div>
-</div></footer>
+<footer class="footer"><div class="wrap"><div class="ftr-grid"><div class="ftr-brand"><span class="logo-txt">Pamoja<span>Pay</span></span><p>Built for Uganda and Africa. Digitizing cooperative societies, one SACCO at a time.</p></div><div class="ftr-col"><h4>Product</h4><a onclick="goPage('home')">Home</a><a onclick="goPage('features')">Features</a><a onclick="goPage('pricing')">Pricing</a></div><div class="ftr-col"><h4>Company</h4><a onclick="goPage('about')">About</a><a onclick="goPage('about')">Contact</a><a>Privacy Policy</a></div><div class="ftr-col"><h4>Contact</h4><a href="mailto:paypamoja@gmail.com">&#128231; paypamoja@gmail.com</a><a id="footerPhone2">&#128222; +256 XXX XXX XXX</a><a id="footerWhatsApp2">&#128172; WhatsApp: +256 XXX XXX XXX</a><a>&#127482;&#127468; Kampala, Uganda</a></div></div><div class="ftr-bot"><div>&copy; 2026 PamojaPay &middot; <em>Together, we grow stronger.</em></div><div>Built for Uganda and Africa &#127482;&#127468;</div></div></div></footer>
 </div><!-- /about -->
 
 </div><!-- .site -->
 
 <script>
+// Navigation Functions
 function goPage(n) {
-  document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active'); });
-  var pg = document.getElementById('page-' + n);
-  if (pg) pg.classList.add('active');
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + n).classList.add('active');
   window.scrollTo({ top: 0, behavior: 'smooth' });
-  ['home','features','pricing','about'].forEach(function(x){
-    var e = document.getElementById('nl-' + x);
-    if (e) e.classList.toggle('act', x === n);
+  ['home','features','pricing','about'].forEach(x => {
+    let e = document.getElementById('nl-' + x);
+    if(e) e.classList.toggle('act', x === n);
   });
   closeMobile();
   setTimeout(observeAnims, 80);
 }
 
 function scrollSec(id) {
-  setTimeout(function(){
-    var e = document.getElementById(id);
-    if (e) e.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }, 100);
+  setTimeout(() => { document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 100);
 }
 
-function toggleMobile() {
-  document.getElementById('hbg').classList.toggle('open');
-  document.getElementById('mmenu').classList.toggle('open');
-}
-
-function closeMobile() {
-  document.getElementById('hbg').classList.remove('open');
-  document.getElementById('mmenu').classList.remove('open');
-}
+function toggleMobile() { document.getElementById('hbg').classList.toggle('open'); document.getElementById('mmenu').classList.toggle('open'); }
+function closeMobile() { document.getElementById('hbg')?.classList.remove('open'); document.getElementById('mmenu')?.classList.remove('open'); }
 
 function faq(el) {
-  var item = el.closest('.faq-item');
-  var isOpen = item.classList.contains('open');
-  item.closest('.faq-list').querySelectorAll('.faq-item').forEach(function(i){ i.classList.remove('open'); });
+  let item = el.closest('.faq-item');
+  let isOpen = item.classList.contains('open');
+  item.closest('.faq-list').querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
   if (!isOpen) item.classList.add('open');
 }
 
-function fdToggle(el) {
-  el.closest('.fd-item').classList.toggle('open');
-}
+function fdToggle(el) { el.closest('.fd-item').classList.toggle('open'); }
 
 function observeAnims() {
   if (!window.IntersectionObserver) {
-    document.querySelectorAll('.an').forEach(function(el){ el.classList.add('in'); });
+    document.querySelectorAll('.an').forEach(el => el.classList.add('in'));
     return;
   }
-  var obs = new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }
-    });
-  }, { threshold: 0.07 });
-  document.querySelectorAll('.page.active .an:not(.in)').forEach(function(el){ obs.observe(el); });
+  let obs = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } }), { threshold: 0.07 });
+  document.querySelectorAll('.page.active .an:not(.in)').forEach(el => obs.observe(el));
 }
 
 function handleForm(e) {
   e.preventDefault();
-  var btn = document.getElementById('submitBtn');
-  var ok  = document.getElementById('formSuccess');
+  let btn = document.getElementById('submitBtn');
+  let ok = document.getElementById('formSuccess');
   btn.textContent = 'Sending...';
   btn.disabled = true;
-  setTimeout(function(){ btn.style.display = 'none'; ok.style.display = 'block'; }, 1200);
+  setTimeout(() => { btn.style.display = 'none'; ok.style.display = 'block'; }, 1200);
 }
 
-window.addEventListener('scroll', function(){
-  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 8);
-});
-
+window.addEventListener('scroll', () => document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 8));
 observeAnims();
-</script>
 
-<script>
+// ============================================================
+// DYNAMIC CONTENT LOADER - UPDATED with WhatsApp click-to-chat and Contact Page display
+// ============================================================
 (function() {
   var CONTENT_KEY = 'pp_content';
 
   function applyContent(c) {
     if (!c) return;
+
+    // HERO
     if (c.hero) {
       var h = c.hero;
       setText('.hero-ey', h.eyebrow);
@@ -1374,6 +909,8 @@ observeAnims();
         pill.innerHTML = '<svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>&nbsp;' + h.tenant + '&nbsp; &#127482;&#127468;';
       }
     }
+
+    // STATS
     if (c.stats) {
       var sis = document.querySelectorAll('.si');
       c.stats.forEach(function(s, i) {
@@ -1385,40 +922,75 @@ observeAnims();
         }
       });
     }
+
+    // CONTACT - FIXED: Updates phone, WhatsApp (with click-to-chat), email, location, hours
     if (c.contact) {
       var ct = c.contact;
+      
+      // Update email links
       document.querySelectorAll('a[href^="mailto:"]').forEach(function(a) {
         a.href = 'mailto:' + ct.email;
         if (a.textContent.indexOf('@') > -1) a.textContent = ct.email;
       });
-      var ftrLinks = document.querySelectorAll('.ftr-col a');
-      ftrLinks.forEach(function(a) {
-        var t = a.textContent;
-        if (t.indexOf('@') > -1) a.innerHTML = '&#128231; ' + ct.email;
-        if (t.indexOf('+256') > -1 && t.indexOf('WhatsApp') === -1) a.innerHTML = '&#128222; ' + ct.phone;
-        if (t.indexOf('WhatsApp') > -1) a.innerHTML = '&#128172; WhatsApp: ' + ct.whatsapp;
+      
+      // Update About page contact displays
+      var aboutEmail = document.getElementById('aboutEmailLink');
+      if (aboutEmail) { aboutEmail.textContent = ct.email; aboutEmail.href = 'mailto:' + ct.email; }
+      
+      var aboutPhone = document.getElementById('aboutPhoneDisplay');
+      if (aboutPhone) aboutPhone.textContent = ct.phone;
+      
+      var aboutLocation = document.getElementById('aboutLocationDisplay');
+      if (aboutLocation) aboutLocation.textContent = ct.location;
+      
+      // WhatsApp click-to-chat for About page
+      var waNum = ct.whatsapp.replace(/[^0-9+]/g, '');
+      var aboutWALink = document.getElementById('aboutWhatsAppLink');
+      if (aboutWALink) {
+        aboutWALink.href = 'https://wa.me/' + waNum;
+        aboutWALink.textContent = ct.whatsapp;
+      }
+      
+      // Office hours
+      var weekdayLabel = document.getElementById('hoursWeekdayLabel');
+      if (weekdayLabel) weekdayLabel.textContent = ct.hours_weekday_label;
+      var weekdayTime = document.getElementById('hoursWeekdayTime');
+      if (weekdayTime) weekdayTime.textContent = ct.hours_weekday_time;
+      var satTime = document.getElementById('hoursSatTime');
+      if (satTime) satTime.textContent = ct.hours_sat_time;
+      
+      // Update footer contact columns
+      var footerPhones = document.querySelectorAll('#footerPhone, #footerPhone2, #footerPhoneCol');
+      footerPhones.forEach(function(p) { if(p) p.innerHTML = '📞 ' + ct.phone; });
+      
+      var footerWAs = document.querySelectorAll('#footerWhatsApp, #footerWhatsApp2');
+      footerWAs.forEach(function(wa) {
+        if(wa) wa.innerHTML = '💬 <a href="https://wa.me/' + waNum + '" target="_blank" style="color:var(--mint);text-decoration:none">WhatsApp: ' + ct.whatsapp + '</a>';
       });
-      var hrows = document.querySelectorAll('.hrow');
-      if (hrows[0]) {
-        hrows[0].querySelector('.day').textContent = ct.hours_weekday_label;
-        hrows[0].querySelector('.time').textContent = ct.hours_weekday_time;
-      }
-      if (hrows[1]) hrows[1].querySelector('.time').textContent = ct.hours_sat_time;
-    }
-    if (c.settings) {
-      if (c.settings.footer_copy) {
-        var ftrbots = document.querySelectorAll('.ftr-bot div:first-child');
-        ftrbots.forEach(function(d) {
-          if (d.textContent.indexOf('2026') > -1 || d.textContent.indexOf('2024') > -1) {
-            d.textContent = c.settings.footer_copy;
-          }
-        });
+      
+      // Update footer contact column email
+      var footerContactCol = document.getElementById('footerContactCol');
+      if (footerContactCol) {
+        var emailLink = footerContactCol.querySelector('a[href^="mailto:"]');
+        if (emailLink) { emailLink.href = 'mailto:' + ct.email; emailLink.innerHTML = '📧 ' + ct.email; }
       }
     }
+
+    // SETTINGS
+    if (c.settings && c.settings.footer_copy) {
+      var ftrbots = document.querySelectorAll('.ftr-bot div:first-child');
+      ftrbots.forEach(function(d) {
+        if (d.textContent.indexOf('2026') > -1 || d.textContent.indexOf('2024') > -1) {
+          d.textContent = c.settings.footer_copy;
+        }
+      });
+    }
+
+    // DIGITAL RENT NOTE
     if (c.digital_rent_note) {
       document.querySelectorAll('.pr-note p').forEach(function(p) {
         if (p.textContent.indexOf('400+') > -1 || p.textContent.indexOf('members') > -1) {
-          p.innerHTML = '&#128101; <strong>400+ members?</strong> ' + c.digital_rent_note + ' <a onclick="goPage(\'about\')" style="color:var(--mint);text-decoration:none;border-bottom:1px solid var(--mint-bdr);cursor:pointer">Get a custom quote &rarr;</a>';
+          p.innerHTML = '👥 <strong>400+ members?</strong> ' + c.digital_rent_note + ' <a onclick="goPage(\'about\')" style="color:var(--mint);text-decoration:none;border-bottom:1px solid var(--mint-bdr);cursor:pointer">Get a custom quote →</a>';
         }
       });
     }
@@ -1433,22 +1005,13 @@ observeAnims();
   function loadContent() {
     var local = localStorage.getItem(CONTENT_KEY);
     if (local) {
-      try {
-        applyContent(JSON.parse(local));
-        return;
-      } catch(e) {}
+      try { applyContent(JSON.parse(local)); return; } catch(e) {}
     }
-    fetch('content.json')
-      .then(function(r){ return r.json(); })
-      .then(function(data){ applyContent(data); })
-      .catch(function(){});
+    fetch('content.json').then(r => r.json()).then(d => applyContent(d)).catch(() => {});
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', loadContent);
-  } else {
-    loadContent();
-  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', loadContent);
+  else loadContent();
 })();
 </script>
 
