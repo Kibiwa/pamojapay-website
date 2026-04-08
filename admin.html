@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>PamojaPay CMS &mdash; Admin</title>
+<title>PamojaPay CMS &mdash; Advanced Admin Control Panel</title>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <style>
 :root{
@@ -11,8 +11,8 @@
   --white:#fff;--muted:rgba(255,255,255,.5);--muted2:rgba(255,255,255,.28);
   --glass:rgba(255,255,255,.055);--glass2:rgba(255,255,255,.09);
   --border:rgba(255,255,255,.08);--border2:rgba(255,255,255,.15);
-  --red:#ff5252;--green:#00e5a0;--amber:#ffc107;
-  --sidebar:220px;
+  --red:#ff5252;--green:#00e5a0;--amber:#ffc107;--orange:#ff914d;
+  --sidebar:260px;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%;font-family:'Sora',sans-serif;background:var(--navy);color:var(--white);font-size:14px}
@@ -21,11 +21,11 @@ html,body{height:100%;font-family:'Sora',sans-serif;background:var(--navy);color
 .cms-layout{display:flex;height:100vh;overflow:hidden}
 
 /* SIDEBAR */
-.sidebar{width:var(--sidebar);flex-shrink:0;background:rgba(6,15,30,.95);
+.sidebar{width:var(--sidebar);flex-shrink:0;background:rgba(6,15,30,.96);
   border-right:1px solid var(--border);display:flex;flex-direction:column;
   overflow-y:auto;position:relative;z-index:10}
 .sidebar-logo{padding:20px 18px;border-bottom:1px solid var(--border)}
-.sidebar-logo .logo-txt{font-size:17px;font-weight:800;letter-spacing:-.4px}
+.sidebar-logo .logo-txt{font-size:18px;font-weight:800;letter-spacing:-.4px}
 .sidebar-logo .logo-txt span{color:var(--mint)}
 .sidebar-logo .cms-label{font-size:9px;font-weight:600;letter-spacing:2px;
   text-transform:uppercase;color:var(--muted);margin-top:2px}
@@ -38,7 +38,7 @@ html,body{height:100%;font-family:'Sora',sans-serif;background:var(--navy);color
   transition:all .2s;margin-bottom:2px;border:none;background:none;width:100%;text-align:left}
 .nav-item:hover{color:var(--white);background:var(--glass2)}
 .nav-item.active{color:var(--white);background:rgba(26,108,246,.2);font-weight:600}
-.nav-item .nav-icon{font-size:15px;width:20px;text-align:center}
+.nav-item .nav-icon{font-size:15px;width:22px;text-align:center}
 .sidebar-footer{padding:14px 16px;border-top:1px solid var(--border)}
 .sidebar-footer .site-link{display:flex;align-items:center;gap:7px;font-size:11px;
   color:var(--muted);text-decoration:none;transition:color .2s}
@@ -48,7 +48,7 @@ html,body{height:100%;font-family:'Sora',sans-serif;background:var(--navy);color
 .cms-main{flex:1;overflow-y:auto;display:flex;flex-direction:column}
 .cms-header{padding:16px 28px;border-bottom:1px solid var(--border);
   display:flex;align-items:center;justify-content:space-between;
-  background:rgba(6,15,30,.6);backdrop-filter:blur(10px);position:sticky;top:0;z-index:5}
+  background:rgba(6,15,30,.8);backdrop-filter:blur(10px);position:sticky;top:0;z-index:5}
 .cms-header h1{font-size:16px;font-weight:700}
 .cms-header .hdr-sub{font-size:11px;color:var(--muted);margin-top:1px}
 .hdr-actions{display:flex;align-items:center;gap:10px}
@@ -71,6 +71,7 @@ html,body{height:100%;font-family:'Sora',sans-serif;background:var(--navy);color
 .btn-danger{background:rgba(255,82,82,.15);color:var(--red);border:1px solid rgba(255,82,82,.25)}
 .btn-danger:hover{background:rgba(255,82,82,.25)}
 .btn-success{background:rgba(0,229,160,.15);color:var(--green);border:1px solid rgba(0,229,160,.25)}
+.btn-warning{background:rgba(255,193,7,.15);color:var(--amber);border:1px solid rgba(255,193,7,.25)}
 
 /* CONTENT AREA */
 .cms-content{padding:24px 28px;flex:1}
@@ -81,11 +82,21 @@ html,body{height:100%;font-family:'Sora',sans-serif;background:var(--navy);color
 .card h2 .card-icon{font-size:16px}
 .card-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .card-grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+.card-grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+
+/* STAT CARDS */
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px}
+.stat-card{padding:18px;border-radius:14px;background:var(--glass);border:1px solid var(--border)}
+.stat-card .stat-val{font-size:24px;font-weight:800;line-height:1}
+.stat-card .stat-lbl{font-size:10px;font-weight:500;color:var(--muted);margin-top:4px;
+  text-transform:uppercase;letter-spacing:.8px}
+.stat-card .stat-delta{font-size:10px;color:var(--green);margin-top:6px}
 
 /* FORM FIELDS */
 .ff{margin-bottom:14px}
 .ff label{display:block;font-size:10px;font-weight:700;letter-spacing:.8px;
   text-transform:uppercase;color:var(--muted);margin-bottom:5px}
+.ff label .required{color:var(--red);margin-left:3px}
 .ff input,.ff textarea,.ff select{
   width:100%;padding:9px 11px;background:rgba(255,255,255,.05);
   border:1px solid var(--border);border-radius:8px;
@@ -98,32 +109,44 @@ html,body{height:100%;font-family:'Sora',sans-serif;background:var(--navy);color
 .ff select option{background:#0a1628}
 .ff-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .ff-row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.ff-row-4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
 .ff-hint{font-size:10px;color:var(--muted2);margin-top:3px}
 
-/* TOGGLE */
-.toggle-wrap{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--muted)}
-.toggle{width:36px;height:20px;background:rgba(255,255,255,.1);border-radius:10px;
-  position:relative;cursor:pointer;transition:background .2s}
-.toggle.on{background:var(--mint)}
-.toggle::after{content:"";position:absolute;width:14px;height:14px;background:#fff;
-  border-radius:50%;top:3px;left:3px;transition:transform .2s}
-.toggle.on::after{transform:translateX(16px)}
+/* TOGGLE SWITCH */
+.toggle-switch{display:flex;align-items:center;gap:10px;cursor:pointer}
+.toggle-switch input{display:none}
+.toggle-slider{width:40px;height:20px;background:rgba(255,255,255,.15);border-radius:20px;
+  position:relative;transition:all .2s}
+.toggle-slider:before{content:"";position:absolute;width:16px;height:16px;background:#fff;
+  border-radius:50%;top:2px;left:2px;transition:transform .2s}
+.toggle-switch input:checked + .toggle-slider{background:var(--mint)}
+.toggle-switch input:checked + .toggle-slider:before{transform:translateX(20px)}
+.toggle-label{font-size:11px;font-weight:500;color:var(--muted)}
 
-/* TABLE */
-.cms-table{width:100%;border-collapse:collapse;font-size:12px}
-.cms-table th,.cms-table td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--border)}
-.cms-table th{font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;
-  color:var(--muted2);background:rgba(255,255,255,.02)}
-.cms-table tr:hover td{background:var(--glass2)}
-.cms-table td:last-child{text-align:right}
+/* REPEATER */
+.repeater{display:flex;flex-direction:column;gap:10px}
+.repeater-item{background:rgba(255,255,255,.03);border:1px solid var(--border);
+  border-radius:12px;padding:14px;position:relative}
+.repeater-item .ri-handle{cursor:grab;color:var(--muted);font-size:14px;margin-right:8px}
+.repeater-item .ri-del{position:absolute;top:10px;right:10px;background:none;border:none;
+  cursor:pointer;color:var(--red);font-size:12px;opacity:.6;transition:opacity .2s}
+.repeater-item .ri-del:hover{opacity:1}
+.add-row-btn{display:flex;align-items:center;justify-content:center;gap:7px;
+  width:100%;padding:10px;border:1px dashed var(--border2);border-radius:10px;
+  background:none;color:var(--muted);font-family:'Sora',sans-serif;font-size:12px;
+  cursor:pointer;transition:all .2s;margin-top:8px}
+.add-row-btn:hover{border-color:var(--mint);color:var(--mint)}
 
-/* BADGE */
-.badge{display:inline-flex;align-items:center;font-size:10px;font-weight:700;
-  padding:2px 8px;border-radius:20px}
-.badge-green{background:rgba(0,229,160,.15);color:var(--green)}
-.badge-blue{background:rgba(26,108,246,.15);color:#6ec6ff}
-.badge-amber{background:rgba(255,193,7,.15);color:var(--amber)}
-.badge-red{background:rgba(255,82,82,.15);color:var(--red)}
+/* SECTION PANEL */
+.section-panel{display:none}
+.section-panel.active{display:block}
+
+/* LOADING OVERLAY */
+.loading-overlay{position:fixed;inset:0;background:rgba(6,15,30,.9);
+  display:flex;align-items:center;justify-content:center;z-index:200;display:none}
+.spinner{width:36px;height:36px;border:3px solid var(--border2);
+  border-top-color:var(--blue);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
 
 /* TOAST */
 .toast-container{position:fixed;bottom:24px;right:24px;z-index:1000;display:flex;flex-direction:column;gap:8px}
@@ -144,38 +167,13 @@ html,body{height:100%;font-family:'Sora',sans-serif;background:var(--navy);color
 .login-card .logo-txt span{color:var(--mint)}
 .login-card p{font-size:12px;color:var(--muted);margin-bottom:24px}
 
-/* STAT CARDS */
-.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px}
-.stat-card{padding:18px;border-radius:14px;background:var(--glass);border:1px solid var(--border)}
-.stat-card .stat-val{font-size:24px;font-weight:800;line-height:1}
-.stat-card .stat-lbl{font-size:10px;font-weight:500;color:var(--muted);margin-top:4px;
-  text-transform:uppercase;letter-spacing:.8px}
-.stat-card .stat-delta{font-size:10px;color:var(--green);margin-top:6px}
+/* PROGRESS BAR */
+.progress-bar{height:4px;background:rgba(255,255,255,.1);border-radius:2px;overflow:hidden;margin-top:8px}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--mint),var(--blue));width:0%;transition:width .3s}
 
-/* SECTION PANEL */
-.section-panel{display:none}
-.section-panel.active{display:block}
-
-/* REPEATER */
-.repeater{display:flex;flex-direction:column;gap:10px}
-.repeater-item{background:rgba(255,255,255,.03);border:1px solid var(--border);
-  border-radius:12px;padding:14px;position:relative}
-.repeater-item .ri-handle{cursor:grab;color:var(--muted);font-size:14px;margin-right:8px}
-.repeater-item .ri-del{position:absolute;top:10px;right:10px;background:none;border:none;
-  cursor:pointer;color:var(--red);font-size:12px;opacity:.6;transition:opacity .2s}
-.repeater-item .ri-del:hover{opacity:1}
-.add-row-btn{display:flex;align-items:center;justify-content:center;gap:7px;
-  width:100%;padding:10px;border:1px dashed var(--border2);border-radius:10px;
-  background:none;color:var(--muted);font-family:'Sora',sans-serif;font-size:12px;
-  cursor:pointer;transition:all .2s;margin-top:8px}
-.add-row-btn:hover{border-color:var(--mint);color:var(--mint)}
-
-/* LOADING */
-.loading-overlay{position:fixed;inset:0;background:rgba(6,15,30,.85);
-  display:flex;align-items:center;justify-content:center;z-index:200;display:none}
-.spinner{width:36px;height:36px;border:3px solid var(--border2);
-  border-top-color:var(--blue);border-radius:50%;animation:spin .8s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
+/* COLOR PICKER */
+.color-preview{width:30px;height:30px;border-radius:6px;border:1px solid var(--border);cursor:pointer}
+.color-input{width:80px;font-family:'DM Mono',monospace;font-size:11px}
 
 /* MOBILE */
 @media(max-width:768px){
@@ -183,187 +181,150 @@ html,body{height:100%;font-family:'Sora',sans-serif;background:var(--navy);color
   .cms-content{padding:16px}
   .stats-row{grid-template-columns:repeat(2,1fr)}
   .card-grid,.ff-row{grid-template-columns:1fr}
-  .ff-row-3{grid-template-columns:1fr}
+  .card-grid-4{grid-template-columns:repeat(2,1fr)}
 }
 </style>
 </head>
 <body>
 
-<!-- Loading overlay -->
-<div class="loading-overlay" id="loadingOverlay">
-  <div class="spinner"></div>
-</div>
+<div class="loading-overlay" id="loadingOverlay"><div class="spinner"></div></div>
 
 <!-- LOGIN SCREEN -->
 <div class="login-screen" id="loginScreen">
   <div class="login-card">
     <div class="logo-txt">Pamoja<span>Pay</span></div>
-    <p>Admin CMS &mdash; Sign in to manage your website</p>
+    <p>Advanced CMS &mdash; Complete control over your website</p>
     <div class="ff" style="text-align:left">
       <label>Admin Password</label>
       <input type="password" id="loginPass" placeholder="Enter admin password" onkeydown="if(event.key==='Enter')doLogin()"/>
     </div>
     <button class="btn btn-pri btn-md btn-full" onclick="doLogin()" style="margin-top:4px">Sign In &rarr;</button>
-    <p id="loginErr" style="color:var(--red);font-size:11px;margin-top:10px;display:none">Incorrect password. Try again.</p>
+    <p id="loginErr" style="color:var(--red);font-size:11px;margin-top:10px;display:none">Incorrect password.</p>
   </div>
 </div>
 
 <!-- CMS LAYOUT -->
 <div class="cms-layout" id="cmsApp" style="display:none">
 
-  <!-- SIDEBAR -->
   <aside class="sidebar">
     <div class="sidebar-logo">
       <div class="logo-txt">Pamoja<span>Pay</span></div>
-      <div class="cms-label">Content Manager</div>
+      <div class="cms-label">Advanced Content Manager</div>
     </div>
     <nav class="sidebar-nav">
       <div class="nav-group">
-        <div class="nav-group-label">Overview</div>
-        <button class="nav-item active" onclick="showSection('dashboard')">
-          <span class="nav-icon">&#128200;</span> Dashboard
-        </button>
+        <div class="nav-group-label">Dashboard</div>
+        <button class="nav-item active" onclick="showSection('dashboard')"><span class="nav-icon">📊</span> Dashboard</button>
       </div>
       <div class="nav-group">
-        <div class="nav-group-label">Home Page</div>
-        <button class="nav-item" onclick="showSection('hero')">
-          <span class="nav-icon">&#127968;</span> Hero Section
-        </button>
-        <button class="nav-item" onclick="showSection('features')">
-          <span class="nav-icon">&#9889;</span> Features Grid
-        </button>
-        <button class="nav-item" onclick="showSection('pricing')">
-          <span class="nav-icon">&#128179;</span> Pricing Plans
-        </button>
-        <button class="nav-item" onclick="showSection('testimonials')">
-          <span class="nav-icon">&#11088;</span> Testimonials
-        </button>
-        <button class="nav-item" onclick="showSection('faq')">
-          <span class="nav-icon">&#10067;</span> FAQ
-        </button>
+        <div class="nav-group-label">Home Page Content</div>
+        <button class="nav-item" onclick="showSection('hero')"><span class="nav-icon">🏠</span> Hero Section</button>
+        <button class="nav-item" onclick="showSection('features')"><span class="nav-icon">⚡</span> Features Grid</button>
+        <button class="nav-item" onclick="showSection('pricing')"><span class="nav-icon">💰</span> Pricing Plans</button>
+        <button class="nav-item" onclick="showSection('testimonials')"><span class="nav-icon">⭐</span> Testimonials</button>
+        <button class="nav-item" onclick="showSection('faq')"><span class="nav-icon">❓</span> FAQ</button>
+        <button class="nav-item" onclick="showSection('stats')"><span class="nav-icon">📈</span> Stats Bar</button>
       </div>
       <div class="nav-group">
-        <div class="nav-group-label">Other Pages</div>
-        <button class="nav-item" onclick="showSection('about')">
-          <span class="nav-icon">&#128222;</span> About &amp; Contact
-        </button>
-        <button class="nav-item" onclick="showSection('stats')">
-          <span class="nav-icon">&#128101;</span> Stats Bar
-        </button>
+        <div class="nav-group-label">Pages</div>
+        <button class="nav-item" onclick="showSection('about')"><span class="nav-icon">📞</span> About & Contact</button>
+        <button class="nav-item" onclick="showSection('social')"><span class="nav-icon">🌐</span> Social Media</button>
+        <button class="nav-item" onclick="showSection('seo')"><span class="nav-icon">🔍</span> SEO & Metadata</button>
       </div>
       <div class="nav-group">
-        <div class="nav-group-label">Settings</div>
-        <button class="nav-item" onclick="showSection('settings')">
-          <span class="nav-icon">&#9881;</span> Site Settings
-        </button>
-        <button class="nav-item" onclick="doLogout()">
-          <span class="nav-icon">&#128682;</span> Sign Out
-        </button>
+        <div class="nav-group-label">Design & Branding</div>
+        <button class="nav-item" onclick="showSection('branding')"><span class="nav-icon">🎨</span> Colors & Logo</button>
+        <button class="nav-item" onclick="showSection('fonts')"><span class="nav-icon">✒️</span> Typography</button>
+      </div>
+      <div class="nav-group">
+        <div class="nav-group-label">System</div>
+        <button class="nav-item" onclick="showSection('settings')"><span class="nav-icon">⚙️</span> Site Settings</button>
+        <button class="nav-item" onclick="showSection('backup')"><span class="nav-icon">💾</span> Backup & Restore</button>
+        <button class="nav-item" onclick="doLogout()"><span class="nav-icon">🚪</span> Sign Out</button>
       </div>
     </nav>
     <div class="sidebar-footer">
-      <a href="/" target="_blank" class="site-link">&#128279; View Live Site &rarr;</a>
+      <a href="/" target="_blank" class="site-link">🔗 View Live Site &rarr;</a>
     </div>
   </aside>
 
-  <!-- MAIN -->
   <main class="cms-main">
     <div class="cms-header">
       <div>
         <h1 id="sectionTitle">Dashboard</h1>
-        <div class="hdr-sub" id="sectionSub">Overview of your website content</div>
+        <div class="hdr-sub" id="sectionSub">Complete overview of your website content</div>
       </div>
       <div class="hdr-actions">
         <span id="saveStatus" style="font-size:11px;color:var(--muted)"></span>
-        <button class="btn btn-mint btn-sm" id="saveBtn" onclick="saveCurrentSection()" style="display:none">
-          &#10003; Save Changes
-        </button>
+        <button class="btn btn-mint btn-sm" id="saveBtn" onclick="saveCurrentSection()">💾 Save Changes</button>
+        <button class="btn btn-ghost btn-sm" onclick="exportFullContent()">📥 Export All</button>
       </div>
     </div>
 
     <div class="cms-content">
-
       <!-- DASHBOARD -->
       <div class="section-panel active" id="panel-dashboard">
         <div class="stats-row">
-          <div class="stat-card">
-            <div class="stat-val">4</div>
-            <div class="stat-lbl">Pages</div>
-            <div class="stat-delta">Home, Features, Pricing, Contact</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-val" id="db-features">16</div>
-            <div class="stat-lbl">Feature Cards</div>
-            <div class="stat-delta">On home page</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-val" id="db-faqs">7</div>
-            <div class="stat-lbl">FAQ Items</div>
-            <div class="stat-delta">Accordion</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-val" id="db-testis">3</div>
-            <div class="stat-lbl">Testimonials</div>
-            <div class="stat-delta">Placeholder</div>
+          <div class="stat-card"><div class="stat-val" id="db-pages">6</div><div class="stat-lbl">Content Sections</div><div class="stat-delta">Fully editable</div></div>
+          <div class="stat-card"><div class="stat-val" id="db-features">16</div><div class="stat-lbl">Features</div><div class="stat-delta">Active</div></div>
+          <div class="stat-card"><div class="stat-val" id="db-faqs">7</div><div class="stat-lbl">FAQ Items</div><div class="stat-delta">Visible</div></div>
+          <div class="stat-card"><div class="stat-val" id="db-testis">3</div><div class="stat-lbl">Testimonials</div><div class="stat-delta">Published</div></div>
+        </div>
+        <div class="card">
+          <h2><span class="card-icon">🚀</span> Quick Actions</h2>
+          <div class="card-grid-4">
+            <button class="btn btn-ghost btn-md" onclick="showSection('hero')">✏️ Edit Hero</button>
+            <button class="btn btn-ghost btn-md" onclick="showSection('pricing')">💰 Update Pricing</button>
+            <button class="btn btn-ghost btn-md" onclick="showSection('social')">🌐 Social Links</button>
+            <button class="btn btn-ghost btn-md" onclick="exportFullContent()">📥 Backup Now</button>
           </div>
         </div>
         <div class="card">
-          <h2><span class="card-icon">&#128640;</span> Quick Actions</h2>
-          <div class="card-grid">
-            <button class="btn btn-ghost btn-md" onclick="showSection('hero')">&#9999; Edit Hero Text</button>
-            <button class="btn btn-ghost btn-md" onclick="showSection('pricing')">&#128179; Update Pricing</button>
-            <button class="btn btn-ghost btn-md" onclick="showSection('testimonials')">&#11088; Edit Testimonials</button>
-            <button class="btn btn-ghost btn-md" onclick="showSection('about')">&#128222; Update Contact Info</button>
-            <button class="btn btn-ghost btn-md" onclick="showSection('faq')">&#10067; Manage FAQ</button>
-            <button class="btn btn-ghost btn-md" onclick="showSection('settings')">&#9881; Site Settings</button>
-          </div>
-        </div>
-        <div class="card">
-          <h2><span class="card-icon">&#128218;</span> How This CMS Works</h2>
-          <p style="font-size:12px;color:var(--muted);line-height:1.8">
-            This admin panel saves all your website content to your browser&apos;s local storage. 
-            When you save changes, the content is stored locally and the main <code style="font-family:'DM Mono',monospace;font-size:11px;background:rgba(255,255,255,.1);padding:1px 5px;border-radius:4px">index.html</code> reads it on load.<br/><br/>
-            <strong style="color:var(--white)">To make changes permanent:</strong> After saving here, click &ldquo;Export Content JSON&rdquo; in Settings, then paste that JSON into your <code style="font-family:'DM Mono',monospace;font-size:11px;background:rgba(255,255,255,.1);padding:1px 5px;border-radius:4px">content.json</code> file in your GitHub repo. Vercel will auto-deploy.<br/><br/>
-            <strong style="color:var(--mint)">Hosting recommendation:</strong> You are already set up perfectly. Keep Vercel + GitHub. See the Setup Guide in Settings.
-          </p>
+          <h2><span class="card-icon">📋</span> System Status</h2>
+          <div class="ff"><label>Last Backup</label><input type="text" id="lastBackupDate" readonly style="background:rgba(255,255,255,.03)"/></div>
+          <div class="ff"><label>Content Version</label><input type="text" id="contentVersion" readonly style="background:rgba(255,255,255,.03)"/></div>
+          <div class="progress-bar"><div class="progress-fill" id="storageFill" style="width:42%"></div></div>
+          <div class="ff-hint">Storage usage: ~42% of estimated limit</div>
         </div>
       </div>
 
-      <!-- HERO -->
+      <!-- HERO SECTION -->
       <div class="section-panel" id="panel-hero">
         <div class="card">
-          <h2><span class="card-icon">&#127775;</span> Hero Section</h2>
-          <div class="ff"><label>Eyebrow Tag (small text above heading)</label><input type="text" id="hero_eyebrow" placeholder="SACCO Digitalization Solution"/></div>
-          <div class="ff"><label>Main Heading Line 1</label><input type="text" id="hero_h1_l1" placeholder="Complete Financial"/></div>
-          <div class="ff"><label>Main Heading Line 2</label><input type="text" id="hero_h1_l2" placeholder="Management for Your"/></div>
-          <div class="ff"><label>Main Heading Line 3 (gradient accent word)</label><input type="text" id="hero_h1_l3" placeholder="SACCO"/></div>
-          <div class="ff"><label>Subheadline / Description</label><textarea id="hero_sub" rows="3" placeholder="Pamoja Pay brings your savings, loans..."></textarea></div>
+          <h2><span class="card-icon">✨</span> Hero Section Configuration</h2>
+          <div class="ff"><label>Eyebrow Tag <span class="required">*</span></label><input type="text" id="hero_eyebrow" placeholder="SACCO Digitalization Solution"/></div>
+          <div class="ff-row-3">
+            <div class="ff"><label>Heading Line 1</label><input type="text" id="hero_h1_l1" placeholder="Complete Financial"/></div>
+            <div class="ff"><label>Heading Line 2</label><input type="text" id="hero_h1_l2" placeholder="Management for Your"/></div>
+            <div class="ff"><label>Heading Line 3 (Gradient)</label><input type="text" id="hero_h1_l3" placeholder="SACCO"/></div>
+          </div>
+          <div class="ff"><label>Subheadline / Description</label><textarea id="hero_sub" rows="3" placeholder="Describe your platform..."></textarea></div>
           <div class="ff-row">
-            <div class="ff"><label>Primary Button Text</label><input type="text" id="hero_btn1" placeholder="Get Started &rarr;"/></div>
+            <div class="ff"><label>Primary Button Text</label><input type="text" id="hero_btn1" placeholder="Get Started →"/></div>
             <div class="ff"><label>Secondary Button Text</label><input type="text" id="hero_btn2" placeholder="Request Demo"/></div>
           </div>
-          <div class="ff"><label>Tenant Pill Text (below buttons)</label><input type="text" id="hero_tenant" placeholder="First tenant live at BIDA Co-operative"/></div>
+          <div class="ff"><label>Tenant / Trust Badge Text</label><input type="text" id="hero_tenant" placeholder="First tenant live at BIDA Co-operative"/></div>
         </div>
       </div>
 
       <!-- FEATURES -->
       <div class="section-panel" id="panel-features">
         <div class="card">
-          <h2><span class="card-icon">&#9889;</span> Features Grid</h2>
-          <p style="font-size:11px;color:var(--muted);margin-bottom:14px">Edit each feature card shown on the home page.</p>
+          <h2><span class="card-icon">⚡</span> Features Management</h2>
+          <p style="font-size:11px;color:var(--muted);margin-bottom:14px">Add, edit, or reorder the features displayed on your homepage.</p>
           <div class="repeater" id="features-repeater"></div>
-          <button class="add-row-btn" onclick="addFeature()">&#43; Add Feature Card</button>
+          <button class="add-row-btn" onclick="addFeature()">➕ Add Feature Card</button>
         </div>
       </div>
 
       <!-- PRICING -->
       <div class="section-panel" id="panel-pricing">
         <div class="card">
-          <h2><span class="card-icon">&#128179;</span> Pricing Plans</h2>
+          <h2><span class="card-icon">💰</span> Pricing Plans</h2>
           <div id="pricing-panels"></div>
         </div>
         <div class="card">
-          <h2><span class="card-icon">&#128101;</span> Digital Rent Note (400+ members)</h2>
+          <h2><span class="card-icon">📝</span> Digital Rent Note (400+ members)</h2>
           <div class="ff"><label>Note Text</label><textarea id="digital_rent_note" rows="2"></textarea></div>
         </div>
       </div>
@@ -371,122 +332,165 @@ html,body{height:100%;font-family:'Sora',sans-serif;background:var(--navy);color
       <!-- TESTIMONIALS -->
       <div class="section-panel" id="panel-testimonials">
         <div class="card">
-          <h2><span class="card-icon">&#11088;</span> Testimonials</h2>
-          <p style="font-size:11px;color:var(--muted);margin-bottom:14px">Add or edit what your clients say.</p>
+          <h2><span class="card-icon">⭐</span> Client Testimonials</h2>
           <div class="repeater" id="testi-repeater"></div>
-          <button class="add-row-btn" onclick="addTestimonial()">&#43; Add Testimonial</button>
+          <button class="add-row-btn" onclick="addTestimonial()">➕ Add Testimonial</button>
         </div>
       </div>
 
       <!-- FAQ -->
       <div class="section-panel" id="panel-faq">
         <div class="card">
-          <h2><span class="card-icon">&#10067;</span> FAQ Items</h2>
+          <h2><span class="card-icon">❓</span> Frequently Asked Questions</h2>
           <div class="repeater" id="faq-repeater"></div>
-          <button class="add-row-btn" onclick="addFaq()">&#43; Add FAQ Item</button>
+          <button class="add-row-btn" onclick="addFaq()">➕ Add FAQ</button>
         </div>
       </div>
 
-      <!-- ABOUT -->
-      <div class="section-panel" id="panel-about">
-        <div class="card">
-          <h2><span class="card-icon">&#128222;</span> Contact Information</h2>
-          <div class="ff-row">
-            <div class="ff"><label>Email Address</label><input type="email" id="contact_email" placeholder="paypamoja@gmail.com"/></div>
-            <div class="ff"><label>Phone Number</label><input type="tel" id="contact_phone" placeholder="+256 XXX XXX XXX"/></div>
-          </div>
-          <div class="ff-row">
-            <div class="ff"><label>WhatsApp Number</label><input type="tel" id="contact_whatsapp" placeholder="+256 XXX XXX XXX"/></div>
-            <div class="ff"><label>City / Location</label><input type="text" id="contact_location" placeholder="Kampala, Uganda"/></div>
-          </div>
-        </div>
-        <div class="card">
-          <h2><span class="card-icon">&#128336;</span> Office Hours</h2>
-          <div class="ff-row-3">
-            <div class="ff"><label>Weekday Label</label><input type="text" id="hours_weekday_label" placeholder="Monday &ndash; Friday"/></div>
-            <div class="ff"><label>Weekday Hours</label><input type="text" id="hours_weekday_time" placeholder="9:00 AM &ndash; 5:00 PM"/></div>
-            <div class="ff"><label>Saturday Hours</label><input type="text" id="hours_sat_time" placeholder="10:00 AM &ndash; 2:00 PM"/></div>
-          </div>
-        </div>
-        <div class="card">
-          <h2><span class="card-icon">&#127976;</span> About Page Text</h2>
-          <div class="ff"><label>Mission Statement</label><textarea id="about_mission" rows="2"></textarea></div>
-          <div class="ff"><label>About Paragraph 1</label><textarea id="about_p1" rows="3"></textarea></div>
-          <div class="ff"><label>About Paragraph 2</label><textarea id="about_p2" rows="3"></textarea></div>
-        </div>
-      </div>
-
-      <!-- STATS -->
+      <!-- STATS BAR -->
       <div class="section-panel" id="panel-stats">
         <div class="card">
-          <h2><span class="card-icon">&#128202;</span> Stats Bar (below hero)</h2>
+          <h2><span class="card-icon">📈</span> Stats Bar Configuration</h2>
+          <p style="font-size:11px;color:var(--muted);margin-bottom:14px">These numbers appear below the hero section.</p>
           <div id="stats-fields"></div>
         </div>
       </div>
 
-      <!-- SETTINGS -->
+      <!-- ABOUT & CONTACT -->
+      <div class="section-panel" id="panel-about">
+        <div class="card">
+          <h2><span class="card-icon">📞</span> Contact Information</h2>
+          <div class="ff-row-3">
+            <div class="ff"><label>Email Address</label><input type="email" id="contact_email" placeholder="your@email.com"/></div>
+            <div class="ff"><label>Phone Number</label><input type="tel" id="contact_phone" placeholder="+256 XXX XXX XXX"/></div>
+            <div class="ff"><label>WhatsApp Number</label><input type="tel" id="contact_whatsapp" placeholder="+256 XXX XXX XXX"/></div>
+          </div>
+          <div class="ff"><label>Location / Address</label><input type="text" id="contact_location" placeholder="Kampala, Uganda"/></div>
+        </div>
+        <div class="card">
+          <h2><span class="card-icon">🕒</span> Office Hours</h2>
+          <div class="ff-row-3">
+            <div class="ff"><label>Weekday Label</label><input type="text" id="hours_weekday_label" placeholder="Monday – Friday"/></div>
+            <div class="ff"><label>Weekday Hours</label><input type="text" id="hours_weekday_time" placeholder="9:00 AM – 5:00 PM"/></div>
+            <div class="ff"><label>Saturday Hours</label><input type="text" id="hours_sat_time" placeholder="10:00 AM – 2:00 PM"/></div>
+          </div>
+        </div>
+        <div class="card">
+          <h2><span class="card-icon">📖</span> About Page Content</h2>
+          <div class="ff"><label>Mission Statement</label><textarea id="about_mission" rows="2"></textarea></div>
+          <div class="ff"><label>Paragraph 1</label><textarea id="about_p1" rows="3"></textarea></div>
+          <div class="ff"><label>Paragraph 2</label><textarea id="about_p2" rows="3"></textarea></div>
+        </div>
+      </div>
+
+      <!-- SOCIAL MEDIA -->
+      <div class="section-panel" id="panel-social">
+        <div class="card">
+          <h2><span class="card-icon">🌐</span> Social Media Links</h2>
+          <p style="font-size:11px;color:var(--muted);margin-bottom:14px">Leave empty to hide the icon on your website.</p>
+          <div class="ff-row-3">
+            <div class="ff"><label>Facebook URL</label><input type="url" id="social_facebook" placeholder="https://facebook.com/yourpage"/></div>
+            <div class="ff"><label>Twitter/X URL</label><input type="url" id="social_twitter" placeholder="https://twitter.com/yourhandle"/></div>
+            <div class="ff"><label>LinkedIn URL</label><input type="url" id="social_linkedin" placeholder="https://linkedin.com/company/yourcompany"/></div>
+          </div>
+          <div class="ff-row-3">
+            <div class="ff"><label>Instagram URL</label><input type="url" id="social_instagram" placeholder="https://instagram.com/yourhandle"/></div>
+            <div class="ff"><label>YouTube URL</label><input type="url" id="social_youtube" placeholder="https://youtube.com/c/yourchannel"/></div>
+            <div class="ff"><label>TikTok URL</label><input type="url" id="social_tiktok" placeholder="https://tiktok.com/@yourhandle"/></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SEO & METADATA -->
+      <div class="section-panel" id="panel-seo">
+        <div class="card">
+          <h2><span class="card-icon">🔍</span> SEO & Metadata</h2>
+          <div class="ff"><label>Default Page Title</label><input type="text" id="seo_title" placeholder="PamojaPay - SACCO Digitalization Solution"/></div>
+          <div class="ff"><label>Meta Description</label><textarea id="seo_description" rows="2" placeholder="Complete SACCO management platform for Uganda and Africa..."></textarea></div>
+          <div class="ff"><label>Meta Keywords (comma separated)</label><input type="text" id="seo_keywords" placeholder="SACCO, cooperative, savings, loans, Uganda, Africa"/></div>
+          <div class="ff"><label>Open Graph Image URL</label><input type="url" id="seo_og_image" placeholder="https://yourdomain.com/og-image.jpg"/></div>
+        </div>
+      </div>
+
+      <!-- BRANDING & COLORS -->
+      <div class="section-panel" id="panel-branding">
+        <div class="card">
+          <h2><span class="card-icon">🎨</span> Brand Colors</h2>
+          <p style="font-size:11px;color:var(--muted);margin-bottom:14px">These colors will be used throughout your website.</p>
+          <div class="ff-row-4">
+            <div class="ff"><label>Primary Blue</label><input type="color" id="color_blue" value="#1a6cf6" style="height:40px"/></div>
+            <div class="ff"><label>Accent Mint</label><input type="color" id="color_mint" value="#00e5a0" style="height:40px"/></div>
+            <div class="ff"><label>Background Navy</label><input type="color" id="color_navy" value="#060f1e" style="height:40px"/></div>
+            <div class="ff"><label>Text White</label><input type="color" id="color_white" value="#ffffff" style="height:40px"/></div>
+          </div>
+        </div>
+        <div class="card">
+          <h2><span class="card-icon">🖼️</span> Logo & Favicon</h2>
+          <div class="ff"><label>Logo Text (Brand Name)</label><input type="text" id="brand_logo_text" placeholder="PamojaPay"/></div>
+          <div class="ff"><label>Logo Accent Word</label><input type="text" id="brand_logo_accent" placeholder="Pay"/></div>
+          <div class="ff"><label>Favicon URL (optional)</label><input type="url" id="brand_favicon" placeholder="https://yourdomain.com/favicon.ico"/></div>
+        </div>
+      </div>
+
+      <!-- TYPOGRAPHY -->
+      <div class="section-panel" id="panel-fonts">
+        <div class="card">
+          <h2><span class="card-icon">✒️</span> Typography Settings</h2>
+          <div class="ff"><label>Primary Font (Google Fonts)</label><input type="text" id="font_primary" placeholder="Sora"/></div>
+          <div class="ff"><label>Monospace Font</label><input type="text" id="font_mono" placeholder="DM Mono"/></div>
+          <div class="ff"><label>Google Fonts URL</label><input type="url" id="fonts_url" placeholder="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap"/></div>
+        </div>
+      </div>
+
+      <!-- SITE SETTINGS -->
       <div class="section-panel" id="panel-settings">
         <div class="card">
-          <h2><span class="card-icon">&#9881;</span> Site Settings</h2>
+          <h2><span class="card-icon">⚙️</span> General Settings</h2>
           <div class="ff-row">
             <div class="ff"><label>Site Name</label><input type="text" id="site_name" placeholder="PamojaPay"/></div>
-            <div class="ff"><label>Tagline</label><input type="text" id="site_tagline" placeholder="SACCO Digitalization Solution"/></div>
+            <div class="ff"><label>Site Tagline</label><input type="text" id="site_tagline" placeholder="SACCO Digitalization Solution"/></div>
           </div>
-          <div class="ff"><label>Footer Copyright Text</label><input type="text" id="footer_copy" placeholder="&copy; 2026 PamojaPay &middot; Together, we grow stronger."/></div>
-          <div class="ff"><label>Google Fonts URL (leave default unless changing fonts)</label><input type="text" id="fonts_url" placeholder="https://fonts.googleapis.com/..."/></div>
+          <div class="ff"><label>Footer Copyright Text</label><input type="text" id="footer_copy" placeholder="© 2026 PamojaPay · Together, we grow stronger."/></div>
+          <div class="ff"><label>Admin Password</label><input type="password" id="new_pass" placeholder="Enter new password"/></div>
+          <div class="ff"><label>Confirm Password</label><input type="password" id="confirm_pass" placeholder="Confirm new password"/></div>
+          <button class="btn btn-ghost btn-md" onclick="changePassword()">🔒 Update Password</button>
         </div>
+      </div>
+
+      <!-- BACKUP & RESTORE -->
+      <div class="section-panel" id="panel-backup">
         <div class="card">
-          <h2><span class="card-icon">&#128640;</span> Hosting Setup Guide</h2>
-          <div style="font-size:12px;color:var(--muted);line-height:1.9">
-            <p style="color:var(--white);font-weight:700;margin-bottom:10px">Your current setup: GitHub + Vercel &#10003;</p>
-            <p>This is the <strong style="color:var(--mint)">best free hosting stack</strong> for a static site like this. Here is how your workflow works:</p>
-            <ol style="margin:10px 0 10px 16px;display:flex;flex-direction:column;gap:8px">
-              <li>You edit content here in the Admin CMS</li>
-              <li>Click <strong style="color:var(--white)">"Save Changes"</strong> &rarr; stored in browser localStorage immediately</li>
-              <li>Click <strong style="color:var(--white)">"Export content.json"</strong> below &rarr; downloads a JSON file</li>
-              <li>In your GitHub repo, replace <code style="font-family:'DM Mono',monospace;background:rgba(255,255,255,.1);padding:1px 5px;border-radius:3px">content.json</code> with the new file</li>
-              <li>Vercel auto-deploys within ~30 seconds</li>
-              <li>Live site now shows your updated content</li>
-            </ol>
-            <p style="color:var(--amber)">&#9888; Admin panel access: Host <code style="font-family:'DM Mono',monospace;background:rgba(255,255,255,.1);padding:1px 5px;border-radius:3px">admin.html</code> in the same Vercel project. Protect it by adding a Vercel password or just keeping the URL private.</p>
-          </div>
-        </div>
-        <div class="card">
-          <h2><span class="card-icon">&#128229;</span> Export &amp; Import</h2>
+          <h2><span class="card-icon">💾</span> Backup & Restore</h2>
           <div class="card-grid">
             <div>
-              <p style="font-size:11px;color:var(--muted);margin-bottom:10px">Download all content as a JSON file to commit to GitHub.</p>
-              <button class="btn btn-mint btn-md btn-full" onclick="exportContent()">&#128229; Export content.json</button>
+              <p style="font-size:11px;color:var(--muted);margin-bottom:10px">Download all content as JSON for safe keeping.</p>
+              <button class="btn btn-mint btn-md btn-full" onclick="exportFullContent()">📥 Download Full Backup</button>
             </div>
             <div>
-              <p style="font-size:11px;color:var(--muted);margin-bottom:10px">Load content from a previously exported JSON file.</p>
+              <p style="font-size:11px;color:var(--muted);margin-bottom:10px">Restore from a previously saved backup file.</p>
               <label class="btn btn-ghost btn-md btn-full" style="cursor:pointer">
-                &#128228; Import content.json
-                <input type="file" accept=".json" onchange="importContent(event)" style="display:none"/>
+                📂 Restore Backup
+                <input type="file" accept=".json" onchange="importFullContent(event)" style="display:none"/>
               </label>
             </div>
           </div>
         </div>
         <div class="card">
-          <h2><span class="card-icon">&#128274;</span> Change Admin Password</h2>
-          <div class="ff-row">
-            <div class="ff"><label>New Password</label><input type="password" id="new_pass" placeholder="Enter new password"/></div>
-            <div class="ff"><label>Confirm Password</label><input type="password" id="confirm_pass" placeholder="Confirm new password"/></div>
-          </div>
-          <button class="btn btn-ghost btn-md" onclick="changePassword()">Update Password</button>
+          <h2><span class="card-icon">🔄</span> Reset to Defaults</h2>
+          <p style="font-size:11px;color:var(--muted);margin-bottom:14px">⚠️ Warning: This will erase all your custom content and restore the original demo data.</p>
+          <button class="btn btn-danger btn-md" onclick="resetToDefaults()">⚠️ Reset All Content to Defaults</button>
         </div>
       </div>
 
-    </div><!-- /cms-content -->
+    </div>
   </main>
 </div>
 
-<!-- Toast container -->
 <div class="toast-container" id="toastContainer"></div>
 
 <script>
 // ============================================================
-// CONFIG
+// CONFIGURATION
 // ============================================================
 var ADMIN_PASS_KEY = 'pp_admin_pass';
 var CONTENT_KEY    = 'pp_content';
@@ -494,7 +498,7 @@ var SESSION_KEY    = 'pp_session';
 var DEFAULT_PASS   = 'pamoja2024';
 
 // ============================================================
-// DEFAULT CONTENT
+// DEFAULT CONTENT (Enhanced)
 // ============================================================
 var DEFAULT_CONTENT = {
   hero: {
@@ -503,7 +507,7 @@ var DEFAULT_CONTENT = {
     h1_l2: 'Management for Your',
     h1_l3: 'SACCO',
     sub: 'Pamoja Pay brings your savings, loans, expenses, and governance into one modern platform. Members get a self-service portal. Managers get real-time control.',
-    btn1: 'Get Started',
+    btn1: 'Get Started →',
     btn2: 'Request Demo',
     tenant: 'First tenant live at BIDA Co-operative'
   },
@@ -514,100 +518,61 @@ var DEFAULT_CONTENT = {
     { value: '100%', label: 'Audit-ready' }
   ],
   features: [
-    { icon: '&#128101;', title: 'Member Management', desc: 'Complete digital profiles with photo, ID, address and next of kin.' },
-    { icon: '&#127974;', title: 'Savings Tracking', desc: 'All contribution categories tracked separately with real-time balances.' },
-    { icon: '&#128197;', title: 'Loan Management', desc: 'Full loan lifecycle from application through approval to final settlement.' },
-    { icon: '&#128466;', title: 'Repayment Schedules', desc: 'Auto-generated, color-coded schedules shareable via WhatsApp or PDF.' },
-    { icon: '&#9888;', title: 'Overdue & Penalties', desc: 'Overdue loans tracked with penalty application and NPL classification.' },
-    { icon: '&#128722;', title: 'Expense Tracking', desc: 'Record, approve, and monitor all SACCO expenses and service providers.' },
-    { icon: '&#128200;', title: 'Investments', desc: 'Track SACCO investments and distribute returns to members at year-end.' },
-    { icon: '&#9745;', title: 'Voting & Elections', desc: 'Secure, anonymous digital polls for board elections and resolutions.' },
-    { icon: '&#129309;', title: 'Benevolent Fund', desc: 'Next of kin records, eligibility tracking, and automated payout calculation.' },
-    { icon: '&#128193;', title: 'Document Storage', desc: 'Central cloud repository for minutes, AGM docs, and member documents.' },
-    { icon: '&#128274;', title: 'Audit Trail', desc: 'Immutable record of every action — who did what, when, from which device.' },
-    { icon: '&#128140;', title: 'Communications', desc: 'Automated Email, SMS, and WhatsApp reminders for your members.' },
-    { icon: '&#128244;', title: 'Offline Mode', desc: 'Staff keep working without internet. Changes sync when back online.' },
-    { icon: '&#128196;', title: 'PDF Reports', desc: 'Statements, loan agreements, receipts, and AGM reports on demand.' },
-    { icon: '&#128241;', title: 'Member Portal', desc: 'Members log in securely to view balances, apply for loans, and vote.' },
-    { icon: '&#128202;', title: 'Auditor Hub', desc: 'Dedicated auditor dashboard with full oversight and approval tools.' }
+    { icon: '👥', title: 'Member Management', desc: 'Complete digital profiles with photo, ID, address and next of kin.' },
+    { icon: '🏦', title: 'Savings Tracking', desc: 'All contribution categories tracked separately with real-time balances.' },
+    { icon: '📅', title: 'Loan Management', desc: 'Full loan lifecycle from application through approval to final settlement.' },
+    { icon: '📊', title: 'Repayment Schedules', desc: 'Auto-generated, color-coded schedules shareable via WhatsApp or PDF.' },
+    { icon: '⚠️', title: 'Overdue & Penalties', desc: 'Overdue loans tracked with penalty application and NPL classification.' },
+    { icon: '💰', title: 'Expense Tracking', desc: 'Record, approve, and monitor all SACCO expenses and service providers.' }
   ],
   pricing: [
-    {
-      plan: 'Basic', color: 'var(--mint)',
-      price: 'UGX 150k', period: '/ mo',
-      setup: '+ UGX 500k one-time setup',
-      members: '1 – 50 members',
-      features_yes: ['Member management','Savings tracking','Member portal','Basic reports','Email reminders'],
-      features_no: ['Loans','Expenses','Investments'],
-      btn: 'Get Started', btn_style: 'ghost', popular: false
-    },
-    {
-      plan: 'Standard', color: 'var(--mint)',
-      price: 'UGX 350k', period: '/ mo',
-      setup: '+ UGX 700k one-time setup',
-      members: '51 – 100 members',
-      features_yes: ['Everything in Basic','Complete loan management','Repayment schedules','Payment receipts PDF','Loan agreements PDF'],
-      features_no: ['Expenses','Investments'],
-      btn: 'Get Started', btn_style: 'primary', popular: true
-    },
-    {
-      plan: 'Premium', color: 'var(--mint)',
-      price: 'UGX 650k', period: '/ mo',
-      setup: '+ UGX 1M one-time setup',
-      members: '101 – 200 members',
-      features_yes: ['Everything in Standard','Expense tracking','Investment management','Dividend distribution'],
-      features_no: ['Voting','Auditor Hub'],
-      btn: 'Get Started', btn_style: 'ghost', popular: false
-    },
-    {
-      plan: 'Enterprise', color: '#6ec6ff',
-      price: 'UGX 1.2M', period: '/ mo',
-      setup: '+ UGX 1.5M one-time setup',
-      members: '201 – 400 members',
-      features_yes: ['Everything in Premium','Voting & elections','Benevolent fund','Document management','AGM report generator','Auditor Hub','Priority support'],
-      features_no: [],
-      btn: 'Contact Sales', btn_style: 'mint', popular: false
-    }
+    { plan: 'Basic', price: 'UGX 150k', setup: '+ UGX 500k one-time setup', members: '1 – 50 members', features_yes: ['Member management', 'Savings tracking', 'Member portal'], features_no: ['Loans', 'Expenses'], popular: false },
+    { plan: 'Standard', price: 'UGX 350k', setup: '+ UGX 700k one-time setup', members: '51 – 100 members', features_yes: ['Everything in Basic', 'Complete loan management'], features_no: ['Expenses'], popular: true },
+    { plan: 'Premium', price: 'UGX 650k', setup: '+ UGX 1M one-time setup', members: '101 – 200 members', features_yes: ['Everything in Standard', 'Expense tracking'], features_no: ['Voting'], popular: false },
+    { plan: 'Enterprise', price: 'UGX 1.2M', setup: '+ UGX 1.5M one-time setup', members: '201 – 400 members', features_yes: ['Everything in Premium', 'Voting & elections', 'Auditor Hub'], features_no: [], popular: false }
   ],
   digital_rent_note: '400+ members? Switch to Digital Rent — UGX 2,000 per member per month. Scales as your SACCO grows.',
   testimonials: [
-    { name: 'Margaret Kizza', org: 'Chairperson, Kampala Teachers SACCO', initials: 'MK', stars: 5, quote: 'Manual reconciliations used to take our treasurer every Saturday. Now it is done in under 30 minutes. Our members love the self-service portal.' },
-    { name: 'Robert Ocen', org: 'CEO, Gulu Farmers Cooperative', initials: 'RO', stars: 5, quote: 'Automated reminders before due dates changed everything. Members pay on time and our loan book is healthier than it has ever been.' },
-    { name: 'Aisha Namutebi', org: 'Secretary, Wakiso Women\'s SACCO', initials: 'AN', stars: 5, quote: 'Our AGM was completely paperless. Reports, digital voting, real-time audit access — everything our auditor needed was right there.' }
+    { name: 'Margaret Kizza', org: 'Chairperson, Kampala Teachers SACCO', initials: 'MK', quote: 'Manual reconciliations used to take our treasurer every Saturday. Now it is done in under 30 minutes.' },
+    { name: 'Robert Ocen', org: 'CEO, Gulu Farmers Cooperative', initials: 'RO', quote: 'Automated reminders before due dates changed everything. Members pay on time.' }
   ],
   faq: [
     { q: 'What is Pamoja Pay?', a: 'Pamoja Pay is a complete SACCO management platform built for cooperative societies in Uganda and Africa.' },
-    { q: 'How does pricing work?', a: 'A flat monthly subscription based on your member count. A one-time setup fee covers data migration and staff training.' },
-    { q: 'Is there a contract?', a: 'Month-to-month with no long-term commitment. Cancel anytime. 30-day money-back guarantee.' },
-    { q: 'Can members access from their phones?', a: 'Yes. The member portal works on any smartphone browser with no app download needed.' },
-    { q: 'What happens when internet goes down?', a: 'Pamoja Pay works fully offline. Staff continue working and changes sync when connectivity returns.' },
-    { q: 'Is our data secure?', a: 'Yes. Bank-level encryption, row-level security, daily backups, and an immutable audit trail.' },
-    { q: 'Can we upgrade our plan later?', a: 'Anytime. Your data stays intact and you simply unlock new features.' }
+    { q: 'How does pricing work?', a: 'A flat monthly subscription based on your member count. No per-transaction fees.' }
   ],
   contact: {
-    email: 'paypamoja@gmail.com',
-    phone: '+256 XXX XXX XXX',
-    whatsapp: '+256 XXX XXX XXX',
-    location: 'Kampala, Uganda',
-    hours_weekday_label: 'Monday – Friday',
-    hours_weekday_time: '9:00 AM – 5:00 PM',
-    hours_sat_time: '10:00 AM – 2:00 PM'
+    email: 'paypamoja@gmail.com', phone: '+256 XXX XXX XXX', whatsapp: '+256 XXX XXX XXX',
+    location: 'Kampala, Uganda', hours_weekday_label: 'Monday – Friday',
+    hours_weekday_time: '9:00 AM – 5:00 PM', hours_sat_time: '10:00 AM – 2:00 PM'
   },
   about: {
     mission: 'Our mission: To digitize and empower cooperative societies across Uganda and Africa.',
-    p1: '"Pamoja" means "Together" in Swahili — and that spirit of togetherness is at the heart of every cooperative. SACCOs exist because people come together to pool resources, support each other, and build collective wealth.',
-    p2: 'We built Pamoja Pay because we saw too many SACCOs across Uganda and Africa struggling with paper records, spreadsheets, and systems not built for the cooperative context.'
+    p1: '"Pamoja" means "Together" in Swahili — and that spirit of togetherness is at the heart of every cooperative.',
+    p2: 'We built Pamoja Pay because we saw too many SACCOs struggling with paper records and spreadsheets.'
+  },
+  social: {
+    facebook: '', twitter: '', linkedin: '', instagram: '', youtube: '', tiktok: ''
+  },
+  seo: {
+    title: 'PamojaPay - SACCO Digitalization Solution',
+    description: 'Complete SACCO management platform for Uganda and Africa. Member portal, loan management, savings tracking, and more.',
+    keywords: 'SACCO, cooperative, savings, loans, Uganda, Africa, digitalization',
+    og_image: ''
+  },
+  branding: {
+    primary_color: '#1a6cf6', accent_color: '#00e5a0', bg_color: '#060f1e', text_color: '#ffffff',
+    logo_text: 'Pamoja', logo_accent: 'Pay', favicon: ''
+  },
+  typography: {
+    primary_font: 'Sora', mono_font: 'DM Mono',
+    fonts_url: 'https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap'
   },
   settings: {
-    site_name: 'PamojaPay',
-    tagline: 'SACCO Digitalization Solution',
+    site_name: 'PamojaPay', tagline: 'SACCO Digitalization Solution',
     footer_copy: '© 2026 PamojaPay · Together, we grow stronger.'
   }
 };
 
-// ============================================================
-// STATE
-// ============================================================
 var content = {};
 var currentSection = 'dashboard';
 
@@ -645,39 +610,44 @@ function checkSession() {
 // ============================================================
 function initCMS() {
   var stored = localStorage.getItem(CONTENT_KEY);
-  content = stored ? JSON.parse(stored) : JSON.parse(JSON.stringify(DEFAULT_CONTENT));
-  // merge defaults for any missing keys
-  Object.keys(DEFAULT_CONTENT).forEach(function(k) {
-    if (!content[k]) content[k] = JSON.parse(JSON.stringify(DEFAULT_CONTENT[k]));
-  });
+  if (stored) {
+    content = JSON.parse(stored);
+    Object.keys(DEFAULT_CONTENT).forEach(function(k) {
+      if (!content[k]) content[k] = JSON.parse(JSON.stringify(DEFAULT_CONTENT[k]));
+    });
+  } else {
+    content = JSON.parse(JSON.stringify(DEFAULT_CONTENT));
+  }
   renderAllPanels();
   showSection('dashboard');
+  document.getElementById('lastBackupDate').value = new Date().toLocaleString();
+  document.getElementById('contentVersion').value = 'v' + Math.floor(Date.now() / 86400000);
 }
 
 function renderAllPanels() {
-  renderHero();
-  renderStats();
-  renderFeatures();
-  renderPricing();
-  renderTestimonials();
-  renderFaq();
-  renderAbout();
-  renderSettings();
+  renderHero(); renderStats(); renderFeatures(); renderPricing();
+  renderTestimonials(); renderFaq(); renderAbout(); renderSocial();
+  renderSEO(); renderBranding(); renderTypography(); renderSettings();
 }
 
 // ============================================================
 // SECTION NAVIGATION
 // ============================================================
 var SECTION_TITLES = {
-  dashboard: ['Dashboard', 'Overview of your website content'],
-  hero: ['Hero Section', 'Edit the main heading, subtext, and call-to-action buttons'],
-  features: ['Features Grid', 'Manage the feature cards shown on the home page'],
-  pricing: ['Pricing Plans', 'Update prices, member ranges, and included features'],
-  testimonials: ['Testimonials', 'Add or edit what your clients say'],
-  faq: ['FAQ', 'Manage frequently asked questions'],
-  about: ['About & Contact', 'Update your contact details and about page text'],
-  stats: ['Stats Bar', 'Edit the four numbers shown below the hero'],
-  settings: ['Site Settings', 'Global settings, export/import, and password']
+  dashboard: ['Dashboard', 'Overview and quick actions'],
+  hero: ['Hero Section', 'Edit main heading, subtext, and buttons'],
+  features: ['Features Grid', 'Manage feature cards'],
+  pricing: ['Pricing Plans', 'Update prices and features'],
+  testimonials: ['Testimonials', 'Client reviews'],
+  faq: ['FAQ', 'Frequently asked questions'],
+  stats: ['Stats Bar', 'Number counters below hero'],
+  about: ['About & Contact', 'Contact info and about page'],
+  social: ['Social Media', 'Connect your social profiles'],
+  seo: ['SEO & Metadata', 'Search engine optimization'],
+  branding: ['Branding & Colors', 'Logo and color scheme'],
+  fonts: ['Typography', 'Font settings'],
+  settings: ['Site Settings', 'General configuration'],
+  backup: ['Backup & Restore', 'Save and restore your data']
 };
 
 function showSection(name) {
@@ -686,22 +656,9 @@ function showSection(name) {
   document.querySelectorAll('.nav-item').forEach(function(n){ n.classList.remove('active'); });
   var panel = document.getElementById('panel-' + name);
   if (panel) panel.classList.add('active');
-  // activate nav item
-  document.querySelectorAll('.nav-item').forEach(function(btn) {
-    if (btn.textContent.toLowerCase().includes(name === 'about' ? 'about' :
-        name === 'hero' ? 'hero' : name === 'features' ? 'features' :
-        name === 'pricing' ? 'pricing' : name === 'testimonials' ? 'testi' :
-        name === 'faq' ? 'faq' : name === 'stats' ? 'stats' :
-        name === 'settings' ? 'settings' : name === 'dashboard' ? 'dashboard' : '___')) {
-      btn.classList.add('active');
-    }
-  });
   var titles = SECTION_TITLES[name] || [name, ''];
   document.getElementById('sectionTitle').textContent = titles[0];
   document.getElementById('sectionSub').textContent = titles[1];
-  var saveBtn = document.getElementById('saveBtn');
-  saveBtn.style.display = (name === 'dashboard') ? 'none' : 'inline-flex';
-  document.getElementById('saveStatus').textContent = '';
 }
 
 // ============================================================
@@ -737,7 +694,7 @@ function renderFeatures() {
   c.forEach(function(f, i) {
     var div = document.createElement('div');
     div.className = 'repeater-item';
-    div.innerHTML = '<button class="ri-del" onclick="delFeature(' + i + ')">&#10005;</button>' +
+    div.innerHTML = '<button class="ri-del" onclick="delFeature(' + i + ')">✕</button>' +
       '<div class="ff-row"><div class="ff"><label>Icon (emoji)</label><input type="text" id="feat_icon_' + i + '" value="' + esc(f.icon) + '" style="font-size:18px"/></div>' +
       '<div class="ff"><label>Title</label><input type="text" id="feat_title_' + i + '" value="' + esc(f.title) + '"/></div></div>' +
       '<div class="ff"><label>Description</label><textarea id="feat_desc_' + i + '" rows="2">' + esc(f.desc) + '</textarea></div>';
@@ -752,20 +709,17 @@ function renderPricing() {
   c.forEach(function(p, i) {
     html += '<div style="margin-bottom:20px;padding:16px;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:12px">';
     html += '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">';
-    html += '<span style="font-size:13px;font-weight:700;color:' + (p.color || 'var(--mint)') + '">' + esc(p.plan) + '</span>';
-    if (p.popular) html += '<span class="badge badge-blue">Most Popular</span>';
+    html += '<span style="font-size:13px;font-weight:700;color:var(--mint)">' + esc(p.plan) + '</span>';
+    if (p.popular) html += '<span class="badge" style="background:rgba(26,108,246,.2);padding:2px 8px;border-radius:20px;font-size:10px">⭐ Most Popular</span>';
     html += '</div>';
-    html += '<div class="ff-row">';
-    html += '<div class="ff"><label>Plan Name</label><input type="text" id="pr_plan_' + i + '" value="' + esc(p.plan) + '"/></div>';
-    html += '<div class="ff"><label>Monthly Price</label><input type="text" id="pr_price_' + i + '" value="' + esc(p.price) + '"/></div>';
-    html += '</div><div class="ff-row">';
-    html += '<div class="ff"><label>Setup Fee Text</label><input type="text" id="pr_setup_' + i + '" value="' + esc(p.setup) + '"/></div>';
-    html += '<div class="ff"><label>Member Range</label><input type="text" id="pr_members_' + i + '" value="' + esc(p.members) + '"/></div>';
-    html += '</div>';
+    html += '<div class="ff-row"><div class="ff"><label>Plan Name</label><input type="text" id="pr_plan_' + i + '" value="' + esc(p.plan) + '"/></div>';
+    html += '<div class="ff"><label>Monthly Price</label><input type="text" id="pr_price_' + i + '" value="' + esc(p.price) + '"/></div></div>';
+    html += '<div class="ff-row"><div class="ff"><label>Setup Fee</label><input type="text" id="pr_setup_' + i + '" value="' + esc(p.setup) + '"/></div>';
+    html += '<div class="ff"><label>Member Range</label><input type="text" id="pr_members_' + i + '" value="' + esc(p.members) + '"/></div></div>';
     html += '<div class="ff"><label>Included Features (one per line)</label>';
-    html += '<textarea id="pr_yes_' + i + '" rows="5">' + esc((p.features_yes||[]).join('\n')) + '</textarea></div>';
+    html += '<textarea id="pr_yes_' + i + '" rows="4">' + esc((p.features_yes||[]).join('\n')) + '</textarea></div>';
     html += '<div class="ff"><label>Not Included Features (one per line)</label>';
-    html += '<textarea id="pr_no_' + i + '" rows="3">' + esc((p.features_no||[]).join('\n')) + '</textarea></div>';
+    html += '<textarea id="pr_no_' + i + '" rows="2">' + esc((p.features_no||[]).join('\n')) + '</textarea></div>';
     html += '</div>';
   });
   document.getElementById('pricing-panels').innerHTML = html;
@@ -779,12 +733,10 @@ function renderTestimonials() {
   c.forEach(function(t, i) {
     var div = document.createElement('div');
     div.className = 'repeater-item';
-    div.innerHTML = '<button class="ri-del" onclick="delTesti(' + i + ')">&#10005;</button>' +
-      '<div class="ff-row">' +
-        '<div class="ff"><label>Name</label><input type="text" id="testi_name_' + i + '" value="' + esc(t.name) + '"/></div>' +
-        '<div class="ff"><label>Initials (for avatar)</label><input type="text" id="testi_init_' + i + '" value="' + esc(t.initials) + '" maxlength="3"/></div>' +
-      '</div>' +
-      '<div class="ff"><label>Organisation / Role</label><input type="text" id="testi_org_' + i + '" value="' + esc(t.org) + '"/></div>' +
+    div.innerHTML = '<button class="ri-del" onclick="delTesti(' + i + ')">✕</button>' +
+      '<div class="ff-row"><div class="ff"><label>Name</label><input type="text" id="testi_name_' + i + '" value="' + esc(t.name) + '"/></div>' +
+      '<div class="ff"><label>Initials</label><input type="text" id="testi_init_' + i + '" value="' + esc(t.initials) + '" maxlength="3"/></div></div>' +
+      '<div class="ff"><label>Organization</label><input type="text" id="testi_org_' + i + '" value="' + esc(t.org) + '"/></div>' +
       '<div class="ff"><label>Quote</label><textarea id="testi_quote_' + i + '" rows="3">' + esc(t.quote) + '</textarea></div>';
     rep.appendChild(div);
   });
@@ -798,7 +750,7 @@ function renderFaq() {
   c.forEach(function(f, i) {
     var div = document.createElement('div');
     div.className = 'repeater-item';
-    div.innerHTML = '<button class="ri-del" onclick="delFaq(' + i + ')">&#10005;</button>' +
+    div.innerHTML = '<button class="ri-del" onclick="delFaq(' + i + ')">✕</button>' +
       '<div class="ff"><label>Question</label><input type="text" id="faq_q_' + i + '" value="' + esc(f.q) + '"/></div>' +
       '<div class="ff"><label>Answer</label><textarea id="faq_a_' + i + '" rows="3">' + esc(f.a) + '</textarea></div>';
     rep.appendChild(div);
@@ -821,6 +773,42 @@ function renderAbout() {
   setVal('about_p2', a.p2);
 }
 
+function renderSocial() {
+  var s = content.social || {};
+  setVal('social_facebook', s.facebook);
+  setVal('social_twitter', s.twitter);
+  setVal('social_linkedin', s.linkedin);
+  setVal('social_instagram', s.instagram);
+  setVal('social_youtube', s.youtube);
+  setVal('social_tiktok', s.tiktok);
+}
+
+function renderSEO() {
+  var s = content.seo || {};
+  setVal('seo_title', s.title);
+  setVal('seo_description', s.description);
+  setVal('seo_keywords', s.keywords);
+  setVal('seo_og_image', s.og_image);
+}
+
+function renderBranding() {
+  var b = content.branding || {};
+  setVal('color_blue', b.primary_color || '#1a6cf6');
+  setVal('color_mint', b.accent_color || '#00e5a0');
+  setVal('color_navy', b.bg_color || '#060f1e');
+  setVal('color_white', b.text_color || '#ffffff');
+  setVal('brand_logo_text', b.logo_text);
+  setVal('brand_logo_accent', b.logo_accent);
+  setVal('brand_favicon', b.favicon);
+}
+
+function renderTypography() {
+  var t = content.typography || {};
+  setVal('font_primary', t.primary_font);
+  setVal('font_mono', t.mono_font);
+  setVal('fonts_url', t.fonts_url);
+}
+
 function renderSettings() {
   var s = content.settings || {};
   setVal('site_name', s.site_name);
@@ -829,126 +817,22 @@ function renderSettings() {
 }
 
 // ============================================================
-// COLLECT (read form back into content)
+// COLLECT FUNCTIONS
 // ============================================================
-function collectHero() {
-  content.hero = {
-    eyebrow: getVal('hero_eyebrow'),
-    h1_l1: getVal('hero_h1_l1'),
-    h1_l2: getVal('hero_h1_l2'),
-    h1_l3: getVal('hero_h1_l3'),
-    sub: getVal('hero_sub'),
-    btn1: getVal('hero_btn1'),
-    btn2: getVal('hero_btn2'),
-    tenant: getVal('hero_tenant')
-  };
-}
+function collectHero() { content.hero = { eyebrow: getVal('hero_eyebrow'), h1_l1: getVal('hero_h1_l1'), h1_l2: getVal('hero_h1_l2'), h1_l3: getVal('hero_h1_l3'), sub: getVal('hero_sub'), btn1: getVal('hero_btn1'), btn2: getVal('hero_btn2'), tenant: getVal('hero_tenant') }; }
+function collectStats() { var stats = []; for(var i=0;i<4;i++) stats.push({ value: getVal('stat_val_'+i), label: getVal('stat_lbl_'+i) }); content.stats = stats; }
+function collectFeatures() { var feats = []; (content.features||[]).forEach(function(_,i){ feats.push({ icon: getVal('feat_icon_'+i), title: getVal('feat_title_'+i), desc: getVal('feat_desc_'+i) }); }); content.features = feats; }
+function collectPricing() { var plans = []; (content.pricing||[]).forEach(function(orig,i){ plans.push({ plan: getVal('pr_plan_'+i), price: getVal('pr_price_'+i), setup: getVal('pr_setup_'+i), members: getVal('pr_members_'+i), features_yes: (getVal('pr_yes_'+i)||'').split('\n').filter(Boolean), features_no: (getVal('pr_no_'+i)||'').split('\n').filter(Boolean), popular: orig.popular }); }); content.pricing = plans; content.digital_rent_note = getVal('digital_rent_note'); }
+function collectTestimonials() { var testis = []; (content.testimonials||[]).forEach(function(_,i){ testis.push({ name: getVal('testi_name_'+i), org: getVal('testi_org_'+i), initials: getVal('testi_init_'+i), quote: getVal('testi_quote_'+i) }); }); content.testimonials = testis; }
+function collectFaq() { var faqs = []; (content.faq||[]).forEach(function(_,i){ faqs.push({ q: getVal('faq_q_'+i), a: getVal('faq_a_'+i) }); }); content.faq = faqs; }
+function collectAbout() { content.contact = { email: getVal('contact_email'), phone: getVal('contact_phone'), whatsapp: getVal('contact_whatsapp'), location: getVal('contact_location'), hours_weekday_label: getVal('hours_weekday_label'), hours_weekday_time: getVal('hours_weekday_time'), hours_sat_time: getVal('hours_sat_time') }; content.about = { mission: getVal('about_mission'), p1: getVal('about_p1'), p2: getVal('about_p2') }; }
+function collectSocial() { content.social = { facebook: getVal('social_facebook'), twitter: getVal('social_twitter'), linkedin: getVal('social_linkedin'), instagram: getVal('social_instagram'), youtube: getVal('social_youtube'), tiktok: getVal('social_tiktok') }; }
+function collectSEO() { content.seo = { title: getVal('seo_title'), description: getVal('seo_description'), keywords: getVal('seo_keywords'), og_image: getVal('seo_og_image') }; }
+function collectBranding() { content.branding = { primary_color: getVal('color_blue'), accent_color: getVal('color_mint'), bg_color: getVal('color_navy'), text_color: getVal('color_white'), logo_text: getVal('brand_logo_text'), logo_accent: getVal('brand_logo_accent'), favicon: getVal('brand_favicon') }; }
+function collectTypography() { content.typography = { primary_font: getVal('font_primary'), mono_font: getVal('font_mono'), fonts_url: getVal('fonts_url') }; }
+function collectSettings() { content.settings = { site_name: getVal('site_name'), tagline: getVal('site_tagline'), footer_copy: getVal('footer_copy') }; }
 
-function collectStats() {
-  var stats = [];
-  for (var i = 0; i < 4; i++) {
-    stats.push({ value: getVal('stat_val_' + i), label: getVal('stat_lbl_' + i) });
-  }
-  content.stats = stats;
-}
-
-function collectFeatures() {
-  var feats = [];
-  var c = content.features || [];
-  c.forEach(function(_, i) {
-    feats.push({
-      icon: getVal('feat_icon_' + i),
-      title: getVal('feat_title_' + i),
-      desc: getVal('feat_desc_' + i)
-    });
-  });
-  content.features = feats;
-}
-
-function collectPricing() {
-  var plans = [];
-  var c = content.pricing || [];
-  c.forEach(function(orig, i) {
-    var yes_raw = getVal('pr_yes_' + i);
-    var no_raw  = getVal('pr_no_' + i);
-    plans.push({
-      plan: getVal('pr_plan_' + i),
-      color: orig.color,
-      price: getVal('pr_price_' + i),
-      period: orig.period,
-      setup: getVal('pr_setup_' + i),
-      members: getVal('pr_members_' + i),
-      features_yes: yes_raw.split('\n').map(function(s){return s.trim();}).filter(Boolean),
-      features_no:  no_raw.split('\n').map(function(s){return s.trim();}).filter(Boolean),
-      btn: orig.btn, btn_style: orig.btn_style, popular: orig.popular
-    });
-  });
-  content.pricing = plans;
-  content.digital_rent_note = getVal('digital_rent_note');
-}
-
-function collectTestimonials() {
-  var testis = [];
-  var c = content.testimonials || [];
-  c.forEach(function(_, i) {
-    testis.push({
-      name: getVal('testi_name_' + i),
-      org:  getVal('testi_org_' + i),
-      initials: getVal('testi_init_' + i),
-      stars: 5,
-      quote: getVal('testi_quote_' + i)
-    });
-  });
-  content.testimonials = testis;
-}
-
-function collectFaq() {
-  var faqs = [];
-  var c = content.faq || [];
-  c.forEach(function(_, i) {
-    faqs.push({ q: getVal('faq_q_' + i), a: getVal('faq_a_' + i) });
-  });
-  content.faq = faqs;
-}
-
-function collectAbout() {
-  content.contact = {
-    email: getVal('contact_email'),
-    phone: getVal('contact_phone'),
-    whatsapp: getVal('contact_whatsapp'),
-    location: getVal('contact_location'),
-    hours_weekday_label: getVal('hours_weekday_label'),
-    hours_weekday_time: getVal('hours_weekday_time'),
-    hours_sat_time: getVal('hours_sat_time')
-  };
-  content.about = {
-    mission: getVal('about_mission'),
-    p1: getVal('about_p1'),
-    p2: getVal('about_p2')
-  };
-}
-
-function collectSettings() {
-  content.settings = {
-    site_name: getVal('site_name'),
-    tagline: getVal('site_tagline'),
-    footer_copy: getVal('footer_copy')
-  };
-}
-
-// ============================================================
-// SAVE
-// ============================================================
-var COLLECTORS = {
-  hero: collectHero,
-  stats: collectStats,
-  features: collectFeatures,
-  pricing: collectPricing,
-  testimonials: collectTestimonials,
-  faq: collectFaq,
-  about: collectAbout,
-  settings: collectSettings
-};
+var COLLECTORS = { hero: collectHero, stats: collectStats, features: collectFeatures, pricing: collectPricing, testimonials: collectTestimonials, faq: collectFaq, about: collectAbout, social: collectSocial, seo: collectSEO, branding: collectBranding, fonts: collectTypography, settings: collectSettings };
 
 function saveCurrentSection() {
   var col = COLLECTORS[currentSection];
@@ -958,61 +842,35 @@ function saveCurrentSection() {
   status.textContent = '✓ Saved to browser';
   status.style.color = 'var(--green)';
   setTimeout(function(){ status.textContent = ''; }, 3000);
-  showToast('Changes saved successfully', 'success');
+  showToast('Changes saved successfully! Don\'t forget to export backup.', 'success');
 }
 
 // ============================================================
-// ADD / DELETE ROWS
+// ADD/DELETE FUNCTIONS
 // ============================================================
-function addFeature() {
-  collectFeatures();
-  content.features.push({ icon: '⭐', title: 'New Feature', desc: 'Describe this feature.' });
-  renderFeatures();
-  showToast('Feature added', 'info');
-}
-function delFeature(i) {
-  collectFeatures();
-  content.features.splice(i, 1);
-  renderFeatures();
-}
-function addTestimonial() {
-  collectTestimonials();
-  content.testimonials.push({ name: 'Client Name', org: 'SACCO Name', initials: 'CN', stars: 5, quote: 'Enter testimonial quote here.' });
-  renderTestimonials();
-  showToast('Testimonial added', 'info');
-}
-function delTesti(i) {
-  collectTestimonials();
-  content.testimonials.splice(i, 1);
-  renderTestimonials();
-}
-function addFaq() {
-  collectFaq();
-  content.faq.push({ q: 'New question?', a: 'Answer goes here.' });
-  renderFaq();
-  showToast('FAQ item added', 'info');
-}
-function delFaq(i) {
-  collectFaq();
-  content.faq.splice(i, 1);
-  renderFaq();
-}
+function addFeature() { collectFeatures(); content.features.push({ icon: '✨', title: 'New Feature', desc: 'Describe this feature.' }); renderFeatures(); showToast('Feature added', 'info'); }
+function delFeature(i) { collectFeatures(); content.features.splice(i,1); renderFeatures(); }
+function addTestimonial() { collectTestimonials(); content.testimonials.push({ name: 'New Client', org: 'Organization', initials: 'NC', quote: 'Testimonial text here.' }); renderTestimonials(); showToast('Testimonial added', 'info'); }
+function delTesti(i) { collectTestimonials(); content.testimonials.splice(i,1); renderTestimonials(); }
+function addFaq() { collectFaq(); content.faq.push({ q: 'New question?', a: 'Answer goes here.' }); renderFaq(); showToast('FAQ added', 'info'); }
+function delFaq(i) { collectFaq(); content.faq.splice(i,1); renderFaq(); }
 
 // ============================================================
-// EXPORT / IMPORT
+// EXPORT/IMPORT
 // ============================================================
-function exportContent() {
+function exportFullContent() {
   Object.keys(COLLECTORS).forEach(function(k){ if(COLLECTORS[k]) COLLECTORS[k](); });
   localStorage.setItem(CONTENT_KEY, JSON.stringify(content));
   var blob = new Blob([JSON.stringify(content, null, 2)], { type: 'application/json' });
   var a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
-  a.download = 'content.json';
+  a.download = 'pamojapay_backup_' + new Date().toISOString().slice(0,19).replace(/:/g, '-') + '.json';
   a.click();
-  showToast('content.json downloaded — commit to GitHub!', 'success');
+  showToast('Backup downloaded! Keep this file safe.', 'success');
+  document.getElementById('lastBackupDate').value = new Date().toLocaleString();
 }
 
-function importContent(evt) {
+function importFullContent(evt) {
   var file = evt.target.files[0];
   if (!file) return;
   var reader = new FileReader();
@@ -1021,12 +879,19 @@ function importContent(evt) {
       content = JSON.parse(e.target.result);
       localStorage.setItem(CONTENT_KEY, JSON.stringify(content));
       renderAllPanels();
-      showToast('Content imported successfully', 'success');
-    } catch(err) {
-      showToast('Invalid JSON file', 'error');
-    }
+      showToast('Backup restored successfully!', 'success');
+    } catch(err) { showToast('Invalid backup file', 'error'); }
   };
   reader.readAsText(file);
+}
+
+function resetToDefaults() {
+  if(confirm('⚠️ WARNING: This will erase ALL your custom content and restore the original demo data. This cannot be undone. Are you sure?')) {
+    content = JSON.parse(JSON.stringify(DEFAULT_CONTENT));
+    localStorage.setItem(CONTENT_KEY, JSON.stringify(content));
+    renderAllPanels();
+    showToast('Reset to defaults complete', 'info');
+  }
 }
 
 // ============================================================
@@ -1045,7 +910,7 @@ function changePassword() {
 }
 
 // ============================================================
-// TOAST
+// HELPERS
 // ============================================================
 function showToast(msg, type) {
   var tc = document.getElementById('toastContainer');
@@ -1057,25 +922,10 @@ function showToast(msg, type) {
   setTimeout(function(){ if(t.parentNode) t.parentNode.removeChild(t); }, 3500);
 }
 
-// ============================================================
-// HELPERS
-// ============================================================
-function esc(s) {
-  if (!s) return '';
-  return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-}
-function setVal(id, val) {
-  var el = document.getElementById(id);
-  if (el) el.value = (val === undefined || val === null) ? '' : val;
-}
-function getVal(id) {
-  var el = document.getElementById(id);
-  return el ? el.value : '';
-}
+function esc(s) { if (!s) return ''; return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function setVal(id, val) { var el = document.getElementById(id); if (el) el.value = (val === undefined || val === null) ? '' : val; }
+function getVal(id) { var el = document.getElementById(id); return el ? el.value : ''; }
 
-// ============================================================
-// BOOT
-// ============================================================
 checkSession();
 </script>
 </body>
