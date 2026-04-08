@@ -1,0 +1,45 @@
+{
+  "hero": {
+    "eyebrow": "SACCO Digitalization Solution",
+    "h1_l1": "Complete Financial",
+    "h1_l2": "Management for Your",
+    "h1_l3": "SACCO",
+    "sub": "Pamoja Pay brings your savings, loans, expenses, and governance into one modern platform. Members get a self-service portal. Managers get real-time control.",
+    "btn1": "Get Started",
+    "btn2": "Request Demo",
+    "tenant": "First tenant live at BIDA Co-operative"
+  },
+  "stats": [
+    {
+      "value": "16+",
+      "label": "Modules"
+    },
+    {
+      "value": "1,000+",
+      "label": "Members managed"
+    },
+    {
+      "value": "24/7",
+      "label": "Self-service portal"
+    },
+    {
+      "value": "100%",
+      "label": "Audit-ready"
+    }
+  ],
+  "digital_rent_note": "400+ members? Switch to Digital Rent \u2014 UGX 2,000 per member per month. Scales as your SACCO grows.",
+  "contact": {
+    "email": "paypamoja@gmail.com",
+    "phone": "+256 XXX XXX XXX",
+    "whatsapp": "+256 XXX XXX XXX",
+    "location": "Kampala, Uganda",
+    "hours_weekday_label": "Monday \u2013 Friday",
+    "hours_weekday_time": "9:00 AM \u2013 5:00 PM",
+    "hours_sat_time": "10:00 AM \u2013 2:00 PM"
+  },
+  "settings": {
+    "site_name": "PamojaPay",
+    "tagline": "SACCO Digitalization Solution",
+    "footer_copy": "\u00a9 2026 PamojaPay \u00b7 Together, we grow stronger."
+  }
+}
