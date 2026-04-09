@@ -7,7 +7,7 @@
     "sub": "Pamoja Pay brings your savings, loans, expenses, and governance into one modern platform. Members get a self-service portal. Managers get real-time control.",
     "btn1": "Get Started",
     "btn2": "Request Demo",
-    "tenant": "First tenant live at BIDA Co-operative"
+    "tenant": "Live Tenants - BIDA Co-operative"
   },
   "stats": [
     {
@@ -15,7 +15,7 @@
       "label": "Modules"
     },
     {
-      "value": "1,000+",
+      "value": "5,000+",
       "label": "Members managed"
     },
     {
@@ -27,19 +27,257 @@
       "label": "Audit-ready"
     }
   ],
-  "digital_rent_note": "400+ members? Switch to Digital Rent \u2014 UGX 2,000 per member per month. Scales as your SACCO grows.",
+  "features": [
+    {
+      "icon": "&#128101;",
+      "title": "Member Management",
+      "desc": "Complete digital profiles with photo, ID, address and next of kin."
+    },
+    {
+      "icon": "&#127974;",
+      "title": "Savings Tracking",
+      "desc": "All contribution categories tracked separately with real-time balances."
+    },
+    {
+      "icon": "&#128197;",
+      "title": "Loan Management",
+      "desc": "Full loan lifecycle from application through approval to final settlement."
+    },
+    {
+      "icon": "&#128466;",
+      "title": "Repayment Schedules",
+      "desc": "Auto-generated, color-coded schedules shareable via WhatsApp or PDF."
+    },
+    {
+      "icon": "&#9888;",
+      "title": "Overdue & Penalties",
+      "desc": "Overdue loans tracked with penalty application and NPL classification."
+    },
+    {
+      "icon": "&#128722;",
+      "title": "Expense Tracking",
+      "desc": "Record, approve, and monitor all SACCO expenses and service providers."
+    },
+    {
+      "icon": "&#128200;",
+      "title": "Investments",
+      "desc": "Track SACCO investments and distribute returns to members at year-end."
+    },
+    {
+      "icon": "&#9745;",
+      "title": "Voting & Elections",
+      "desc": "Secure, anonymous digital polls for board elections and resolutions."
+    },
+    {
+      "icon": "&#129309;",
+      "title": "Benevolent Fund",
+      "desc": "Next of kin records, eligibility tracking, and automated payout calculation."
+    },
+    {
+      "icon": "&#128193;",
+      "title": "Document Storage",
+      "desc": "Central cloud repository for minutes, AGM docs, and member documents."
+    },
+    {
+      "icon": "&#128274;",
+      "title": "Audit Trail",
+      "desc": "Immutable record of every action — who did what, when, from which device."
+    },
+    {
+      "icon": "&#128140;",
+      "title": "Communications",
+      "desc": "Automated Email, SMS, and WhatsApp reminders for your members."
+    },
+    {
+      "icon": "&#128244;",
+      "title": "Offline Mode",
+      "desc": "Staff keep working without internet. Changes sync when back online."
+    },
+    {
+      "icon": "&#128196;",
+      "title": "PDF Reports",
+      "desc": "Statements, loan agreements, receipts, and AGM reports on demand."
+    },
+    {
+      "icon": "&#128241;",
+      "title": "Member Portal",
+      "desc": "Members log in securely to view balances, apply for loans, and vote."
+    },
+    {
+      "icon": "&#128202;",
+      "title": "Auditor Hub",
+      "desc": "Dedicated auditor dashboard with full oversight and approval tools."
+    }
+  ],
+  "pricing": [
+    {
+      "plan": "Basic",
+      "price": "UGX 150k",
+      "setup": "+ UGX 500k one-time setup",
+      "members": "1 – 50 members",
+      "features_yes": [
+        "Member management",
+        "Savings tracking",
+        "Member portal",
+        "Basic reports",
+        "Email reminders"
+      ],
+      "features_no": [
+        "Loans",
+        "Expenses",
+        "Investments"
+      ],
+      "popular": false
+    },
+    {
+      "plan": "Standard",
+      "price": "UGX 350k",
+      "setup": "+ UGX 700k one-time setup",
+      "members": "51 – 100 members",
+      "features_yes": [
+        "Everything in Basic",
+        "Complete loan management",
+        "Repayment schedules",
+        "Payment receipts PDF",
+        "Loan agreements PDF"
+      ],
+      "features_no": [
+        "Expenses",
+        "Investments"
+      ],
+      "popular": true
+    },
+    {
+      "plan": "Premium",
+      "price": "UGX 650k",
+      "setup": "+ UGX 1M one-time setup",
+      "members": "101 – 200 members",
+      "features_yes": [
+        "Everything in Standard",
+        "Expense tracking",
+        "Investment management",
+        "Dividend distribution"
+      ],
+      "features_no": [
+        "Voting",
+        "Auditor Hub"
+      ],
+      "popular": false
+    },
+    {
+      "plan": "Enterprise",
+      "price": "UGX 1.2M",
+      "setup": "+ UGX 1.5M one-time setup",
+      "members": "201 – 400 members",
+      "features_yes": [
+        "Everything in Premium",
+        "Voting & elections",
+        "Benevolent fund",
+        "Document management",
+        "AGM report generator",
+        "Auditor Hub",
+        "Priority support"
+      ],
+      "features_no": [],
+      "popular": false
+    }
+  ],
+  "digital_rent_note": "400+ members? Switch to Digital Rent — UGX 2,000 per member per month. Scales as your SACCO grows.",
+  "testimonials": [
+    {
+      "name": "Margaret Kizza",
+      "org": "Chairperson, Kampala Teachers SACCO",
+      "initials": "MK",
+      "quote": "Manual reconciliations used to take our treasurer every Saturday. Now it is done in under 30 minutes. Our members love the self-service portal."
+    },
+    {
+      "name": "Robert Ocen",
+      "org": "CEO, Gulu Farmers Cooperative",
+      "initials": "RO",
+      "quote": "Automated reminders before due dates changed everything. Members pay on time and our loan book is healthier than it has ever been."
+    },
+    {
+      "name": "Aisha Namutebi",
+      "org": "Secretary, Wakiso Women's SACCO",
+      "initials": "AN",
+      "quote": "Our AGM was completely paperless. Reports, digital voting, real-time audit access — everything our auditor needed was right there."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is Pamoja Pay?",
+      "a": "Pamoja Pay is a complete SACCO management platform built for cooperative societies in Uganda and Africa."
+    },
+    {
+      "q": "How does pricing work?",
+      "a": "A flat monthly subscription based on your member count. A one-time setup fee covers data migration and staff training."
+    },
+    {
+      "q": "Is there a contract?",
+      "a": "Month-to-month with no long-term commitment. Cancel anytime. 30-day money-back guarantee."
+    },
+    {
+      "q": "Can members access from their phones?",
+      "a": "Yes. The member portal works on any smartphone browser with no app download needed."
+    },
+    {
+      "q": "What happens when internet goes down?",
+      "a": "Pamoja Pay works fully offline. Staff continue working and changes sync when connectivity returns."
+    },
+    {
+      "q": "Is our data secure?",
+      "a": "Yes. Bank-level encryption, row-level security, daily backups, and an immutable audit trail."
+    },
+    {
+      "q": "Can we upgrade our plan later?",
+      "a": "Anytime. Your data stays intact and you simply unlock new features."
+    }
+  ],
   "contact": {
     "email": "paypamoja@gmail.com",
-    "phone": "+256 XXX XXX XXX",
-    "whatsapp": "+256 XXX XXX XXX",
+    "phone": "+256 786988269",
+    "whatsapp": "+256 786988269",
     "location": "Kampala, Uganda",
-    "hours_weekday_label": "Monday \u2013 Friday",
-    "hours_weekday_time": "9:00 AM \u2013 5:00 PM",
-    "hours_sat_time": "10:00 AM \u2013 2:00 PM"
+    "hours_weekday_label": "Monday – Friday",
+    "hours_weekday_time": "9:00 AM – 5:00 PM",
+    "hours_sat_time": "10:00 AM – 2:00 PM"
+  },
+  "about": {
+    "mission": "Our mission: To digitize and empower cooperative societies across Uganda and Africa.",
+    "p1": "\"Pamoja\" means \"Together\" in Swahili — and that spirit of togetherness is at the heart of every cooperative. SACCOs exist because people come together to pool resources, support each other, and build collective wealth.",
+    "p2": "We built Pamoja Pay because we saw too many SACCOs across Uganda and Africa struggling with paper records, spreadsheets, and systems not built for the cooperative context."
   },
   "settings": {
     "site_name": "PamojaPay",
     "tagline": "SACCO Digitalization Solution",
-    "footer_copy": "\u00a9 2026 PamojaPay \u00b7 Together, we grow stronger."
+    "footer_copy": "© 2026 PamojaPay · Together, we grow stronger."
+  },
+  "social": {
+    "facebook": "",
+    "twitter": "",
+    "linkedin": "",
+    "instagram": "",
+    "youtube": "",
+    "tiktok": ""
+  },
+  "seo": {
+    "title": "PamojaPay - SACCO Digitalization Solution",
+    "description": "Complete SACCO management platform for Uganda and Africa. Member portal, loan management, savings tracking, and more.",
+    "keywords": "SACCO, cooperative, savings, loans, Uganda, Africa, digitalization",
+    "og_image": ""
+  },
+  "branding": {
+    "primary_color": "#1a6cf6",
+    "accent_color": "#00e5a0",
+    "bg_color": "#060f1e",
+    "text_color": "#ffffff",
+    "logo_text": "Pamoja",
+    "logo_accent": "Pay",
+    "favicon": ""
+  },
+  "typography": {
+    "primary_font": "Sora",
+    "mono_font": "DM Mono",
+    "fonts_url": "https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap"
   }
 }
